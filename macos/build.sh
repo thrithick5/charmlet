@@ -55,8 +55,9 @@ rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources/web"
 cp "$BIN" "$APP/Contents/MacOS/Charmlet"
 
-# The web engine is the app's whole visual layer. Copy it in, minus the site-only bits.
+# The web engine is the app's whole visual layer. Copy it in, minus downloads and site-only bits.
 cp -R "$ROOT/web/." "$APP/Contents/Resources/web/"
+rm -rf "$APP/Contents/Resources/web/downloads"
 rm -f "$APP/Contents/Resources/web/.DS_Store"
 find "$APP/Contents/Resources/web" -name '.DS_Store' -delete 2>/dev/null || true
 
@@ -120,11 +121,13 @@ PLIST
 
 plutil -lint "$APP/Contents/Info.plist" >/dev/null
 
-echo "==> ad-hoc signing"
-if codesign --force --sign - --timestamp=none "$APP" 2>/dev/null; then
-  echo "    signed (ad-hoc)"
+echo "==> stripping metadata and signing"
+xattr -cr "$APP"
+if codesign --force --deep --sign - --timestamp=none "$APP"; then
+  codesign --verify --deep --strict "$APP"
+  echo "    signed & verified (ad-hoc)"
 else
-  echo "    skipped — the app still runs locally, it just has no signature"
+  echo "    warning: codesign failed"
 fi
 
 # Let LaunchServices notice the new bundle so luckydangle:// resolves without a logout.

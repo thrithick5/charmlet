@@ -33,8 +33,11 @@ echo "==> Preparing DMG staging area"
 rm -rf "$STAGING"
 mkdir -p "$STAGING"
 
-# Copy the signed app bundle
+# Copy the signed app bundle and ensure clean code signature in staging
 cp -R "$APP" "$STAGING/"
+xattr -cr "$STAGING/${APP_NAME}.app"
+codesign --force --deep --sign - --timestamp=none "$STAGING/${APP_NAME}.app"
+codesign --verify --deep --strict "$STAGING/${APP_NAME}.app"
 
 # Create the Applications symlink for drag-and-drop install
 ln -s /Applications "$STAGING/Applications"
