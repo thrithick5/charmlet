@@ -1,0 +1,13 @@
+# Build output
+build/
+.build/
+.build-cache/
+.build-config/
+.build-security/
+.shot-scratch-*/
+**/macos/.build/
+
+# Scratch & OS
+.DS_Store
+**/.DS_Store
+.tmpcheck/

@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Charmlet — charm surface</title>
+<!--
+  charm.html — the transparent surface hosted by the native macOS app.
+
+  It is deliberately the same engine the website uses, so the charm can never look
+  or behave differently in the app than it does on the page. Swift owns everything
+  the web cannot do: the menu bar, the click-through window, global hotkeys and the
+  charmlet:// URL scheme. Everything visual lives here.
+-->
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: transparent !important;
+    background-color: transparent !important;
+    overflow: hidden;
+    /* The app paints on a transparent NSWindow; nothing here may add a backdrop. */
+  }
+  #stage {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+  /* Invisible unless the app explicitly turns the cord on. */
+  #stage.no-cord .dangle-cord { display: none; }
+</style>
+<link rel="stylesheet" href="charm.css">
+</head>
+<body>
+<div id="stage" class="dangle-stage" aria-live="polite"></div>
+
+<script src="js/bundle.js"></script>
+<script>
+  const { Dangle, CHARMS, getCharm, sound } = window;
+
+  const q = new URLSearchParams(location.search);
+  const stage = document.getElementById('stage');
+
+  const dangle = new Dangle(stage, {
+    charmId: q.get('charm') || 'nazar',
+    length: Number(q.get('length')) || 230,
+    segments: 16,
+    charmWidth: Number(q.get('width')) || 158,
+    scale: 0.6,
+    anchorX: Number(q.get('anchorX')) || 0.5,
+    anchorY: 0,
+    showCord: q.get('cord') !== '0',
+  });
+
+  // The overlay window covers the whole screen, so tracking must be global.
+  dangle.trackCursor(window);
+
+  if (q.get('muted') !== '0') sound.setEnabled(false);
+  if (q.get('cord') === '0') stage.classList.add('no-cord');
+
+  /**
+   * The bridge the Swift side talks to. Everything the menu can do goes through here.
+   */
+  window.charmlet = {
+    ready: true,
+
+    list() {
+      return CHARMS.map((c) => ({ id: c.id, name: c.name, ritual: c.ritual }));
+    },
+
+    current() {
+      return dangle.charm.id;
+    },
+
+    setCharm(id) {
+      dangle.setCharm(id);
+      return dangle.charm.id;
+    },
+
+    /** Cycle through the collection — used by the "next charm" menu item. */
+    cycle(step = 1) {
+      const ids = CHARMS.map((c) => c.id);
+      const i = ids.indexOf(dangle.charm.id);
+      const next = ids[(i + step + ids.length) % ids.length];
+      dangle.setCharm(next);
+      return next;
+    },
+
+    ritual() {
+      dangle.ritual();
+      return dangle.charm.ritual;
+    },
+
+    /** luckydangle://bless — drop in and perform the ritual. */
+    bless() {
+      dangle.bless();
+      return true;
+    },
+
+    setVisible(on) {
+      dangle.setVisible(on);
+      return dangle.visible;
+    },
+
+    isVisible() {
+      return dangle.visible;
+    },
+
+    setBehind(on) {
+      dangle.setBehind(on);
+      return dangle.behind;
+    },
+
+    hover(x, y) {
+      dangle.hover(x, y);
+      const box = dangle.el.getBoundingClientRect();
+      const inBox = x >= box.left - 32 && x <= box.right + 32 && y >= box.top - 32 && y <= box.bottom + 32;
+      const inCord = x >= box.left - 20 && x <= box.right + 20 && y >= 0 && y <= box.top + 20;
+      return {
+        hit: inBox || inCord || dangle.grabbed,
+        rect: { x: box.x, y: box.y, width: box.width, height: box.height },
+        grabbed: dangle.grabbed,
+      };
+    },
+
+    setSize(width) {
+      dangle.setSize(width);
+      return true;
+    },
+
+    setAnchor(x, y) {
+      dangle.setAnchor(x, y);
+      return true;
+    },
+
+    setLength(px) {
+      dangle.setLength(px);
+      return true;
+    },
+
+    setSound(on) {
+      sound.setEnabled(!!on);
+      if (on) sound.play('thwip');
+      return sound.isEnabled();
+    },
+
+    flick() {
+      dangle.flick((Math.random() - 0.5) * 40, -14);
+      return true;
+    },
+
+    /**
+     * Screenshot / QA helper, and the app's click-through logic depends on it.
+     *
+     * `rect` is the charm's real on-screen box, rotation included. Swift polls this
+     * ten times a second to decide whether the overlay should accept a click or let
+     * it pass to whatever is underneath, so `grabbed` matters as much as `rect`:
+     * without it a fast flick would hand the pointer back mid-drag.
+     */
+    metrics() {
+      const t = dangle.rope.tip;
+      const box = dangle.el.getBoundingClientRect();
+      return {
+        charm: dangle.charm.id,
+        ritual: dangle.charm.ritualName,
+        x: Math.round(t.x),
+        y: Math.round(t.y),
+        width: Math.round(dangle.charmW),
+        height: Math.round(dangle.charmH),
+        rect: { x: box.x, y: box.y, width: box.width, height: box.height },
+        /** Signed tilt of the charm in degrees. Zero means it hangs plumb. */
+        tiltDeg: Number((((dangle._angle ?? 0) * 180) / Math.PI).toFixed(2)),
+        grabbed: dangle.grabbed,
+        visible: dangle.visible,
+        behind: dangle.behind,
+        viewport: { w: innerWidth, h: innerHeight },
+      };
+    },
+  };
+  window.luckydangle = window.charmlet;
+
+  document.documentElement.dataset.ready = '1';
+</script>
+</body>
+</html>

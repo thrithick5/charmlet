@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Charmlet — Desktop charms for macOS &amp; Windows</title>
+<meta name="description" content="Hang a lucky charm from the top of your screen. Explore the collection, enjoy its swaying cord and interact with your chosen charm. Free, personal, local.">
+<meta name="theme-color" content="#f8faff">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="website">
+<meta property="og:title" content="A Little Luck. Always Close.">
+<meta property="og:description" content="Hang a lucky charm from the top of your Mac screen. Free, personal and local — no account, no licence, no payments.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2315803d'/%3E%3Ccircle cx='16' cy='10' r='4.5' fill='white'/%3E%3Ccircle cx='22' cy='16' r='4.5' fill='white'/%3E%3Ccircle cx='16' cy='22' r='4.5' fill='white'/%3E%3Ccircle cx='10' cy='16' r='4.5' fill='white'/%3E%3Ccircle cx='16' cy='16' r='2.8' fill='%23fef08a'/%3E%3Cpath d='M16 17 C16 22 19 25 21 26' stroke='white' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@1,6..72,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="charm.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============================================================ NAV ===== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+          <circle cx="12" cy="7.5" r="3.2"/>
+          <circle cx="16.5" cy="12" r="3.2"/>
+          <circle cx="12" cy="16.5" r="3.2"/>
+          <circle cx="7.5" cy="12" r="3.2"/>
+          <circle cx="12" cy="12" r="2" fill="#fef08a"/>
+          <path d="M12 13 C12 17 14.5 19.5 16 20.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+        </svg>
+      </span>
+      Charmlet
+    </a>
+
+    <nav class="nav-links">
+      <a href="#charms">Charms</a>
+      <a href="#home">Desktop</a>
+      <a href="#yours">Make it yours</a>
+      <a href="#install">Install</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <a class="btn btn-blue btn-sm nav-cta" href="#install">Download Free</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ========================================================= HERO ===== -->
+  <section class="hero" id="dg">
+    <div class="col narrow">
+      <div class="wordmark">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+            <circle cx="12" cy="7.5" r="3.2"/>
+            <circle cx="16.5" cy="12" r="3.2"/>
+            <circle cx="12" cy="16.5" r="3.2"/>
+            <circle cx="7.5" cy="12" r="3.2"/>
+            <circle cx="12" cy="12" r="2" fill="#fef08a"/>
+            <path d="M12 13 C12 17 14.5 19.5 16 20.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+          </svg>
+        </span>
+        Charmlet
+      </div>
+      <h1 class="tag">A little luck.<br><em class="italic" style="font-family:var(--font-serif);font-style:italic;font-weight:500">Always close.</em></h1>
+      <p class="lede">A small decoration with a personal meaning. Choose a charm for your desktop (macOS &amp; Windows), watch it sway, and give it a playful flick. The desktop outside the charm stays clickable.</p>
+      <div class="cta">
+        <a class="btn btn-blue" href="#install" id="heroDownloadBtn">Download Free</a>
+        <a class="btn btn-white" href="#charms">Meet the charms</a>
+      </div>
+      <p class="hint">
+        <span class="platform-pill"><svg width="15" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.1 12.5c0-2 1.6-3 1.7-3.1-1-1.4-2.5-1.6-3-1.6-1.3-.1-2.5.8-3.1.8-.7 0-1.7-.8-2.8-.8-1.5 0-2.9.9-3.6 2.2-1.5 2.6-.4 6.5 1 8.6.7 1 1.5 2.1 2.6 2 1-.1 1.5-.7 2.8-.7 1.3 0 1.7.7 2.8.7 1.2 0 1.9-1 2.5-2 .8-1.1 1.1-2.2 1.1-2.3-.1 0-2-.8-2-3.8ZM15 6.4c.6-.8 1.1-1.9 1-3-.9.1-2 .6-2.7 1.4-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3Z"/></svg> macOS</span>
+        <span aria-hidden="true">·</span>
+        <span class="platform-pill"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg> Windows 10 &amp; 11</span>
+        <span aria-hidden="true">·</span>
+        <span>100% Free &amp; Offline</span>
+      </p>
+    </div>
+
+    <!-- Live hero charm -->
+    <div class="wrap" style="margin-top:36px;max-width:680px">
+      <div class="hero-stage-shell">
+        <div class="stage-badge" id="stageBadge">
+          <span class="n">Four-leaf clover</span>
+          <span class="o">Ireland</span>
+        </div>
+        <div class="stage-actions">
+          <button class="icon-btn" id="ritualBtn" type="button" title="Perform the ritual" aria-label="Perform the ritual">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/>
+            </svg>
+          </button>
+          <button class="icon-btn" id="hideBtn" type="button" title="Show or hide the charm" aria-label="Show or hide the charm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+              <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.6"/>
+            </svg>
+          </button>
+        </div>
+        <div class="dangle-stage hero-stage" id="heroStage"></div>
+        <div class="stage-hint">grab it · flick it · tap it</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================ AT HOME ON YOUR DESKTOP ===== -->
+  <section id="home">
+    <div class="col">
+      <h2>At home on your desktop</h2>
+      <p class="sub">A charm for your screen. Find its controls in the Mac menu bar.</p>
+
+      <ul class="list-ic" style="margin-top:32px;max-width:600px">
+        <li>
+          <span class="ib"><svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="24" height="17" rx="3"/><path d="M12 28h8M16 24v4M22 7v6"/><circle cx="22" cy="16" r="3"/></svg></span>
+          <span>Just your charm. No account needed.</span>
+        </li>
+        <li>
+          <span class="ib"><svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 5 7 22 3-9 9-3L7 5Z"/><path d="m19 21 5 5M22 5v4M27 10h-4"/></svg></span>
+          <span>Play with your charm. Click freely everywhere else.</span>
+        </li>
+        <li>
+          <span class="ib"><svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="24" height="14" rx="7"/><circle cx="21" cy="16" r="4" fill="currentColor" fill-opacity=".12"/></svg></span>
+          <span>Show it, hide it, or choose another charm.</span>
+        </li>
+        <li>
+          <span class="ib"><svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h22M16 5v8"/><circle cx="16" cy="15" r="2"/><path d="M16 17v2"/><circle cx="16" cy="24" r="5"/><circle cx="16" cy="24" r="1.5"/></svg></span>
+          <span>Hang a little luck at the top of your screen.</span>
+        </li>
+        <li>
+          <span class="ib"><svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="10" height="10" rx="3"/><rect x="18" y="4" width="10" height="10" rx="3"/><rect x="4" y="18" width="10" height="10" rx="3"/><path d="m19 23 3 3 6-7"/></svg></span>
+          <span>Choose a charm that feels like you.</span>
+        </li>
+        <li>
+          <span class="ib"><svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M25 11a10 10 0 0 0-17-3L5 11m0-6v6h6M7 21a10 10 0 0 0 17 3l3-3m0 6v-6h-6"/><path d="m12 16 3 3 5-6"/></svg></span>
+          <span>Free, forever. No subscription, no licence.</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================================================== CHARM GALLERY ===== -->
+  <section id="charms">
+    <div class="col">
+      <h2>Choose your charm</h2>
+      <p class="sub">Each one carries a tradition from somewhere in the world, and a small ritual all its own. Pick one to hang it on this page.</p>
+
+      <div class="charm-grid" id="charmGrid"></div>
+
+      <div class="ritual-bar" id="ritualBar" role="group" aria-label="Perform a ritual"></div>
+      <p class="micro" style="margin-top:14px">
+        Tap a charm to hang it on the stage above. Then hit <b>Perform ritual</b> — or press <kbd>R</kbd>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================================================= MAKE IT YOURS ===== -->
+  <section id="yours">
+    <div class="col">
+      <h2>Make it yours</h2>
+      <p class="sub">Your screen. Your charm. Your little ritual.</p>
+
+      <div class="four">
+        <div class="f">
+          <div class="fh">
+            <span class="ib"><svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h24M16 5v7"/><circle cx="16" cy="14" r="2"/><path d="M16 16v3"/><circle cx="16" cy="24" r="5"/><circle cx="16" cy="24" r="1.5"/></svg></span>
+            <h3>Keep it close</h3>
+          </div>
+          <p>A little companion at the top of your screen.</p>
+        </div>
+        <div class="f">
+          <div class="fh">
+            <span class="ib"><svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 16s5-8 13-8 13 8 13 8-5 8-13 8S3 16 3 16Z"/><circle cx="16" cy="16" r="4"/><path d="M24 4h4M26 2v4"/></svg></span>
+            <h3>Call it down</h3>
+          </div>
+          <p>Show it when you want company. Hide it when you need space.</p>
+        </div>
+        <div class="f">
+          <div class="fh">
+            <span class="ib"><svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 21h12l-2-4v-5a4 4 0 0 0-8 0v5l-2 4ZM14 25h4M16 5V3M5 12l2 1M25 13l2-1"/><path d="M4 18c0 3 1 5 3 7M28 18c0 3-1 5-3 7"/></svg></span>
+            <h3>Give it a ritual</h3>
+          </div>
+          <p>Ring a bell. Make a wish. Give your charm a playful flick.</p>
+        </div>
+        <div class="f">
+          <div class="fh">
+            <span class="ib"><svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 27S5 20 5 12a6 6 0 0 1 11-3 6 6 0 0 1 11 3c0 8-11 15-11 15Z"/><path d="M12 14h8M16 10v8"/></svg></span>
+            <h3>Make it yours</h3>
+          </div>
+          <p>Pick a charm with meaning — or hang your favourite emoji.
+            <button class="btn btn-line btn-sm" style="margin-top:10px;width:100%" id="emojiBtn">Pick an emoji</button>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================== INSTALL ===== -->
+  <section id="install">
+    <div class="wrap">
+      <div class="install-header">
+        <p class="eyebrow">Download &amp; Access</p>
+        <h2>Get your charm on your desktop</h2>
+        <p class="lede" style="margin-top:10px">
+          Runs locally and offline. No account, no licence key, and zero telemetry.
+        </p>
+
+        <div class="os-tabs-bar" role="tablist" aria-label="Select Operating System">
+          <button class="os-tab-btn active" id="tabBtnMac" type="button" role="tab" aria-selected="true" aria-controls="panelMac">
+            <svg width="16" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.1 12.5c0-2 1.6-3 1.7-3.1-1-1.4-2.5-1.6-3-1.6-1.3-.1-2.5.8-3.1.8-.7 0-1.7-.8-2.8-.8-1.5 0-2.9.9-3.6 2.2-1.5 2.6-.4 6.5 1 8.6.7 1 1.5 2.1 2.6 2 1-.1 1.5-.7 2.8-.7 1.3 0 1.7.7 2.8.7 1.2 0 1.9-1 2.5-2 .8-1.1 1.1-2.2 1.1-2.3-.1 0-2-.8-2-3.8ZM15 6.4c.6-.8 1.1-1.9 1-3-.9.1-2 .6-2.7 1.4-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3Z"/></svg>
+            macOS
+          </button>
+          <button class="os-tab-btn" id="tabBtnWin" type="button" role="tab" aria-selected="false" aria-controls="panelWin">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.9-1.801"/></svg>
+            Windows (10 &amp; 11)
+          </button>
+          <button class="os-tab-btn" id="tabBtnWeb" type="button" role="tab" aria-selected="false" aria-controls="panelWeb">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/></svg>
+            Web / PWA
+          </button>
+        </div>
+        <!-- macOS Panel -->
+      <div class="os-panel active" id="panelMac" role="tabpanel">
+        <div class="split">
+          <div>
+            <h3>macOS Menu Bar App</h3>
+            <p class="lede" style="margin-top:10px">
+              A native transparent menu-bar companion that hangs your charm over every window and stays out of every click.
+            </p>
+            <div class="download-action-box">
+              <a class="btn btn-blue download-btn" href="downloads/Charmlet.dmg" download>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download for Mac (.dmg)
+              </a>
+              <span class="file-meta">Apple Silicon &amp; Intel · macOS 13+ · Disk Image</span>
+            </div>
+            <ul class="checklist">
+              <li><span class="tick">✓</span><span><b>Menu bar controls.</b> Switch between all 20 charms in one click.</span></li>
+              <li><span class="tick">✓</span><span><b>Send Behind Windows.</b> Let it tuck behind active windows or float on top.</span></li>
+              <li><span class="tick">✓</span><span><b>Global shortcuts.</b> ⌃D show/hide · ⌃S ritual · ⌃F flick.</span></li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="code">
+              <div class="code-top"><i></i><i></i><i></i><span>Quick Install Guide</span></div>
+<pre><span class="c"># 1. Double-click Charmlet.dmg</span>
+<span class="c"># 2. Drag Charmlet into Applications</span>
+<span class="c"># 3. Launch from Spotlight or Launchpad</span>
+
+<span class="c"># Quick bless shortcut:</span>
+<span class="k">open</span> <span class="s">"charmlet://bless"</span></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Windows Panel -->
+      <div class="os-panel" id="panelWin" role="tabpanel" style="display:none">
+        <div class="split">
+          <div>
+            <h3>Windows Desktop Edition</h3>
+            <p class="lede" style="margin-top:10px">
+              Full desktop application for Windows 10 &amp; 11. Installs in seconds with dedicated desktop and Start Menu shortcuts.
+            </p>
+            <div class="download-action-box">
+              <a class="btn btn-blue download-btn" href="downloads/Charmlet-Setup.exe" download>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download for Windows (.exe)
+              </a>
+              <span class="file-meta">Windows 10 &amp; 11 (64-bit) · 1-Click Installer</span>
+            </div>
+            <ul class="checklist">
+              <li><span class="tick">✓</span><span><b>1-Click Installer.</b> Double-click <code>Charmlet-Setup.exe</code> — no admin rights required.</span></li>
+              <li><span class="tick">✓</span><span><b>Desktop &amp; Start Menu shortcuts.</b> Launch directly with custom charm icon.</span></li>
+              <li><span class="tick">✓</span><span><b>Clean standalone app window.</b> No browser bars or tabs, zero console prompts.</span></li>
+              <li><span class="tick">✓</span><span><b>100% offline &amp; private.</b> Pre-bundled and never connects to external servers.</span></li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="code">
+              <div class="code-top"><i></i><i></i><i></i><span>Windows Quick Start</span></div>
+<pre><span class="c"># 1. Run Charmlet-Setup.exe</span>
+<span class="c"># 2. Click "Install" (no admin rights needed)</span>
+<span class="c"># 3. Charmlet opens on your desktop!</span>
+
+<span class="c"># Launches from Desktop or Start Menu:</span>
+<span class="k">Charmlet</span></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Web / PWA Panel -->
+      <div class="os-panel" id="panelWeb" role="tabpanel" style="display:none">
+        <div class="split">
+          <div>
+            <h3>Web &amp; Progressive Web App (PWA)</h3>
+            <p class="lede" style="margin-top:10px">
+              Access the charms instantly in any modern desktop browser (Chrome, Edge, Brave, Safari, Firefox).
+            </p>
+            <div class="download-action-box">
+              <a class="btn btn-blue download-btn" href="charm.html" target="_blank" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Open Standalone Charm
+              </a>
+            </div>
+            <ul class="checklist">
+              <li><span class="tick">✓</span><span><b>Install as Desktop App:</b> In Edge or Chrome, click the App icon in the address bar &rarr; "Install Charmlet".</span></li>
+              <li><span class="tick">✓</span><span><b>Always accessible:</b> Runs locally from cache or local file system.</span></li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="code">
+              <div class="code-top"><i></i><i></i><i></i><span>Local Static Server</span></div>
+<pre><span class="c"># If you prefer running a tiny local HTTP server:</span>
+<span class="k">npx</span> <span class="s">serve web</span>
+<span class="c"># Or with Python:</span>
+<span class="k">python3</span> <span class="s">-m http.server --directory web 8765</span></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================= FAQ ===== -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Questions</p>
+        <h2>An honest FAQ</h2>
+      </div>
+
+      <div class="faq">
+        <details class="qa">
+          <summary>Will I be luckier?</summary>
+          <div class="a">
+            No guaranteed luck or productivity benefit. It is an optional desktop
+            decoration with personal meaning and playful interactions — a little luck,
+            kept close, measured entirely by how it makes you feel.
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Will it get in the way of my clicks?</summary>
+          <div class="a">
+            No. The window is click-through everywhere except the charm itself. It
+            never steals focus. Clicks on browser tabs, your IDE, everything
+            underneath, pass straight through.
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Can I use this on Windows?</summary>
+          <div class="a">
+            Yes! You can download the 1-click Windows installer (<code>Charmlet-Setup.exe</code>) directly from the Install section. It installs in seconds without requiring administrator privileges, adds Desktop and Start Menu shortcuts with a dedicated charm icon, and runs cleanly in a dedicated app window.
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Why is it free?</summary>
+          <div class="a">
+            Because this is a personal build for one laptop, not a store product. There
+            is nothing to pay for and nothing to upsell — no licence server, no account,
+            no checkout. The charm is simply yours.
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Does it need the internet?</summary>
+          <div class="a">
+            No. The page you are reading works offline, the app works offline, and your
+            charm choice lives in preferences on this machine. Nothing is sent anywhere,
+            ever.
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Does it slow my computer down?</summary>
+          <div class="a">
+            The app uses resources to draw and animate the charm. Usage depends on your
+            computer and activity; the Verlet solver is deliberately lightweight, but we
+            do not promise zero CPU use or a particular battery impact.
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Where is my data?</summary>
+          <div class="a">
+            In <code>UserDefaults</code> on this Mac: which charm is hanging, whether it
+            is visible, and where on the top edge it hangs. Delete the app's preferences
+            and it forgets everything. Nothing is sent to any server.
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Is the rope real physics?</summary>
+          <div class="a">
+            Yes — a position-based Verlet solver. Each node stores only its current and
+            previous position, distance constraints are relaxed every frame, and the cord
+            never stretches no matter how hard you fling it. The same engine runs here
+            and inside the app, which is why the physics on this page is not a video.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ======================================================== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
+              <circle cx="12" cy="7.5" r="3.2"/>
+              <circle cx="16.5" cy="12" r="3.2"/>
+              <circle cx="12" cy="16.5" r="3.2"/>
+              <circle cx="7.5" cy="12" r="3.2"/>
+              <circle cx="12" cy="12" r="2" fill="#fef08a"/>
+              <path d="M12 13 C12 17 14.5 19.5 16 20.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+            </svg>
+          </span>
+          Charmlet
+        </a>
+        <p class="foot-note" style="max-width:34ch">
+          A little luck, always close. A free, personal, local build — twenty charms,
+          one rope, zero accounts.
+        </p>
+      </div>
+
+      <nav class="foot-links">
+        <a href="#charms">Charms</a>
+        <a href="#home">Desktop</a>
+        <a href="#yours">Make it yours</a>
+        <a href="#install">Install</a>
+        <a href="#faq">FAQ</a>
+        <a href="charm.html">Charm only</a>
+      </nav>
+    </div>
+
+    <p class="foot-note">
+      <b>Legal note.</b> Charmlet is an independent personal project. It is not
+      affiliated with or endorsed by Book My Luck, Lucky Dangle, or any other product. All charms are
+      original artwork, all descriptions are original text, and charm traditions are
+      credited to their cultures on each plaque. No deities or sacred objects are treated
+      disrespectfully.
+    </p>
+    <p class="foot-note">Free. Personal. Local. Nothing here is for sale.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script defer src="js/bundle.js"></script>
+</body>
+</html>

@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Web Dangle — a lucky charm for your screen</title>
+<meta name="description" content="Hang a lucky charm from the top of your screen. The Slinger hangs upside down, sways while you work, stays out of every click, and drops in when you call it. Mac and Windows.">
+<meta name="theme-color" content="#06060a">
+<meta property="og:title" content="Web Dangle — a lucky charm for your screen">
+<meta property="og:description" content="The Slinger hangs upside down from the top of your display. Grab it, flick it, call it down before something that matters.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23e62429'/%3E%3Cg stroke='white' stroke-width='1.6' fill='none'%3E%3Cpath d='M16 5v22M6 10l20 12M26 10L6 22'/%3E%3Ccircle cx='16' cy='16' r='6'/%3E%3Ccircle cx='16' cy='16' r='10'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="stylesheet" href="charm.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="sense-flash" id="senseFlash" aria-hidden="true"></div>
+
+<!-- ===================================================== NAV ===== -->
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round">
+          <path d="M12 2v20M3 7l18 10M21 7L3 17"/>
+          <circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="8.4" opacity=".55"/>
+        </svg>
+      </span>
+      Web&nbsp;Dangle
+    </a>
+
+    <nav class="nav-links">
+      <a href="#charms">Charms</a>
+      <a href="#vibe">Aura</a>
+      <a href="#desktop">Desktop</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="nav-right">
+      <div class="aura-meter" id="auraMeter" data-tone="none" title="Aura you have farmed in this session. Counted locally, on your machine.">
+        <span class="aura-dot" aria-hidden="true"></span>
+        <span class="aura-num" id="auraNum">0</span>
+        <span class="aura-rank" id="auraRank">NPC</span>
+      </div>
+      <button class="icon-btn" id="soundBtn" type="button" aria-pressed="false" title="Sound off" aria-label="Toggle sound">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" id="soundIcon">
+          <path d="M11 5 6 9H3v6h3l5 4V5Z"/><path d="M16 9.5a3.5 3.5 0 0 1 0 5"/>
+        </svg>
+      </button>
+      <button class="icon-btn" id="themeBtn" type="button" title="Switch theme" aria-label="Switch theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>
+        </svg>
+      </button>
+      <a class="btn btn-primary btn-sm" href="#pricing">Get it</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- =================================================== HERO ===== -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="pill">
+          <span class="tag">New</span>
+          <span class="beat" aria-hidden="true"></span>
+          <b>18 charms</b>&nbsp;· Mac + Windows
+        </span>
+
+        <h1>Hang your luck.<br><span class="grad">Make it swing.</span></h1>
+
+        <p class="lede">
+          A lucky charm for your screen. <b>The Slinger</b> hangs upside down from the top of
+          your display, sways while you work, leans away from your cursor, and stays out of
+          every click. Grab him. Flick him. Call him down before something that matters.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#pricing">
+            Get Web Dangle
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#charms">Meet the charms</a>
+        </div>
+
+        <p class="micro">
+          $7.77 once · no subscription, no account, no license key · press
+          <kbd>⌃D</kbd> to hide it and <kbd>⌃S</kbd> for its ritual
+        </p>
+      </div>
+
+      <div class="hero-stage-shell">
+        <div class="stage-badge" id="stageBadge">
+          <span class="n">Web Slinger</span>
+          <span class="o">Yours</span>
+        </div>
+        <div class="stage-actions">
+          <button class="icon-btn" id="ritualBtn" type="button" title="Perform the ritual" aria-label="Perform the ritual">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M18 6l-2.5 2.5M8.5 15.5 6 18"/>
+            </svg>
+          </button>
+          <button class="icon-btn" id="hideBtn" type="button" title="Show or hide the charm" aria-label="Show or hide the charm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+              <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="2.6"/>
+            </svg>
+          </button>
+        </div>
+        <div class="dangle-stage hero-stage" id="heroStage"></div>
+        <div class="stage-hint" id="heroHint">grab him · flick him · tap him</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ================================================= CHARMS ===== -->
+  <section id="charms">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The collection</p>
+        <h2>Choose your charm</h2>
+        <p class="lede">
+          Each one comes from a real tradition, gets a one-sentence museum plaque, and has one
+          small ceremony of its own. A few are yours to fill. Pick one and it hangs on this page,
+          right now, for real — that is the same rope solver that ships in the app.
+        </p>
+      </div>
+
+      <div class="filters" id="filters" role="group" aria-label="Filter charms"></div>
+      <div class="charm-grid" id="charmGrid"></div>
+
+      <div class="ritual-bar" id="ritualBar" role="group" aria-label="Perform a ritual"></div>
+      <p class="micro" style="margin-top:14px">
+        Tap a charm to hang it on the stage above. Then hit <b>Perform ritual</b> — or press <kbd>R</kbd>.
+      </p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- =================================================== VIBE ===== -->
+  <section id="vibe">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Aura, but offline</p>
+        <h2>Your aura is counted on your machine</h2>
+        <p class="lede">
+          Every flick, tap and ritual adds aura to a meter that never leaves your browser.
+          No accounts, no analytics, no leaderboard, no fake "12,402 people hanging right now"
+          banner. It is your number, for your own amusement.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature">
+          <span class="ico">🔮</span>
+          <h3 id="vibeAuraNum">0 aura</h3>
+          <p>Earned this session. The rank goes NPC → Warming up → Locked in → Main character → Aura farmer. It is not scientific.</p>
+        </div>
+        <div class="feature">
+          <span class="ico">🕸️</span>
+          <h3><span id="vibeThwips">0</span> thwips</h3>
+          <p>Every flick of the cord counts. Flick him hard enough and he swings properly, because the release velocity is injected straight into the rope.</p>
+        </div>
+        <div class="feature">
+          <span class="ico">🎮</span>
+          <h3>Konami code</h3>
+          <p>↑ ↑ ↓ ↓ ← → ← → B A. Something happens. We are not going to spoil it, but it involves spider-sense.</p>
+        </div>
+        <div class="feature">
+          <span class="ico">📸</span>
+          <h3>Screenshot bait</h3>
+          <p>He shows up in screenshots and screen shares. When someone asks what is hanging off your screen, you have a story to tell.</p>
+        </div>
+        <div class="feature">
+          <span class="ico">🔊</span>
+          <h3>Sound is off by default</h3>
+          <p>Every noise is synthesised in the browser — thwips, clacks, squishes, temple bells. No audio files. Turn it on with the speaker up top.</p>
+        </div>
+        <div class="feature">
+          <span class="ico">✋</span>
+          <h3>Honest by design</h3>
+          <p>No invented testimonials, no fake download counts, no pretend press logos. This page has exactly as much social proof as the product has actually earned so far.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ============================================ KEEP CLOSE ===== -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">New</p>
+        <h2>What if your lucky charm is someone you love?</h2>
+        <p class="lede">
+          A favourite person, a pet, a memory — hanging from the same cord, as a photo print or
+          tucked inside a locket. Try it below. Your photo never leaves this tab.
+        </p>
+      </div>
+
+      <div class="photo-row">
+        <div class="photo-card">
+          <div class="photo-frame" id="printFrame">drop a photo</div>
+          <h3>Photo print</h3>
+          <p>Up to seven photos, each with a little note. The frame above is live — pick a file and it hangs.</p>
+          <label class="btn btn-ghost btn-sm" style="margin-top:14px">
+            Choose a photo
+            <input type="file" id="printInput" accept="image/*" hidden>
+          </label>
+        </div>
+
+        <div class="photo-card">
+          <div class="photo-frame" id="locketFrame" style="border-radius:50%">drop a photo</div>
+          <h3>Photo locket</h3>
+          <p>Someone you carry close, even here. The locket opens and closes with its own ritual.</p>
+          <label class="btn btn-ghost btn-sm" style="margin-top:14px">
+            Choose a photo
+            <input type="file" id="locketInput" accept="image/*" hidden>
+          </label>
+        </div>
+
+        <div class="photo-card">
+          <div class="photo-frame" style="font-size:2rem">🙂</div>
+          <h3>Any emoji</h3>
+          <p>If your lucky object is none of the eighteen, choose any emoji and it hangs from the same cord with a tiny twin as the middle bead.</p>
+          <button class="btn btn-ghost btn-sm" style="margin-top:14px" id="emojiBtn">Pick an emoji</button>
+        </div>
+      </div>
+
+      <p class="privacy-note">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+        Photos are read with the File API and rendered in this tab. Nothing is uploaded, ever.
+      </p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ================================================ DESKTOP ===== -->
+  <section id="desktop">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">At home on your Mac or PC</p>
+        <h2>Only the charm catches your cursor</h2>
+        <p class="lede" style="margin-top:16px">
+          It lives in the menu bar on Mac and the tray on Windows, with no Dock icon and no open
+          window. Everything else clicks straight through to whatever is underneath — browser
+          tabs, your IDE, a game.
+        </p>
+
+        <ul class="checklist">
+          <li><span class="tick">✓</span><span><b>Click-through everywhere else.</b> The overlay is inert until your pointer is actually over him.</span></li>
+          <li><span class="tick">✓</span><span><b>Drag him along the top edge</b> to re-hang him anywhere on your screen.</span></li>
+          <li><span class="tick">✓</span><span><b>Choose your own shortcuts</b> on the Mac. ⌃D shows and hides, ⌃S performs the ritual.</span></li>
+          <li><span class="tick">✓</span><span><b>Send him behind your windows</b> on crowded days and he keeps watch from the desktop.</span></li>
+          <li><span class="tick">✓</span><span><b>Meet every charm and its story</b> in the built-in gallery, and switch without restarting.</span></li>
+          <li><span class="tick">✓</span><span><b>New charms arrive in free updates.</b> No subscription, no account, no license key.</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="code">
+          <div class="code-top"><i></i><i></i><i></i><span>webdangle://bless</span></div>
+<pre><span class="c"># before a deploy, a demo, a big meeting</span>
+<span class="k">open</span> <span class="s">"webdangle://bless"</span>
+
+<span class="c"># in a git hook, a shortcut, a cron job</span>
+<span class="c"># the charm comes forward, drops in,</span>
+<span class="c"># and performs its ritual right on cue</span></pre>
+        </div>
+
+        <div class="code" style="margin-top:18px">
+          <div class="code-top"><i></i><i></i><i></i><span>a charm is one file</span></div>
+<pre><span class="c">// web/js/charms.js</span>
+{
+  <span class="k">id</span>: <span class="s">'slinger'</span>,
+  <span class="k">name</span>: <span class="s">'Web Slinger'</span>,
+  <span class="k">plaque</span>: <span class="s">'An original masked hero…'</span>,
+  <span class="k">ritualName</span>: <span class="s">'Thwip'</span>,
+  <span class="k">art</span>: <span class="s">`&lt;svg&gt;…&lt;/svg&gt;`</span>,
+  <span class="k">ritual</span>(root, api) { <span class="c">/* … */</span> }
+}</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ================================================= PRICING ===== -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Lucky pricing</p>
+        <h2>You pay once and it is yours forever</h2>
+        <p class="lede">One purchase covers both platforms.</p>
+      </div>
+
+      <div class="price-grid">
+        <div class="price-card hot">
+          <span class="tier">Lucky</span>
+          <div class="amount">$7.77<small>once</small></div>
+          <ul>
+            <li>All 18 charms, plus any emoji or photo you want to hang</li>
+            <li>Every future charm and update</li>
+            <li>Mac and Windows on one purchase</li>
+            <li>No subscription, no account, no license key</li>
+          </ul>
+          <a class="btn btn-primary" href="#pricing" data-buy="lucky">Get Web Dangle</a>
+        </div>
+
+        <div class="price-card">
+          <span class="tier">Delulu</span>
+          <div class="amount">$11.11<small>once</small></div>
+          <ul>
+            <li>Everything in Lucky</li>
+            <li>Your charm suggestion goes to the front of the queue</li>
+            <li>A little extra support for the person making it</li>
+            <li>Measurably more luck<sup>*</sup></li>
+          </ul>
+          <a class="btn btn-ghost" href="#pricing" data-buy="delulu">Be Delulu</a>
+          <p class="asterisk">* not measurable</p>
+        </div>
+      </div>
+
+      <p class="price-foot">
+        On Mac: a direct download for macOS 14 or later, notarized by Apple. On Windows: a signed
+        installer for Windows 10 and 11. Not on a Mac or PC? The Linux, iPhone, iPad and Android
+        builds do not exist yet — nothing here pretends otherwise.
+      </p>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ================================================== REELS ===== -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Dangling in the wild</p>
+        <h2>This bit is empty on purpose</h2>
+      </div>
+      <div class="empty-state">
+        <div class="big">🕸️</div>
+        <p>
+          Every other product page would fill this space with testimonials from people who do not
+          exist and a download counter that goes up on refresh. This one ships with the section
+          built and nothing in it.
+        </p>
+        <p style="margin-top:14px">
+          When you have real reels, real posts or real quotes, drop them into the
+          <code>reels</code> section of <code>index.html</code> — the grid, styles and lightbox
+          slot are already here.
+        </p>
+        <span class="note">Placeholder — add your own</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ==================================================== FAQ ===== -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Questions</p>
+        <h2>The honest FAQ</h2>
+      </div>
+
+      <div class="faq">
+        <details class="qa">
+          <summary>Is this Spider-Man?</summary>
+          <div class="a">
+            No, and it deliberately is not. Spider-Man is Marvel and Disney intellectual property,
+            so a product shipping his name and suit would be infringement and would be taken down
+            on day one. The hero here is <b>The Slinger</b> — an original masked web-slinger drawn
+            from scratch as SVG for this project, with his own proportions, his own lenses and his
+            own mark. He hangs upside down because that is the whole joke, not because he is
+            anyone else's character. If you own licensed artwork, the charm is a single file and
+            you can drop your own in without touching the engine.
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Does it block my clicks?</summary>
+          <div class="a">
+            No. The overlay ignores mouse events entirely until your pointer is genuinely inside
+            the charm's own hit area — then it lets go again the moment you leave. Clicks on
+            browser tabs, IDE menus and game crosshairs all pass straight through. That is
+            implemented with a global mouse-moved monitor flipping the window's
+            <code>ignoresMouseEvents</code> flag, because a full-screen overlay that swallowed
+            every click would be unusable.
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Why does it not stretch when I drag it hard?</summary>
+          <div class="a">
+            The cord is a position-based Verlet solver rather than a spring simulation. Each node
+            stores its current and previous position, and distance constraints are relaxed
+            repeatedly each frame, so the cord stays rigid no matter how violently you fling it.
+            The same solver runs on this page and inside the app, which is why the physics here is
+            not a video or a mock-up — it is the actual engine.
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Can I add my own charm?</summary>
+          <div class="a">
+            Yes. A charm is one object in <code>web/js/charms.js</code>: an id, a name, a plaque, an
+            inline SVG with <code>data-part</code> tags on the pieces you want to animate, and a
+            <code>ritual()</code> function. Add it to the <code>CHARMS</code> array and it appears
+            in the gallery, on the site and in the app's menu, because both hosts share the same
+            engine.
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Why is the sound off when I arrive?</summary>
+          <div class="a">
+            Because a website that makes noise before you ask is a bad website. Every sound is
+            synthesised with the Web Audio API — thwips, keycap clacks, temple bells, slurps,
+            squishes — so there are no audio files to download and nothing to license. The speaker
+            button in the header turns it on.
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>What does the aura meter actually measure?</summary>
+          <div class="a">
+            Your own flicks, taps and rituals in this browser session, stored in
+            <code>localStorage</code>. It is not a global counter, it is not sent anywhere, and no
+            other visitor is included in it. It is a joke about aura farming that happens to be
+            completely truthful.
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Refunds?</summary>
+          <div class="a">
+            If it does not bring you luck, or you simply do not like it, ask within 30 days and
+            you get your money back. The luck clause is not enforceable, so the refund clause
+            covers it instead.
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Is the checkout live?</summary>
+          <div class="a">
+            Not yet. The pricing buttons are wired to a stub that tells you so rather than
+            pretending to take a card. Connect a Stripe payment link and they work as-is.
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ================================================== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round">
+              <path d="M12 2v20M3 7l18 10M21 7L3 17"/>
+              <circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="8.4" opacity=".55"/>
+            </svg>
+          </span>
+          Web&nbsp;Dangle
+        </a>
+        <p class="foot-note" style="max-width:34ch">
+          A lucky charm for your screen. Built as a complete, working product: a real rope
+          solver, eighteen hand-authored charms, and a native menu-bar app.
+        </p>
+      </div>
+
+      <nav class="foot-links">
+        <a href="#charms">Charms</a>
+        <a href="#vibe">Aura</a>
+        <a href="#desktop">Desktop</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+        <a href="charm.html">Charm only</a>
+      </nav>
+    </div>
+
+    <p class="foot-note">
+      <b>Legal note.</b> Web Dangle is an independent product. It is not affiliated with, endorsed
+      by, or connected to Marvel, Disney, or any comic publisher. The Slinger is an original
+      character created for this project; all eighteen charms are original artwork. Charm
+      traditions are credited to their cultures on each plaque, and no deities or sacred objects
+      are used.
+    </p>
+    <p class="foot-note">Payments are stubbed. Nothing on this page is a live offer to sell.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
