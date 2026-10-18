@@ -95,13 +95,28 @@
         }
       }
     }
-    setAnchor(x, y) {
+    setAnchor(x, y, { shiftNodes = true } = {}) {
+      const dx = x - this.anchor.x;
+      const dy = y - this.anchor.y;
       this.anchor.x = x;
       this.anchor.y = y;
       const head = this.nodes[0];
-      head.pinned = true;
-      head.invMass = 0;
-      head.pinTo(x, y);
+      if (head) {
+        head.pinned = true;
+        head.invMass = 0;
+        head.pinTo(x, y);
+      }
+      if (shiftNodes && (dx !== 0 || dy !== 0)) {
+        for (let i = 1; i < this.nodes.length; i++) {
+          const n = this.nodes[i];
+          n.x += dx;
+          n.px += dx;
+          n.y += dy;
+          n.py += dy;
+          n.originX += dx;
+          n.originY += dy;
+        }
+      }
     }
     get tip() {
       return this.nodes[this.nodes.length - 1];
@@ -113,14 +128,18 @@
      * tip carries the charm's weight, so it lags the light nodes above it; taken from
      * one segment the tangent turns that lag into a hard kink and the charm hangs at
      * a visibly wrong angle (measured at 28 degrees before this was changed). Averaged
-     * over the last few nodes it reads as the real direction of the cord.
+     * over the upper/middle cord it reads as the real plumb direction of the cord.
      */
     get angle() {
       const n = this.nodes.length;
       if (n < 2) return 0;
       const tip = this.nodes[n - 1];
-      const prev = this.nodes[n - 2];
-      return Math.atan2(tip.y - prev.y, tip.x - prev.x) - Math.PI / 2;
+      const baseIdx = Math.min(2, Math.floor(n * 0.25));
+      const prev = this.nodes[baseIdx];
+      const dx = tip.x - prev.x;
+      const dy = tip.y - prev.y;
+      if (Math.abs(dx) < 1e-4 && Math.abs(dy) < 1e-4) return 0;
+      return Math.atan2(dy, dx) - Math.PI / 2;
     }
     get tipSpeed() {
       return Math.hypot(this.tip.vx, this.tip.vy);
@@ -2465,8 +2484,8 @@
     }
     _measure() {
       const r = this.stage.getBoundingClientRect();
-      this.w = r.width;
-      this.h = r.height;
+      this.w = r.width || this.stage.offsetWidth || 220;
+      this.h = r.height || this.stage.offsetHeight || 180;
       const base = this.charm.art.match(/viewBox="0 0 (\d+(?:\.\d+)?) (\d+(?:\.\d+)?)"/);
       this.vbW = base ? parseFloat(base[1]) : 120;
       this.vbH = base ? parseFloat(base[2]) : 180;
@@ -2592,12 +2611,28 @@
     trackCursor(target = window) {
       this._trackTarget = target;
       this._trackHandler = (e) => this._hoverMove(e.clientX, e.clientY);
+      this._leaveHandler = () => {
+        this._pointer.active = false;
+        this._pointer.speed = 0;
+        this._pointer.x = -9999;
+        this._pointer.y = -9999;
+      };
       target.addEventListener("pointermove", this._trackHandler, { passive: true });
+      target.addEventListener("pointerleave", this._leaveHandler, { passive: true });
+      if (target === window) {
+        document.addEventListener("mouseleave", this._leaveHandler, { passive: true });
+      }
       return this;
     }
     untrackCursor() {
       if (this._trackTarget && this._trackHandler) {
         this._trackTarget.removeEventListener("pointermove", this._trackHandler);
+        if (this._leaveHandler) {
+          this._trackTarget.removeEventListener("pointerleave", this._leaveHandler);
+          if (this._trackTarget === window) {
+            document.removeEventListener("mouseleave", this._leaveHandler);
+          }
+        }
       }
     }
     /* ---------------------------------------------------------------- *
@@ -2631,28 +2666,28 @@
       if (!this.rope || !this.visible) return;
       const p = this._pointer;
       if (p.active && !this.grabbed) {
-        this.rope.repel(p.x, p.y, 140, this.opts.reducedMotion ? 0.6 : 2.8);
+        const cordRepelRad = Math.min(this.w * 0.45, 120);
+        this.rope.repel(p.x, p.y, cordRepelRad, this.opts.reducedMotion ? 0.35 : 1.4);
         const tip2 = this.rope.tip;
         const angle = this._angle ?? 0;
-        const armLen = this.charmH * 0.45;
+        const armLen = this.charmH * 0.4;
         const charmCx = tip2.x + Math.sin(angle) * armLen;
         const charmCy = tip2.y + Math.cos(angle) * armLen;
         const cdx = charmCx - p.x;
         const cdy = charmCy - p.y;
         const dist = Math.hypot(cdx, cdy);
-        const repelDist = Math.max(this.charmW * 0.55 + 80, 145);
+        const repelDist = Math.min(this.w * 0.4, Math.max(this.charmW * 0.55 + 16, 44));
         if (dist < repelDist && dist > 1) {
           const falloff = 1 - dist / repelDist;
-          const force = Math.pow(falloff, 1.6) * (this.opts.reducedMotion ? 2.5 : 9.5);
+          const force = Math.pow(falloff, 1.8) * (this.opts.reducedMotion ? 0.35 : 1.2);
           const nx = cdx / dist;
           const ny = cdy / dist;
-          const tw = this._tipWeight();
-          tip2.addForce(nx * force * tw, ny * force * 0.35 * tw);
+          tip2.addForce(nx * force, ny * force * 0.25);
         }
         if (p.speed > 8) {
           const vx = p.x - p.px;
           const vy = p.y - p.py;
-          this.rope.stir(p.x, p.y, vx, vy, 160, 0.12);
+          this.rope.stir(p.x, p.y, vx, vy, Math.min(this.w * 0.5, 130), 0.08);
         }
       }
       this.rope.step(1);
@@ -2695,7 +2730,8 @@
       this.cordPath2.setAttribute("stroke-width", 1.1);
       this.cordPath2.setAttribute("opacity", "0.45");
       const a = this.rope.angle;
-      this._angle = a;
+      const maxTilt = 1.05;
+      this._angle = Math.max(-maxTilt, Math.min(maxTilt, a));
       this.el.style.transform = `translate(${(tip.x - this.charmW / 2).toFixed(2)}px, ${tip.y.toFixed(2)}px) rotate(${this._angle.toFixed(4)}rad)`;
     }
     /* ---------------------------------------------------------------- *

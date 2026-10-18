@@ -128,8 +128,8 @@ export class Dangle extends EventTarget {
 
   _measure() {
     const r = this.stage.getBoundingClientRect();
-    this.w = r.width;
-    this.h = r.height;
+    this.w = r.width || this.stage.offsetWidth || 220;
+    this.h = r.height || this.stage.offsetHeight || 180;
 
     const base = this.charm.art.match(/viewBox="0 0 (\d+(?:\.\d+)?) (\d+(?:\.\d+)?)"/);
     this.vbW = base ? parseFloat(base[1]) : 120;
@@ -278,13 +278,29 @@ export class Dangle extends EventTarget {
   trackCursor(target = window) {
     this._trackTarget = target;
     this._trackHandler = (e) => this._hoverMove(e.clientX, e.clientY);
+    this._leaveHandler = () => {
+      this._pointer.active = false;
+      this._pointer.speed = 0;
+      this._pointer.x = -9999;
+      this._pointer.y = -9999;
+    };
     target.addEventListener('pointermove', this._trackHandler, { passive: true });
+    target.addEventListener('pointerleave', this._leaveHandler, { passive: true });
+    if (target === window) {
+      document.addEventListener('mouseleave', this._leaveHandler, { passive: true });
+    }
     return this;
   }
 
   untrackCursor() {
     if (this._trackTarget && this._trackHandler) {
       this._trackTarget.removeEventListener('pointermove', this._trackHandler);
+      if (this._leaveHandler) {
+        this._trackTarget.removeEventListener('pointerleave', this._leaveHandler);
+        if (this._trackTarget === window) {
+          document.removeEventListener('mouseleave', this._leaveHandler);
+        }
+      }
     }
   }
 
@@ -324,37 +340,35 @@ export class Dangle extends EventTarget {
 
     if (p.active && !this.grabbed) {
       // 1. Air pushed along the upper cord nodes
-      this.rope.repel(p.x, p.y, 140, this.opts.reducedMotion ? 0.6 : 2.8);
+      const cordRepelRad = Math.min(this.w * 0.45, 120);
+      this.rope.repel(p.x, p.y, cordRepelRad, this.opts.reducedMotion ? 0.35 : 1.4);
 
-      // 2. Direct proximity repulsion against the charm body!
-      // This is what makes the charm naturally sway away as the cursor approaches it.
+      // 2. Direct proximity repulsion against the charm body:
+      // Gentle air push so the charm visibly sways away as cursor approaches without pinning sideways.
       const tip = this.rope.tip;
       const angle = this._angle ?? 0;
-      const armLen = this.charmH * 0.45;
+      const armLen = this.charmH * 0.4;
       const charmCx = tip.x + Math.sin(angle) * armLen;
       const charmCy = tip.y + Math.cos(angle) * armLen;
 
       const cdx = charmCx - p.x;
       const cdy = charmCy - p.y;
       const dist = Math.hypot(cdx, cdy);
-      const repelDist = Math.max(this.charmW * 0.55 + 80, 145);
+      const repelDist = Math.min(this.w * 0.4, Math.max(this.charmW * 0.55 + 16, 44));
 
       if (dist < repelDist && dist > 1) {
         const falloff = 1 - dist / repelDist;
-        // Non-linear power curve for gentle approach and firm push near charm
-        const force = Math.pow(falloff, 1.6) * (this.opts.reducedMotion ? 2.5 : 9.5);
+        const force = Math.pow(falloff, 1.8) * (this.opts.reducedMotion ? 0.35 : 1.2);
         const nx = cdx / dist;
         const ny = cdy / dist;
-        const tw = this._tipWeight();
-        // Give direct impulse to tip so the charm visibly sways away!
-        tip.addForce(nx * force * tw, ny * force * 0.35 * tw);
+        tip.addForce(nx * force, ny * force * 0.25);
       }
 
       // 3. Air wake / velocity stir if pointer sweeps past swiftly
       if (p.speed > 8) {
         const vx = p.x - p.px;
         const vy = p.y - p.py;
-        this.rope.stir(p.x, p.y, vx, vy, 160, 0.12);
+        this.rope.stir(p.x, p.y, vx, vy, Math.min(this.w * 0.5, 130), 0.08);
       }
     }
 
@@ -409,7 +423,9 @@ export class Dangle extends EventTarget {
 
     // The charm aligns with the true tangent of the cord at the tip where it enters the bead
     const a = this.rope.angle;
-    this._angle = a;
+    // Physical constraint: clamp rotation so the charm stays hanging downwards naturally
+    const maxTilt = 1.05; // ~60 degrees
+    this._angle = Math.max(-maxTilt, Math.min(maxTilt, a));
     this.el.style.transform =
       `translate(${(tip.x - this.charmW / 2).toFixed(2)}px, ${tip.y.toFixed(2)}px) rotate(${this._angle.toFixed(4)}rad)`;
   }

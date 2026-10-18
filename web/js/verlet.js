@@ -121,13 +121,28 @@ export class Rope {
     }
   }
 
-  setAnchor(x, y) {
+  setAnchor(x, y, { shiftNodes = true } = {}) {
+    const dx = x - this.anchor.x;
+    const dy = y - this.anchor.y;
     this.anchor.x = x;
     this.anchor.y = y;
     const head = this.nodes[0];
-    head.pinned = true;
-    head.invMass = 0;
-    head.pinTo(x, y);
+    if (head) {
+      head.pinned = true;
+      head.invMass = 0;
+      head.pinTo(x, y);
+    }
+    if (shiftNodes && (dx !== 0 || dy !== 0)) {
+      for (let i = 1; i < this.nodes.length; i++) {
+        const n = this.nodes[i];
+        n.x += dx;
+        n.px += dx;
+        n.y += dy;
+        n.py += dy;
+        n.originX += dx;
+        n.originY += dy;
+      }
+    }
   }
 
   get tip() {
@@ -141,14 +156,20 @@ export class Rope {
    * tip carries the charm's weight, so it lags the light nodes above it; taken from
    * one segment the tangent turns that lag into a hard kink and the charm hangs at
    * a visibly wrong angle (measured at 28 degrees before this was changed). Averaged
-   * over the last few nodes it reads as the real direction of the cord.
+   * over the upper/middle cord it reads as the real plumb direction of the cord.
    */
   get angle() {
     const n = this.nodes.length;
     if (n < 2) return 0;
     const tip = this.nodes[n - 1];
-    const prev = this.nodes[n - 2];
-    return Math.atan2(tip.y - prev.y, tip.x - prev.x) - Math.PI / 2;
+    // Baseline across the cord (from upper/middle node to tip)
+    // so tip weight lag does not turn into a hard kink that angles the charm sideways at rest.
+    const baseIdx = Math.min(2, Math.floor(n * 0.25));
+    const prev = this.nodes[baseIdx];
+    const dx = tip.x - prev.x;
+    const dy = tip.y - prev.y;
+    if (Math.abs(dx) < 1e-4 && Math.abs(dy) < 1e-4) return 0;
+    return Math.atan2(dy, dx) - Math.PI / 2;
   }
 
   get tipSpeed() {
