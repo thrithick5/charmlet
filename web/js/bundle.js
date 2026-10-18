@@ -134,8 +134,7 @@
       const n = this.nodes.length;
       if (n < 2) return 0;
       const tip = this.nodes[n - 1];
-      const baseIdx = Math.min(2, Math.floor(n * 0.25));
-      const prev = this.nodes[baseIdx];
+      const prev = this.nodes[n - 2];
       const dx = tip.x - prev.x;
       const dy = tip.y - prev.y;
       if (Math.abs(dx) < 1e-4 && Math.abs(dy) < 1e-4) return 0;
@@ -166,8 +165,10 @@
         p.ax = 0;
         p.ay = 0;
       }
-      if (this.grabTarget) this._applyGrab();
-      this._enforceReach();
+      if (this.grabTarget) {
+        this._applyGrab();
+        this._enforceReach();
+      }
       for (let k = 0; k < this.iterations; k++) this.solveConstraints();
       let extra = 0;
       while (extra < this.maxExtraIterations && this.maxStrain() > this.strainTolerance) {
@@ -225,6 +226,7 @@
      * stretching — exactly the artefact this whole approach exists to avoid.
      */
     _enforceReach() {
+      if (!this.grabTarget) return;
       const tip = this.tip;
       const dx = tip.x - this.anchor.x;
       const dy = tip.y - this.anchor.y;

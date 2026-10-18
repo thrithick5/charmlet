@@ -162,10 +162,8 @@ export class Rope {
     const n = this.nodes.length;
     if (n < 2) return 0;
     const tip = this.nodes[n - 1];
-    // Baseline across the cord (from upper/middle node to tip)
-    // so tip weight lag does not turn into a hard kink that angles the charm sideways at rest.
-    const baseIdx = Math.min(2, Math.floor(n * 0.25));
-    const prev = this.nodes[baseIdx];
+    // Natural tangent entering the tip node: aligns the cord spline and charm stub with C1 continuity.
+    const prev = this.nodes[n - 2];
     const dx = tip.x - prev.x;
     const dy = tip.y - prev.y;
     if (Math.abs(dx) < 1e-4 && Math.abs(dy) < 1e-4) return 0;
@@ -206,9 +204,11 @@ export class Rope {
       p.ay = 0;
     }
 
-    // --- the grab, then the one rule that cannot be broken ---
-    if (this.grabTarget) this._applyGrab();
-    this._enforceReach();
+    // --- the grab, then reach clamp active only when grabbed ---
+    if (this.grabTarget) {
+      this._applyGrab();
+      this._enforceReach();
+    }
 
     for (let k = 0; k < this.iterations; k++) this.solveConstraints();
 
@@ -279,6 +279,7 @@ export class Rope {
    * stretching — exactly the artefact this whole approach exists to avoid.
    */
   _enforceReach() {
+    if (!this.grabTarget) return;
     const tip = this.tip;
     const dx = tip.x - this.anchor.x;
     const dy = tip.y - this.anchor.y;
