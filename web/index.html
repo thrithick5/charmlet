@@ -83,10 +83,13 @@
 
     <!-- Live hero charm -->
     <div class="wrap" style="margin-top:36px;max-width:680px">
-      <div class="hero-stage-shell">
+      <div class="hero-stage-shell" id="heroStageShell">
         <div class="stage-badge" id="stageBadge">
-          <span class="n">Four-leaf clover</span>
-          <span class="o">Ireland</span>
+          <span class="n">Nazar boncuğu</span>
+          <span class="o">Türkiye and the Mediterranean</span>
+        </div>
+        <div class="stage-counter" id="stageCounter">
+          <span id="currentCharmIndex">1</span> / <span id="totalCharmsCount">20</span>
         </div>
         <div class="stage-actions">
           <button class="icon-btn" id="ritualBtn" type="button" title="Perform the ritual" aria-label="Perform the ritual">
@@ -100,57 +103,92 @@
             </svg>
           </button>
         </div>
+
+        <!-- Apple-style Navigation Chevrons -->
+        <button class="stage-nav stage-nav-prev" id="stagePrevBtn" type="button" title="Previous charm (or swipe right)" aria-label="Previous charm">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button class="stage-nav stage-nav-next" id="stageNextBtn" type="button" title="Next charm (or swipe left)" aria-label="Next charm">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+
         <div class="dangle-stage hero-stage" id="heroStage"></div>
-        <div class="stage-hint">grab it · flick it · tap it</div>
+        <div class="stage-hint" id="stageHint">
+          <span class="swipe-hint-icon">‹ ›</span> swipe or flick · grab · tap ritual
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ================================================ AT HOME ON YOUR DESKTOP ===== -->
   <section id="home">
-    <div class="col">
-      <h2>At home on your desktop</h2>
-      <p class="sub">A charm for your screen. Find its controls in the Mac menu bar.</p>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Desktop Experience</p>
+        <h2>At home on your desktop</h2>
+        <p class="sub">A quiet companion for your screen. Find its controls tucked neatly in your Mac menu bar.</p>
+      </div>
 
-      <ul class="list-ic" style="margin-top:32px;max-width:600px">
-        <li>
-          <span class="ib"><svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="24" height="17" rx="3"/><path d="M12 28h8M16 24v4M22 7v6"/><circle cx="22" cy="16" r="3"/></svg></span>
-          <span>Just your charm. No account needed.</span>
-        </li>
-        <li>
-          <span class="ib"><svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 5 7 22 3-9 9-3L7 5Z"/><path d="m19 21 5 5M22 5v4M27 10h-4"/></svg></span>
-          <span>Play with your charm. Click freely everywhere else.</span>
-        </li>
-        <li>
-          <span class="ib"><svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="24" height="14" rx="7"/><circle cx="21" cy="16" r="4" fill="currentColor" fill-opacity=".12"/></svg></span>
-          <span>Show it, hide it, or choose another charm.</span>
-        </li>
-        <li>
-          <span class="ib"><svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h22M16 5v8"/><circle cx="16" cy="15" r="2"/><path d="M16 17v2"/><circle cx="16" cy="24" r="5"/><circle cx="16" cy="24" r="1.5"/></svg></span>
-          <span>Hang a little luck at the top of your screen.</span>
-        </li>
-        <li>
-          <span class="ib"><svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="10" height="10" rx="3"/><rect x="18" y="4" width="10" height="10" rx="3"/><rect x="4" y="18" width="10" height="10" rx="3"/><path d="m19 23 3 3 6-7"/></svg></span>
-          <span>Choose a charm that feels like you.</span>
-        </li>
-        <li>
-          <span class="ib"><svg class="ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M25 11a10 10 0 0 0-17-3L5 11m0-6v6h6M7 21a10 10 0 0 0 17 3l3-3m0 6v-6h-6"/><path d="m12 16 3 3 5-6"/></svg></span>
-          <span>Free, forever. No subscription, no licence.</span>
-        </li>
-      </ul>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="24" height="17" rx="3"/><path d="M12 28h8M16 24v4M22 7v6"/><circle cx="22" cy="16" r="3"/></svg>
+          </div>
+          <h3>No account needed</h3>
+          <p>Just your charm. No registration, no login, no passwords, and zero cloud tracking.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 5 7 22 3-9 9-3L7 5Z"/><path d="m19 21 5 5M22 5v4M27 10h-4"/></svg>
+          </div>
+          <h3>Play &amp; Click-Through</h3>
+          <p>Play with your charm anytime. The rest of your desktop stays 100% clickable.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="9" width="24" height="14" rx="7"/><circle cx="21" cy="16" r="4" fill="currentColor" fill-opacity=".18"/></svg>
+          </div>
+          <h3>Instant Controls</h3>
+          <p>Show it when you want company. Hide it instantly with ⌃D when you need clean space.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5h22M16 5v8"/><circle cx="16" cy="15" r="2"/><path d="M16 17v2"/><circle cx="16" cy="24" r="5"/><circle cx="16" cy="24" r="1.5"/></svg>
+          </div>
+          <h3>Screen-Anchored</h3>
+          <p>Hangs naturally from the top edge of your screen, swaying gently with cursor wind.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="10" height="10" rx="3"/><rect x="18" y="4" width="10" height="10" rx="3"/><rect x="4" y="18" width="10" height="10" rx="3"/><path d="m19 23 3 3 6-7"/></svg>
+          </div>
+          <h3>20 Handcrafted Charms</h3>
+          <p>From Turkish Nazar to Irish Clover, choose a tradition that resonates with you.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M25 11a10 10 0 0 0-17-3L5 11m0-6v6h6M7 21a10 10 0 0 0 17 3l3-3m0 6v-6h-6"/><path d="m12 16 3 3 5-6"/></svg>
+          </div>
+          <h3>100% Free &amp; Offline</h3>
+          <p>No subscription, no licence key, and zero telemetry. Yours to keep forever.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ===================================================== CHARM GALLERY ===== -->
   <section id="charms">
-    <div class="col">
-      <h2>Choose your charm</h2>
-      <p class="sub">Each one carries a tradition from somewhere in the world, and a small ritual all its own. Pick one to hang it on this page.</p>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The Collection</p>
+        <h2>Choose your charm</h2>
+        <p class="sub">Each one carries a tradition from somewhere in the world, and a small ritual all its own. Pick one to hang it on this page.</p>
+      </div>
 
       <div class="charm-grid" id="charmGrid"></div>
 
       <div class="ritual-bar" id="ritualBar" role="group" aria-label="Perform a ritual"></div>
-      <p class="micro" style="margin-top:14px">
+      <p class="micro" style="margin-top:18px;text-align:center">
         Tap a charm to hang it on the stage above. Then hit <b>Perform ritual</b> — or press <kbd>R</kbd>.
       </p>
     </div>
@@ -158,9 +196,12 @@
 
   <!-- ================================================= MAKE IT YOURS ===== -->
   <section id="yours">
-    <div class="col">
-      <h2>Make it yours</h2>
-      <p class="sub">Your screen. Your charm. Your little ritual.</p>
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Personal Touch</p>
+        <h2>Make it yours</h2>
+        <p class="sub">Your screen. Your charm. Your little ritual.</p>
+      </div>
 
       <div class="four">
         <div class="f">
@@ -221,12 +262,14 @@
             Web / PWA
           </button>
         </div>
-        <!-- macOS Panel -->
+      </div>
+
+      <!-- macOS Panel -->
       <div class="os-panel active" id="panelMac" role="tabpanel">
         <div class="split">
-          <div>
+          <div class="panel-info">
             <h3>macOS Menu Bar App</h3>
-            <p class="lede" style="margin-top:10px">
+            <p class="panel-desc">
               A native transparent menu-bar companion that hangs your charm over every window and stays out of every click.
             </p>
             <div class="download-action-box">
@@ -243,7 +286,7 @@
             </ul>
           </div>
 
-          <div>
+          <div class="panel-media">
             <div class="code">
               <div class="code-top"><i></i><i></i><i></i><span>Quick Install Guide</span></div>
 <pre><span class="c"># 1. Double-click Charmlet.dmg</span>
@@ -264,9 +307,9 @@
       <!-- Windows Panel -->
       <div class="os-panel" id="panelWin" role="tabpanel" style="display:none">
         <div class="split">
-          <div>
+          <div class="panel-info">
             <h3>Windows Desktop Edition</h3>
-            <p class="lede" style="margin-top:10px">
+            <p class="panel-desc">
               Full desktop application for Windows 10 &amp; 11. Installs in seconds with dedicated desktop and Start Menu shortcuts.
             </p>
             <div class="download-action-box">
@@ -284,7 +327,7 @@
             </ul>
           </div>
 
-          <div>
+          <div class="panel-media">
             <div class="code">
               <div class="code-top"><i></i><i></i><i></i><span>Windows Quick Start</span></div>
 <pre><span class="c"># 1. Run Charmlet-Setup.exe</span>
@@ -301,9 +344,9 @@
       <!-- Web / PWA Panel -->
       <div class="os-panel" id="panelWeb" role="tabpanel" style="display:none">
         <div class="split">
-          <div>
+          <div class="panel-info">
             <h3>Web &amp; Progressive Web App (PWA)</h3>
-            <p class="lede" style="margin-top:10px">
+            <p class="panel-desc">
               Access the charms instantly in any modern desktop browser (Chrome, Edge, Brave, Safari, Firefox).
             </p>
             <div class="download-action-box">
@@ -318,7 +361,7 @@
             </ul>
           </div>
 
-          <div>
+          <div class="panel-media">
             <div class="code">
               <div class="code-top"><i></i><i></i><i></i><span>Local Static Server</span></div>
 <pre><span class="c"># If you prefer running a tiny local HTTP server:</span>
@@ -329,9 +372,6 @@
           </div>
         </div>
       </div>
-
-    </div>
-  </section>
 
   <!-- ========================================================= FAQ ===== -->
   <section id="faq">

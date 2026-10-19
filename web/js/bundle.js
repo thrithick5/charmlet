@@ -3007,28 +3007,53 @@
       });
       body.addEventListener("click", hang);
     }
+    let activeCharmId = "nazar";
     function updateStageBadge(c) {
       const b = $("stageBadge");
       if (!b) return;
+      b.animate(
+        [
+          { opacity: 0, transform: "translateY(-3px)" },
+          { opacity: 1, transform: "translateY(0)" }
+        ],
+        { duration: 250, easing: "cubic-bezier(0.16, 1, 0.3, 1)" }
+      );
       b.querySelector(".n").textContent = c.name;
       b.querySelector(".o").textContent = c.origin;
+    }
+    function updateStageCounter(id) {
+      const idx = CHARMS.findIndex((c) => c.id === id);
+      const cur = $("currentCharmIndex");
+      const tot = $("totalCharmsCount");
+      if (cur && idx !== -1) cur.textContent = String(idx + 1);
+      if (tot) tot.textContent = String(CHARMS.length);
     }
     function updateRitualBar(activeId) {
       ritualBar?.querySelectorAll(".chip").forEach((chip) => {
         chip.setAttribute("aria-pressed", String(chip.dataset.charmId === activeId));
       });
     }
-    function selectCharm(id) {
+    function selectCharm(id, { direction = "none", animate = true, scroll = false } = {}) {
       const c = getCharm(id);
+      activeCharmId = id;
       if (hero) {
-        hero.setCharm(id);
-        hero.ritual();
+        hero.setCharm(id, { animate: false });
+        if (animate) hero.ritual();
       }
       for (const [cid, card] of cards) {
-        card.setAttribute("aria-pressed", String(cid === id));
+        const isSel = cid === id;
+        card.setAttribute("aria-pressed", String(isSel));
+        if (isSel && scroll) {
+          card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
       }
       updateStageBadge(c);
+      updateStageCounter(id);
       updateRitualBar(id);
+      const shell = $("heroStageShell");
+      if (shell && c.accent) {
+        shell.style.setProperty("--charm-accent", c.accent);
+      }
       if (!selectCharm._announced) {
         selectCharm._announced = true;
         toast(`${c.name} is hanging on the stage. Flick it.`);
@@ -3044,11 +3069,7 @@
         b.setAttribute("aria-pressed", "false");
         b.innerHTML = `<span class="dot" style="background:${c.accent}"></span>${c.ritualName} \xB7 ${c.name}`;
         b.addEventListener("click", () => {
-          hero?.setCharm(c.id);
-          updateStageBadge(c);
-          updateRitualBar(c.id);
-          for (const [cid, card] of cards) card.setAttribute("aria-pressed", String(cid === c.id));
-          setTimeout(() => hero?.ritual(), 220);
+          selectCharm(c.id, { animate: true });
           document.querySelector(".hero-stage-shell")?.scrollIntoView({ behavior: "smooth", block: "center" });
         });
         ritualBar.appendChild(b);
@@ -3071,7 +3092,7 @@
     }
     selectCharm._announced = true;
     selectCharm("nazar");
-    return { selectCharm };
+    return { selectCharm, getActiveId: () => activeCharmId };
   }
   function emojiArt(glyph) {
     return `<svg class="charm-art" viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -3152,6 +3173,170 @@
       setTimeout(() => hero?.ritual(), 200);
     });
   }
+  function initStageCarousel(hero, selectCharm, getActiveId) {
+    const shell = $("heroStageShell");
+    const stage = $("heroStage");
+    const prevBtn = $("stagePrevBtn");
+    const nextBtn = $("stageNextBtn");
+    if (!shell || !stage) return;
+    const total = CHARMS.length;
+    const navigate = (step, direction) => {
+      const curId = getActiveId();
+      let idx = CHARMS.findIndex((c) => c.id === curId);
+      if (idx === -1) idx = 0;
+      const nextIdx = (idx + step + total) % total;
+      const targetCharm = CHARMS[nextIdx];
+      const exitX = direction === "left" ? -60 : 60;
+      const enterX = direction === "left" ? 60 : -60;
+      const anim2 = stage.animate(
+        [
+          { transform: "translateX(0)", opacity: 1 },
+          { transform: `translateX(${exitX}px)`, opacity: 0.15 }
+        ],
+        { duration: 160, easing: "cubic-bezier(0.32, 1, 0.23, 1)", fill: "forwards" }
+      );
+      anim2.onfinish = () => {
+        selectCharm(targetCharm.id, { direction, animate: true });
+        stage.animate(
+          [
+            { transform: `translateX(${enterX}px)`, opacity: 0.15 },
+            { transform: "translateX(0)", opacity: 1 }
+          ],
+          { duration: 320, easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "forwards" }
+        );
+      };
+    };
+    prevBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      navigate(-1, "right");
+    });
+    nextBtn?.addEventListener("click", (e) => {
+      e.stopPropagation();
+      navigate(1, "left");
+    });
+    let isDragging = false;
+    let startX = 0;
+    let startY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let lastX = 0;
+    let lastTime = 0;
+    let velocityX = 0;
+    let gestureCommitted = false;
+    const rubberband = (overshoot, dimension, constant = 0.55) => overshoot * dimension * constant / (dimension + constant * Math.abs(overshoot));
+    const onPointerDown = (e) => {
+      if (e.target.closest("button, a, .icon-btn, .stage-nav, .stage-actions")) return;
+      if (e.target.closest(".dangle-charm")) return;
+      startX = e.clientX;
+      startY = e.clientY;
+      currentX = startX;
+      currentY = startY;
+      lastX = startX;
+      lastTime = performance.now();
+      velocityX = 0;
+      isDragging = true;
+      gestureCommitted = false;
+    };
+    const onPointerMove = (e) => {
+      if (!isDragging) return;
+      const now = performance.now();
+      const dt = now - lastTime;
+      currentX = e.clientX;
+      currentY = e.clientY;
+      const dx = currentX - startX;
+      const dy = currentY - startY;
+      if (dt > 0) {
+        velocityX = (currentX - lastX) / dt;
+      }
+      lastX = currentX;
+      lastTime = now;
+      if (!gestureCommitted) {
+        const dist = Math.hypot(dx, dy);
+        if (dist > 8) {
+          if (Math.abs(dx) > Math.abs(dy) * 1.1) {
+            gestureCommitted = true;
+            shell.classList.add("is-swiping");
+            try {
+              shell.setPointerCapture?.(e.pointerId);
+            } catch (_) {
+            }
+          } else {
+            isDragging = false;
+            return;
+          }
+        }
+      }
+      if (gestureCommitted) {
+        e.preventDefault();
+        const damped = rubberband(dx, shell.offsetWidth || 600, 0.45);
+        stage.style.transform = `translateX(${damped}px)`;
+        stage.style.opacity = String(Math.max(0.3, 1 - Math.abs(damped) / 500));
+        stage.style.transition = "none";
+      }
+    };
+    const onPointerUp = (e) => {
+      if (!isDragging) return;
+      isDragging = false;
+      shell.classList.remove("is-swiping");
+      if (!gestureCommitted) return;
+      gestureCommitted = false;
+      try {
+        shell.releasePointerCapture?.(e.pointerId);
+      } catch (_) {
+      }
+      const dx = currentX - startX;
+      const width = shell.offsetWidth || 600;
+      const threshold = Math.min(width * 0.15, 55);
+      const velThreshold = 0.25;
+      const shouldGoNext = dx < -threshold || dx < -15 && velocityX < -velThreshold;
+      const shouldGoPrev = dx > threshold || dx > 15 && velocityX > velThreshold;
+      if (shouldGoNext) {
+        stage.style.transition = "transform 0.2s cubic-bezier(0.32, 1, 0.23, 1), opacity 0.2s ease";
+        stage.style.transform = `translateX(-${width * 0.3}px)`;
+        stage.style.opacity = "0";
+        setTimeout(() => {
+          stage.style.transition = "";
+          stage.style.transform = "";
+          stage.style.opacity = "";
+          navigate(1, "left");
+        }, 190);
+      } else if (shouldGoPrev) {
+        stage.style.transition = "transform 0.2s cubic-bezier(0.32, 1, 0.23, 1), opacity 0.2s ease";
+        stage.style.transform = `translateX(${width * 0.3}px)`;
+        stage.style.opacity = "0";
+        setTimeout(() => {
+          stage.style.transition = "";
+          stage.style.transform = "";
+          stage.style.opacity = "";
+          navigate(-1, "right");
+        }, 190);
+      } else {
+        stage.style.transition = "transform 0.36s cubic-bezier(0.175, 0.885, 0.32, 1.15), opacity 0.3s ease";
+        stage.style.transform = "translateX(0px)";
+        stage.style.opacity = "1";
+        setTimeout(() => {
+          stage.style.transition = "";
+          stage.style.transform = "";
+          stage.style.opacity = "";
+        }, 360);
+      }
+    };
+    shell.addEventListener("pointerdown", onPointerDown);
+    shell.addEventListener("pointermove", onPointerMove);
+    shell.addEventListener("pointerup", onPointerUp);
+    shell.addEventListener("pointercancel", onPointerUp);
+    window.addEventListener("keydown", (e) => {
+      if (["INPUT", "TEXTAREA"].includes(e.target?.tagName)) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        navigate(-1, "right");
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        navigate(1, "left");
+      }
+    });
+  }
   function initKeyboard(hero) {
     window.addEventListener("keydown", (e) => {
       const tag = e.target?.tagName;
@@ -3204,7 +3389,10 @@
     initNav();
     initOsTabs();
     const hero = initHero();
-    initGallery(hero);
+    const gallery = initGallery(hero);
+    if (gallery) {
+      initStageCarousel(hero, gallery.selectCharm, gallery.getActiveId);
+    }
     initEmojiCharm(hero);
     initKeyboard(hero);
     document.documentElement.dataset.ready = "1";
