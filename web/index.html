@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="A Little Luck. Always Close.">
 <meta property="og:description" content="Hang a lucky charm from the top of your Mac screen. Free, personal and local — no account, no licence, no payments.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2315803d'/%3E%3Ccircle cx='16' cy='10' r='4.5' fill='white'/%3E%3Ccircle cx='22' cy='16' r='4.5' fill='white'/%3E%3Ccircle cx='16' cy='22' r='4.5' fill='white'/%3E%3Ccircle cx='10' cy='16' r='4.5' fill='white'/%3E%3Ccircle cx='16' cy='16' r='2.8' fill='%23fef08a'/%3E%3Cpath d='M16 17 C16 22 19 25 21 26' stroke='white' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%2334d399'/%3E%3Cstop offset='30%25' stop-color='%2322c55e'/%3E%3Cstop offset='75%25' stop-color='%2316a34a'/%3E%3Cstop offset='100%25' stop-color='%2314532d'/%3E%3C/linearGradient%3E%3Cpath id='l' d='M16,16 C13.6,13.1 10.4,10.8 10.4,8.0 C10.4,5.5 12.7,4.0 14.8,5.3 C15.5,5.7 15.8,6.2 16,7.0 C16.2,6.2 16.5,5.7 17.2,5.3 C19.3,4.0 21.6,5.5 21.6,8.0 C21.6,10.8 18.4,13.1 16,16 Z' fill='%23ffffff'/%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Cpath d='M16 16.5 C17.2 19.8 20.2 23.8 23.8 25.8' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' fill='none'/%3E%3Cuse href='%23l'/%3E%3Cuse href='%23l' transform='rotate(90 16 16)'/%3E%3Cuse href='%23l' transform='rotate(180 16 16)'/%3E%3Cuse href='%23l' transform='rotate(270 16 16)'/%3E%3Ccircle cx='16' cy='16' r='2.4' fill='%23fde047'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@1,6..72,500&display=swap" rel="stylesheet">
@@ -25,12 +25,15 @@
     <a class="brand" href="#top">
       <span class="brand-mark" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
-          <circle cx="12" cy="7.5" r="3.2"/>
-          <circle cx="16.5" cy="12" r="3.2"/>
-          <circle cx="12" cy="16.5" r="3.2"/>
-          <circle cx="7.5" cy="12" r="3.2"/>
-          <circle cx="12" cy="12" r="2" fill="#fef08a"/>
-          <path d="M12 13 C12 17 14.5 19.5 16 20.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+          <defs>
+            <path id="brandLeaf" d="M12 12 C10.2 9.8 7.8 8.1 7.8 6.0 C7.8 4.1 9.5 3.0 11.1 4.0 C11.6 4.3 11.8 4.7 12 5.3 C12.2 4.7 12.4 4.3 12.9 4.0 C14.5 3.0 16.2 4.1 16.2 6.0 C16.2 8.1 13.8 9.8 12 12 Z"/>
+          </defs>
+          <path d="M12.5 12.8 C13.4 15.2 15.5 18 18 19.5" stroke="#fff" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+          <use href="#brandLeaf"/>
+          <use href="#brandLeaf" transform="rotate(90 12 12)"/>
+          <use href="#brandLeaf" transform="rotate(180 12 12)"/>
+          <use href="#brandLeaf" transform="rotate(270 12 12)"/>
+          <circle cx="12" cy="12" r="1.8" fill="#fde047"/>
         </svg>
       </span>
       Charmlet
@@ -56,12 +59,15 @@
       <div class="wordmark">
         <span class="logo-mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
-            <circle cx="12" cy="7.5" r="3.2"/>
-            <circle cx="16.5" cy="12" r="3.2"/>
-            <circle cx="12" cy="16.5" r="3.2"/>
-            <circle cx="7.5" cy="12" r="3.2"/>
-            <circle cx="12" cy="12" r="2" fill="#fef08a"/>
-            <path d="M12 13 C12 17 14.5 19.5 16 20.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+            <defs>
+              <path id="heroLeaf" d="M12 12 C10.2 9.8 7.8 8.1 7.8 6.0 C7.8 4.1 9.5 3.0 11.1 4.0 C11.6 4.3 11.8 4.7 12 5.3 C12.2 4.7 12.4 4.3 12.9 4.0 C14.5 3.0 16.2 4.1 16.2 6.0 C16.2 8.1 13.8 9.8 12 12 Z"/>
+            </defs>
+            <path d="M12.5 12.8 C13.4 15.2 15.5 18 18 19.5" stroke="#fff" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+            <use href="#heroLeaf"/>
+            <use href="#heroLeaf" transform="rotate(90 12 12)"/>
+            <use href="#heroLeaf" transform="rotate(180 12 12)"/>
+            <use href="#heroLeaf" transform="rotate(270 12 12)"/>
+            <circle cx="12" cy="12" r="1.8" fill="#fde047"/>
           </svg>
         </span>
         Charmlet
@@ -288,13 +294,11 @@
 
           <div class="panel-media">
             <div class="code">
-              <div class="code-top"><i></i><i></i><i></i><span>Quick Install Guide</span></div>
-<pre><span class="c"># 1. Double-click Charmlet.dmg</span>
-<span class="c"># 2. Drag Charmlet into Applications</span>
-<span class="c"># 3. Launch from Spotlight or Launchpad</span>
+              <div class="code-top"><i></i><i></i><i></i><span>Direct 1-Click Install (Skips Gatekeeper)</span></div>
+<pre><span class="c"># Terminal 1-liner — downloads, strips quarantine &amp; opens instantly:</span>
+<span class="k">curl</span> <span class="s">-fsSL https://raw.githubusercontent.com/thrithick5/charmlet/main/scripts/install.sh | bash</span>
 
-<span class="c"># If prompted on first launch:</span>
-<span class="c"># Right-click Charmlet > Open, or run:</span>
+<span class="c"># Or manual DMG download: drag to /Applications, then run:</span>
 <span class="k">xattr</span> <span class="s">-cr /Applications/Charmlet.app</span>
 
 <span class="c"># Quick bless shortcut:</span>
@@ -329,10 +333,12 @@
 
           <div class="panel-media">
             <div class="code">
-              <div class="code-top"><i></i><i></i><i></i><span>Windows Quick Start</span></div>
-<pre><span class="c"># 1. Run Charmlet-Setup.exe</span>
-<span class="c"># 2. Click "Install" (no admin rights needed)</span>
-<span class="c"># 3. Charmlet opens on your desktop!</span>
+              <div class="code-top"><i></i><i></i><i></i><span>Direct 1-Click Install (Skips SmartScreen)</span></div>
+<pre><span class="c"># PowerShell 1-liner — unblocks MOTW &amp; opens with zero SmartScreen:</span>
+<span class="k">irm</span> <span class="s">https://raw.githubusercontent.com/thrithick5/charmlet/main/scripts/install.ps1 | iex</span>
+
+<span class="c"># Or if running Charmlet-Setup.exe directly:</span>
+<span class="c"># Click "More info" &rarr; "Run anyway" on first launch.</span>
 
 <span class="c"># Launches from Desktop or Start Menu:</span>
 <span class="k">Charmlet</span></pre>
@@ -397,6 +403,16 @@
             No. The window is click-through everywhere except the charm itself. It
             never steals focus. Clicks on browser tabs, your IDE, everything
             underneath, pass straight through.
+          </div>
+        </details>
+
+        <details class="qa">
+          <summary>Why do I see a "Run Anyway" or security warning, and how do I avoid it?</summary>
+          <div class="a">
+            Because Charmlet is a 100% free, open-source project without expensive corporate signing certificates ($99/year Apple Developer + $300+/year Windows EV), web browsers attach a security quarantine flag to downloaded files.<br><br>
+            <b>To open directly without the "Run anyway" / Settings prompt:</b><br>
+            • <b>macOS:</b> Run <code>curl -fsSL https://raw.githubusercontent.com/thrithick5/charmlet/main/scripts/install.sh | bash</code> in Terminal, or run <code>xattr -cr /Applications/Charmlet.app</code> once.<br>
+            • <b>Windows:</b> Run <code>irm https://raw.githubusercontent.com/thrithick5/charmlet/main/scripts/install.ps1 | iex</code> in PowerShell, or click <i>More info &rarr; Run anyway</i> on the installer.
           </div>
         </details>
 
@@ -466,12 +482,15 @@
         <a class="brand" href="#top">
           <span class="brand-mark" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
-              <circle cx="12" cy="7.5" r="3.2"/>
-              <circle cx="16.5" cy="12" r="3.2"/>
-              <circle cx="12" cy="16.5" r="3.2"/>
-              <circle cx="7.5" cy="12" r="3.2"/>
-              <circle cx="12" cy="12" r="2" fill="#fef08a"/>
-              <path d="M12 13 C12 17 14.5 19.5 16 20.5" stroke="#fff" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+              <defs>
+                <path id="footLeaf" d="M12 12 C10.2 9.8 7.8 8.1 7.8 6.0 C7.8 4.1 9.5 3.0 11.1 4.0 C11.6 4.3 11.8 4.7 12 5.3 C12.2 4.7 12.4 4.3 12.9 4.0 C14.5 3.0 16.2 4.1 16.2 6.0 C16.2 8.1 13.8 9.8 12 12 Z"/>
+              </defs>
+              <path d="M12.5 12.8 C13.4 15.2 15.5 18 18 19.5" stroke="#fff" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+              <use href="#footLeaf"/>
+              <use href="#footLeaf" transform="rotate(90 12 12)"/>
+              <use href="#footLeaf" transform="rotate(180 12 12)"/>
+              <use href="#footLeaf" transform="rotate(270 12 12)"/>
+              <circle cx="12" cy="12" r="1.8" fill="#fde047"/>
             </svg>
           </span>
           Charmlet

@@ -42,6 +42,26 @@ codesign --verify --deep --strict "$STAGING/${APP_NAME}.app"
 # Create the Applications symlink for drag-and-drop install
 ln -s /Applications "$STAGING/Applications"
 
+# Add a 1-click helper script to bypass Gatekeeper / "Run Anyway"
+cat > "$STAGING/Open Charmlet.command" << 'CMDEOF'
+#!/usr/bin/env bash
+echo "🍀 Launching Charmlet..."
+if [ -d "/Applications/Charmlet.app" ]; then
+  xattr -dr com.apple.quarantine "/Applications/Charmlet.app" 2>/dev/null || true
+  xattr -cr "/Applications/Charmlet.app" 2>/dev/null || true
+  open "/Applications/Charmlet.app"
+  echo "✨ Charmlet is now running in your macOS menu bar!"
+else
+  DIR="$(cd "$(dirname "$0")" && pwd)"
+  if [ -d "$DIR/Charmlet.app" ]; then
+    xattr -cr "$DIR/Charmlet.app" 2>/dev/null || true
+    open "$DIR/Charmlet.app"
+    echo "✨ Charmlet is now running in your macOS menu bar!"
+  fi
+fi
+CMDEOF
+chmod +x "$STAGING/Open Charmlet.command"
+
 echo "==> Creating temporary writable DMG"
 rm -f "$TMP_DMG"
 # Create a writable DMG with enough space
@@ -51,7 +71,7 @@ hdiutil create \
   -fs HFS+ \
   -fsargs "-c c=64,a=16,e=16" \
   -format UDRW \
-  -size 20m \
+  -size 25m \
   "$TMP_DMG"
 
 echo "==> Customizing DMG window layout"
@@ -66,7 +86,7 @@ fi
 hdiutil attach "$TMP_DMG" -readwrite -noverify -noautoopen
 
 # Use AppleScript to set Finder window properties
-# This makes the DMG open with a nice layout showing the app and Applications folder
+# This makes the DMG open with a nice layout showing the app, Applications folder, and helper
 osascript <<APPLESCRIPT
   tell application "Finder"
     tell disk "$VOL_NAME"
@@ -74,13 +94,14 @@ osascript <<APPLESCRIPT
       set current view of container window to icon view
       set toolbar visible of container window to false
       set statusbar visible of container window to false
-      set bounds of container window to {200, 120, 720, 440}
+      set bounds of container window to {160, 100, 780, 440}
       set theViewOpts to icon view options of container window
       set arrangement of theViewOpts to not arranged
-      set icon size of theViewOpts to 80
-      -- Position app icon on the left, Applications on the right
-      set position of item "${APP_NAME}.app" of container window to {120, 160}
-      set position of item "Applications" of container window to {400, 160}
+      set icon size of theViewOpts to 76
+      -- Position app icon on left, Applications in middle, and Open helper on right
+      set position of item "${APP_NAME}.app" of container window to {110, 160}
+      set position of item "Applications" of container window to {310, 160}
+      set position of item "Open Charmlet.command" of container window to {510, 160}
       close
       open
       update without registering applications

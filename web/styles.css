@@ -214,13 +214,13 @@ code, pre {
 .wordmark .logo-mark {
   display: grid;
   place-items: center;
-  background: linear-gradient(145deg, #34c759, #15803d);
-  box-shadow: 0 4px 14px -3px rgba(21, 128, 61, 0.45);
+  background: linear-gradient(145deg, #34d399 0%, #22c55e 30%, #16a34a 75%, #14532d 100%);
+  box-shadow: 0 4px 14px -3px rgba(22, 163, 74, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
 }
 
 .wordmark .logo-mark svg {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   display: block;
 }
 
@@ -243,13 +243,13 @@ code, pre {
   display: grid;
   place-items: center;
   border-radius: 9px;
-  background: linear-gradient(145deg, #34c759, #15803d);
-  box-shadow: 0 4px 12px -3px rgba(21, 128, 61, 0.45);
+  background: linear-gradient(145deg, #34d399 0%, #22c55e 30%, #16a34a 75%, #14532d 100%);
+  box-shadow: 0 4px 12px -3px rgba(22, 163, 74, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.35);
 }
 
 .brand-mark svg {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   display: block;
 }
 
