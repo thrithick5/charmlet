@@ -74,6 +74,16 @@ export class Dangle extends EventTarget {
     this.cord = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     this.cord.setAttribute('class', 'dangle-cord');
     this.cord.setAttribute('aria-hidden', 'true');
+
+    // Transparent wide stroke for grabbing the cord anywhere along its length
+    this.cordHit = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    this.cordHit.setAttribute('class', 'dangle-cord-hit');
+    this.cordHit.setAttribute('fill', 'none');
+    this.cordHit.setAttribute('stroke', 'rgba(0, 0, 0, 0.001)');
+    this.cordHit.setAttribute('stroke-width', '44');
+    this.cordHit.setAttribute('stroke-linecap', 'round');
+    this.cord.appendChild(this.cordHit);
+
     this.cordPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     this.cordPath.setAttribute('fill', 'none');
     this.cordPath.setAttribute('stroke-linecap', 'round');
@@ -193,14 +203,39 @@ export class Dangle extends EventTarget {
     this._onDown = (e) => {
       if (!this.opts.interactive) return;
       e.preventDefault();
-      this.el.setPointerCapture?.(e.pointerId);
+      try {
+        (e.currentTarget || this.el).setPointerCapture?.(e.pointerId);
+      } catch (_) {}
       const rect = this.stage.getBoundingClientRect();
+      const lx = e.clientX - rect.left;
+      const ly = e.clientY - rect.top;
       const tip = this.rope.tip;
+      const ax = this.rope.anchor.x;
+      const ay = this.rope.anchor.y;
+
       this.grabbed = true;
       this.dragging = false;
       this._downAt = performance.now();
       this._moved = 0;
-      this._grabOffset = { x: tip.x - (e.clientX - rect.left), y: tip.y - (e.clientY - rect.top) };
+
+      // Distinguish cord grab vs charm body grab:
+      const isCord = e.currentTarget === this.cordHit || ly < tip.y - 12;
+      this._isCordGrab = isCord;
+
+      if (isCord) {
+        this._grabOffset = { x: 0, y: 0 };
+        const clampedLy = Math.max(ay + 4, ly);
+        const dx = lx - ax;
+        const dy = clampedLy - ay;
+        const d = Math.hypot(dx, dy) || 1;
+        const reach = Math.max(this.rope.length, d);
+        const tx = ax + (dx / d) * reach;
+        const ty = ay + (dy / d) * reach;
+        this.rope.dragTip(tx, ty, 1.0);
+      } else {
+        this._grabOffset = { x: tip.x - lx, y: tip.y - ly };
+      }
+
       this.el.classList.add('is-grabbed');
       play('grab');
       window.addEventListener('pointermove', this._onPointerMoveWindow);
@@ -214,6 +249,9 @@ export class Dangle extends EventTarget {
       }
     };
 
+    this.cordHit.addEventListener('pointerdown', this._onDown);
+    this.cordHit.addEventListener('click', (e) => e.preventDefault());
+    this.cordHit.addEventListener('dragstart', (e) => e.preventDefault());
     this.el.addEventListener('pointerdown', this._onDown);
     this.el.addEventListener('keydown', this._onKey);
     this.el.addEventListener('click', (e) => e.preventDefault());
@@ -245,12 +283,27 @@ export class Dangle extends EventTarget {
     this._pointer.speed = Math.hypot(this._pointer.vx || 0, this._pointer.vy || 0);
 
     if (this.grabbed) {
-      const tx = lx + this._grabOffset.x;
-      const ty = ly + this._grabOffset.y;
       const tip = this.rope.tip;
+      const ax = this.rope.anchor.x;
+      const ay = this.rope.anchor.y;
+      let tx, ty;
+
+      if (this._isCordGrab) {
+        const clampedLy = Math.max(ay + 4, ly);
+        const dx = lx - ax;
+        const dy = clampedLy - ay;
+        const d = Math.hypot(dx, dy) || 1;
+        const reach = Math.max(this.rope.length, d);
+        tx = ax + (dx / d) * reach;
+        ty = ay + (dy / d) * reach;
+      } else {
+        tx = lx + this._grabOffset.x;
+        ty = ly + this._grabOffset.y;
+      }
+
       this._moved = Math.max(this._moved, Math.hypot(tx - tip.x, ty - tip.y));
       if (this._moved > 6) this.dragging = true;
-      this.rope.dragTip(tx, ty, 0.85);
+      this.rope.dragTip(tx, ty, 0.95);
     }
   }
 
@@ -262,6 +315,7 @@ export class Dangle extends EventTarget {
     const held = performance.now() - this._downAt;
     const tip = this.rope.tip;
     this.grabbed = false;
+    this._isCordGrab = false;
     this.el.classList.remove('is-grabbed');
     this.rope.release();
 
@@ -447,6 +501,7 @@ export class Dangle extends EventTarget {
   _render(dt = 1 / 60) {
     if (!this.rope) return;
     const path = this.rope.path();
+    if (this.cordHit) this.cordHit.setAttribute('d', path);
     this.cordPath.setAttribute('d', path);
     this.cordPath.setAttribute('stroke-width', 1.8);
 

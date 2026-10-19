@@ -266,6 +266,17 @@ final class DangleWindow: NSObject {
         updatePassThrough(at: point)
     }
 
+    private func distanceToSegment(_ px: CGFloat, _ py: CGFloat, _ x1: CGFloat, _ y1: CGFloat, _ x2: CGFloat, _ y2: CGFloat) -> CGFloat {
+        let dx = x2 - x1
+        let dy = y2 - y1
+        let lenSq = dx * dx + dy * dy
+        if lenSq == 0 { return hypot(px - x1, py - y1) }
+        let t = max(0, min(1, ((px - x1) * dx + (py - y1) * dy) / lenSq))
+        let projX = x1 + t * dx
+        let projY = y1 + t * dy
+        return hypot(px - projX, py - projY)
+    }
+
     /// Decide, right now, whether a click at the pointer should reach the charm.
     private func updatePassThrough(at point: CGPoint? = nil) {
         guard charmIsVisible, window.isVisible else {
@@ -288,11 +299,14 @@ final class DangleWindow: NSObject {
         }
 
         // Comfortable grab zone around the charm artwork.
-        let hit = charmRect.insetBy(dx: -32, dy: -32)
-        // Also allow grabbing the cord / beads above the charm.
-        let cordHit = CGRect(x: charmRect.midX - 25, y: 0, width: 50, height: max(0, charmRect.minY + 20))
+        let hit = charmRect.insetBy(dx: -36, dy: -36).contains(pt)
 
-        setPassThrough(!(hit.contains(pt) || cordHit.contains(pt)))
+        // Continuous grab zone along the entire cord from the top menu bar anchor down to charm.
+        let anchorX = window.frame.width * Prefs.anchorX
+        let distToCord = distanceToSegment(pt.x, pt.y, anchorX, 0, charmRect.midX, max(0, charmRect.minY + 10))
+        let cordHit = distToCord <= 44
+
+        setPassThrough(!(hit || cordHit))
     }
 
     private func setPassThrough(_ on: Bool) {

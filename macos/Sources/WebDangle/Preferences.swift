@@ -10,13 +10,19 @@ enum Prefs {
             "visible": true,
             "behind": false,
             "anchorX": 0.82,
-            "cordLength": 220.0,
+            "cordLength": 170.0,
             "charmWidth": 158.0,
             "sound": false,
         ])
     }
 
-    static func bootstrap() { registerDefaults() }
+    static func bootstrap() {
+        registerDefaults()
+        // Migrate legacy 220.0 default to Apple standard 170.0
+        if d.double(forKey: "cordLength") == 220.0 {
+            d.set(170.0, forKey: "cordLength")
+        }
+    }
 
     static var charmId: String {
         get { d.string(forKey: "charmId") ?? "clover" }

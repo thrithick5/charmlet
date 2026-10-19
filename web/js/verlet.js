@@ -306,8 +306,9 @@ export class Rope {
   solveConstraints() {
     const nodes = this.nodes;
     const rest = this.rest;
+    const n = nodes.length;
 
-    for (let i = 0; i < nodes.length - 1; i++) {
+    for (let i = 0; i < n - 1; i++) {
       const a = nodes[i];
       const b = nodes[i + 1];
 
@@ -322,6 +323,15 @@ export class Rope {
       }
 
       const diff = ((d - rest) / d) * this.stiffness;
+
+      if (this.grabTarget && i === n - 2) {
+        // While grabbed, the tip is pinned to the target. Relax node above it
+        // so the entire cord stretches taut towards the target without buckling.
+        a.x += dx * diff;
+        a.y += dy * diff;
+        continue;
+      }
+
       const wa = a.pinned ? 0 : a.invMass;
       const wb = b.pinned ? 0 : b.invMass;
       const wsum = wa + wb;

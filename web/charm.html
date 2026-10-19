@@ -45,12 +45,12 @@
   const stage = document.getElementById('stage');
 
   const dangle = new Dangle(stage, {
-    charmId: q.get('charm') || 'nazar',
-    length: Number(q.get('length')) || 230,
+    charmId: q.get('charm') || 'clover',
+    length: Number(q.get('length')) || 170,
     segments: 16,
     charmWidth: Number(q.get('width')) || 158,
     scale: 0.6,
-    anchorX: Number(q.get('anchorX')) || 0.5,
+    anchorX: Number(q.get('anchorX')) || 0.82,
     anchorY: 0,
     showCord: q.get('cord') !== '0',
   });
@@ -117,8 +117,26 @@
     hover(x, y) {
       dangle.hover(x, y);
       const box = dangle.el.getBoundingClientRect();
-      const inBox = x >= box.left - 32 && x <= box.right + 32 && y >= box.top - 32 && y <= box.bottom + 32;
-      const inCord = x >= box.left - 20 && x <= box.right + 20 && y >= 0 && y <= box.top + 20;
+      const inBox = x >= box.left - 36 && x <= box.right + 36 && y >= box.top - 36 && y <= box.bottom + 36;
+
+      let inCord = false;
+      if (dangle.rope) {
+        const ax = dangle.rope.anchor.x;
+        const ay = dangle.rope.anchor.y;
+        const tx = dangle.rope.tip.x;
+        const ty = dangle.rope.tip.y;
+        const dx = tx - ax;
+        const dy = ty - ay;
+        const lenSq = dx * dx + dy * dy;
+        if (lenSq > 0) {
+          const t = Math.max(0, Math.min(1, ((x - ax) * dx + (y - ay) * dy) / lenSq));
+          const projX = ax + t * dx;
+          const projY = ay + t * dy;
+          const distSq = (x - projX) * (x - projX) + (y - projY) * (y - projY);
+          inCord = distSq <= 40 * 40; // 40px radius along the entire cord
+        }
+      }
+
       return {
         hit: inBox || inCord || dangle.grabbed,
         rect: { x: box.x, y: box.y, width: box.width, height: box.height },
