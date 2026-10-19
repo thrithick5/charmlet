@@ -10,8 +10,8 @@ enum Prefs {
             "visible": true,
             "behind": false,
             "anchorX": 0.82,
-            "cordLength": 170.0,
-            "charmWidth": 158.0,
+            "cordLength": 100.0,
+            "charmWidth": 90.0,
             "sound": false,
         ])
     }

@@ -102,17 +102,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // Charm Size submenu
         let sizeMenu = NSMenu()
         let sizes: [(String, Double)] = [
+            ("Compact (90 px)", 90.0),
             ("Small (115 px)", 115.0),
             ("Medium (158 px)", 158.0),
             ("Large (200 px)", 200.0),
-            ("Extra Large (250 px)", 250.0),
         ]
         let currentWidth = Prefs.charmWidth
         for (label, width) in sizes {
             let item = NSMenuItem(title: label, action: #selector(selectSize(_:)), keyEquivalent: "")
             item.target = self
             item.representedObject = width
-            item.state = abs(currentWidth - width) < 18.0 ? .on : .off
+            item.state = abs(currentWidth - width) < 14.0 ? .on : .off
             sizeMenu.addItem(item)
         }
         let sizeItem = NSMenuItem(title: "Charm Size", action: nil, keyEquivalent: "")
@@ -122,17 +122,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // Cord Length submenu
         let lengthMenu = NSMenu()
         let lengths: [(String, Double)] = [
+            ("Compact (100 px)", 100.0),
             ("Short (140 px)", 140.0),
-            ("Medium (220 px)", 220.0),
-            ("Long (340 px)", 340.0),
-            ("Extra Long (460 px)", 460.0),
+            ("Medium (170 px)", 170.0),
+            ("Long (250 px)", 250.0),
         ]
         let currentLength = Prefs.cordLength
         for (label, len) in lengths {
             let item = NSMenuItem(title: label, action: #selector(selectLength(_:)), keyEquivalent: "")
             item.target = self
             item.representedObject = len
-            item.state = abs(currentLength - len) < 25.0 ? .on : .off
+            item.state = abs(currentLength - len) < 20.0 ? .on : .off
             lengthMenu.addItem(item)
         }
         let lengthItem = NSMenuItem(title: "Cord Length", action: nil, keyEquivalent: "")

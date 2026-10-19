@@ -27,8 +27,8 @@ let tray = null;
 const prefsPath = path.join(app.getPath('userData'), 'charmlet-prefs.json');
 let prefs = {
   charmId: 'clover',
-  charmWidth: 158,
-  ropeLength: 170,
+  charmWidth: 90,
+  ropeLength: 100,
   anchorX: 0.82,
   sound: true,
   onTop: true,
@@ -188,25 +188,26 @@ function updateTrayMenu() {
   }));
 
   const sizeMenuItems = [
+    { label: 'Compact (90 px)', width: 90 },
     { label: 'Small (115 px)', width: 115 },
     { label: 'Medium (158 px)', width: 158 },
     { label: 'Large (200 px)', width: 200 },
-    { label: 'Extra Large (250 px)', width: 250 },
   ].map((s) => ({
     label: s.label,
     type: 'radio',
-    checked: Math.abs(prefs.charmWidth - s.width) < 18,
+    checked: Math.abs(prefs.charmWidth - s.width) < 14,
     click: () => selectSize(s.width),
   }));
 
   const lengthMenuItems = [
-    { label: 'Short (100 px)', length: 100 },
+    { label: 'Compact (100 px)', length: 100 },
+    { label: 'Short (140 px)', length: 140 },
     { label: 'Normal (170 px)', length: 170 },
     { label: 'Long (250 px)', length: 250 },
   ].map((l) => ({
     label: l.label,
     type: 'radio',
-    checked: Math.abs(prefs.ropeLength - l.length) < 25,
+    checked: Math.abs(prefs.ropeLength - l.length) < 20,
     click: () => selectLength(l.length),
   }));
 
