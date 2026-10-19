@@ -1,0 +1,13 @@
+{
+  "name": "charmlet",
+  "productName": "Charmlet",
+  "version": "1.0.0",
+  "description": "Charmlet - Free Personal Desktop Charm",
+  "main": "main.js",
+  "author": "Charmlet",
+  "license": "ISC",
+  "devDependencies": {
+    "@electron/packager": "^18.4.4",
+    "electron": "^33.4.11"
+  }
+}

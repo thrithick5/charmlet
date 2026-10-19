@@ -11,3 +11,9 @@ build/
 .DS_Store
 **/.DS_Store
 .tmpcheck/
+
+# Windows build artifacts
+windows/node_modules/
+windows/dist/
+windows/web/
+web/downloads/Charmlet-Windows.zip

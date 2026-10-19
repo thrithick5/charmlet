@@ -6,28 +6,32 @@ echo ========================================================
 echo   Charmlet - Personal Desktop Charm (Windows Edition)
 echo ========================================================
 echo.
-echo Launching your desktop charm...
+echo Launching your desktop charm overlay...
 echo.
 
-set "HTML_FILE=%~dp0web\charm.html"
-if not exist "%HTML_FILE%" set "HTML_FILE=%~dp0charm.html"
-
-:: 1. Try launching with Microsoft Edge in standalone app window
-where msedge >nul 2>nul
-if %ERRORLEVEL% equ 0 (
-    start "" msedge --app="file:///%HTML_FILE%" --window-size=380,560 --window-position=960,0
+:: 1. Try launching the packaged native Windows desktop overlay
+if exist "%~dp0dist\Charmlet-win32-x64\Charmlet.exe" (
+    start "" "%~dp0dist\Charmlet-win32-x64\Charmlet.exe"
     goto :done
 )
 
-:: 2. Try Google Chrome in standalone app window
-where chrome >nul 2>nul
-if %ERRORLEVEL% equ 0 (
-    start "" chrome --app="file:///%HTML_FILE%" --window-size=380,560 --window-position=960,0
+:: 2. Check if installed via Charmlet-Setup.exe
+if exist "%LOCALAPPDATA%\Programs\Charmlet\Charmlet.exe" (
+    start "" "%LOCALAPPDATA%\Programs\Charmlet\Charmlet.exe"
     goto :done
 )
 
-:: 3. Fallback: default web browser
-start "" "%HTML_FILE%"
+:: 3. Try running with local Electron in development mode
+if exist "%~dp0main.js" (
+    where npx >nul 2>nul
+    if %ERRORLEVEL% equ 0 (
+        cd /d "%~dp0"
+        start "" npx electron .
+        goto :done
+    )
+)
+
+echo ERROR: Could not find Charmlet.exe. Please install via Charmlet-Setup.exe or extract Charmlet-Windows.zip.
+pause
 
 :done
-echo Desktop charm launched! You can close this window.

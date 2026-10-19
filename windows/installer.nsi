@@ -26,6 +26,8 @@ ShowInstDetails show
 ShowUnInstDetails show
 RequestExecutionLevel user
 
+SetCompressor /SOLID lzma
+
 ; Version Information
 VIProductVersion "1.0.0.0"
 VIAddVersionKey "ProductName" "${PRODUCT_NAME}"
@@ -65,20 +67,28 @@ Section "MainSection" SEC01
     SetOutPath "$INSTDIR"
     SetOverwrite on
 
-    ; Application Executable & Icon
-    File "Charmlet.exe"
-    File "..\assets\Charmlet.ico"
+    ; Terminate any running instance before updating
+    nsExec::Exec 'taskkill /F /IM Charmlet.exe /T'
 
-    ; Web Engine and Assets
-    SetOutPath "$INSTDIR\web"
-    File /r /x "downloads" "..\web\*.*"
+    ; Application Executable, runtime DLLs, and resources
+    File /r "dist\Charmlet-win32-x64\*.*"
+
+    ; Register URL protocols charmlet:// and luckydangle://
+    WriteRegStr HKCU "Software\Classes\charmlet" "" "URL:Charmlet Protocol"
+    WriteRegStr HKCU "Software\Classes\charmlet" "URL Protocol" ""
+    WriteRegStr HKCU "Software\Classes\charmlet\DefaultIcon" "" "$INSTDIR\Charmlet.exe,0"
+    WriteRegStr HKCU "Software\Classes\charmlet\shell\open\command" "" '"$INSTDIR\Charmlet.exe" "%1"'
+
+    WriteRegStr HKCU "Software\Classes\luckydangle" "" "URL:LuckyDangle Protocol"
+    WriteRegStr HKCU "Software\Classes\luckydangle" "URL Protocol" ""
+    WriteRegStr HKCU "Software\Classes\luckydangle\DefaultIcon" "" "$INSTDIR\Charmlet.exe,0"
+    WriteRegStr HKCU "Software\Classes\luckydangle\shell\open\command" "" '"$INSTDIR\Charmlet.exe" "%1"'
 
     ; Shortcuts
-    SetOutPath "$INSTDIR"
     CreateDirectory "$SMPROGRAMS\Charmlet"
-    CreateShortcut "$SMPROGRAMS\Charmlet\Charmlet.lnk" "$INSTDIR\Charmlet.exe" "" "$INSTDIR\Charmlet.ico" 0
+    CreateShortcut "$SMPROGRAMS\Charmlet\Charmlet.lnk" "$INSTDIR\Charmlet.exe" "" "$INSTDIR\Charmlet.exe" 0
     CreateShortcut "$SMPROGRAMS\Charmlet\Uninstall Charmlet.lnk" "$INSTDIR\Uninstall.exe"
-    CreateShortcut "$DESKTOP\Charmlet.lnk" "$INSTDIR\Charmlet.exe" "" "$INSTDIR\Charmlet.ico" 0
+    CreateShortcut "$DESKTOP\Charmlet.lnk" "$INSTDIR\Charmlet.exe" "" "$INSTDIR\Charmlet.exe" 0
 SectionEnd
 
 Section -Post
@@ -89,7 +99,7 @@ Section -Post
     WriteRegStr HKCU "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\Charmlet.exe"
     WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
     WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\Uninstall.exe"
-    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\Charmlet.ico"
+    WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\Charmlet.exe,0"
     WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
     WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
     WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
@@ -101,6 +111,8 @@ SectionEnd
 ; Uninstallation Section
 ; ------------------------------------------------------------------------------
 Section Uninstall
+    nsExec::Exec 'taskkill /F /IM Charmlet.exe /T'
+
     ; Remove Shortcuts
     Delete "$DESKTOP\Charmlet.lnk"
     Delete "$SMPROGRAMS\Charmlet\Charmlet.lnk"
@@ -108,13 +120,11 @@ Section Uninstall
     RMDir "$SMPROGRAMS\Charmlet"
 
     ; Remove Installed Files
-    Delete "$INSTDIR\Charmlet.exe"
-    Delete "$INSTDIR\Charmlet.ico"
-    Delete "$INSTDIR\Uninstall.exe"
-    RMDir /r "$INSTDIR\web"
-    RMDir "$INSTDIR"
+    RMDir /r "$INSTDIR"
 
     ; Remove Registry Keys
+    DeleteRegKey HKCU "Software\Classes\charmlet"
+    DeleteRegKey HKCU "Software\Classes\luckydangle"
     DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
     DeleteRegKey HKCU "${PRODUCT_DIR_REGKEY}"
 
