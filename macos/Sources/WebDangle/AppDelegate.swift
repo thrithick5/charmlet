@@ -354,47 +354,37 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.terminate(nil)
     }
 
-    /// A crisp, elegant four-leaf clover charm glyph for the menu bar (Apple template image).
+    /// A crisp four-leaf clover glyph for the menu bar (Apple template image).
     private static func menuBarIcon() -> NSImage {
         let size = NSSize(width: 18, height: 18)
         let image = NSImage(size: size, flipped: false) { _ in
-            let center = NSPoint(x: 9, y: 9.5)
-            NSColor.black.setFill()
-            NSColor.black.setStroke()
+            let center = NSPoint(x: 9, y: 10)
 
-            // Stem first (behind leaves) curving to the bottom-right
-            let stem = NSBezierPath()
-            stem.lineWidth = 1.2
-            stem.lineCapStyle = .round
-            stem.move(to: NSPoint(x: center.x, y: center.y - 1.0))
-            stem.curve(to: NSPoint(x: center.x + 5.2, y: 2.2),
-                       controlPoint1: NSPoint(x: center.x + 1.2, y: center.y - 4.5),
-                       controlPoint2: NSPoint(x: center.x + 3.2, y: 3.2))
-            stem.stroke()
-
-            // Base heart-shaped leaflet pointing North from (0,0) with natural cleft
-            let baseLeaf = NSBezierPath()
-            baseLeaf.move(to: .zero)
-            baseLeaf.curve(to: NSPoint(x: -1.2, y: 6.2), controlPoint1: NSPoint(x: -1.8, y: 1.8), controlPoint2: NSPoint(x: -3.8, y: 3.8))
-            baseLeaf.curve(to: NSPoint(x: 0, y: 5.2), controlPoint1: NSPoint(x: -0.4, y: 6.8), controlPoint2: NSPoint(x: -0.1, y: 5.8))
-            baseLeaf.curve(to: NSPoint(x: 1.2, y: 6.2), controlPoint1: NSPoint(x: 0.1, y: 5.8), controlPoint2: NSPoint(x: 0.4, y: 6.8))
-            baseLeaf.curve(to: .zero, controlPoint1: NSPoint(x: 3.8, y: 3.8), controlPoint2: NSPoint(x: 1.8, y: 1.8))
-            baseLeaf.close()
-
-            // Four rotated clover leaflets (North, East, South, West)
+            // Four clover lobes: North, East, South, West
             for i in 0..<4 {
-                let t = NSAffineTransform()
-                t.translateX(by: center.x, yBy: center.y)
-                t.rotate(byDegrees: CGFloat(i * 90))
-                let rotatedLeaf = t.transform(baseLeaf)
-                rotatedLeaf.fill()
+                let angle = CGFloat(i) * (.pi / 2)
+                let cosA = cos(angle)
+                let sinA = sin(angle)
+                let dist: CGFloat = 4.2
+                let pc = NSPoint(x: center.x + cosA * dist, y: center.y + sinA * dist)
+                let r: CGFloat = 3.6
+                let petal = NSBezierPath(ovalIn: NSRect(x: pc.x - r, y: pc.y - r, width: r * 2, height: r * 2))
+                petal.fill()
             }
 
-            // Small negative-space core cutout for crisp Retina definition
-            let core = NSBezierPath(ovalIn: NSRect(x: center.x - 1.1, y: center.y - 1.1, width: 2.2, height: 2.2))
-            NSColor.white.setFill()
+            // Center connecting core
+            let core = NSBezierPath(ovalIn: NSRect(x: center.x - 2.8, y: center.y - 2.8, width: 5.6, height: 5.6))
             core.fill()
 
+            // Curved stem
+            let stem = NSBezierPath()
+            stem.lineWidth = 1.3
+            stem.lineCapStyle = .round
+            stem.move(to: NSPoint(x: center.x, y: center.y - 2.5))
+            stem.curve(to: NSPoint(x: center.x + 3.0, y: 1.5),
+                       controlPoint1: NSPoint(x: center.x, y: 5.0),
+                       controlPoint2: NSPoint(x: center.x + 1.5, y: 2.5))
+            stem.stroke()
             return true
         }
         image.isTemplate = true

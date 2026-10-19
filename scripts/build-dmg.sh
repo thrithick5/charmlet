@@ -87,7 +87,7 @@ hdiutil attach "$TMP_DMG" -readwrite -noverify -noautoopen
 
 # Use AppleScript to set Finder window properties
 # This makes the DMG open with a nice layout showing the app, Applications folder, and helper
-osascript <<APPLESCRIPT
+osascript <<APPLESCRIPT || true
   tell application "Finder"
     tell disk "$VOL_NAME"
       open
