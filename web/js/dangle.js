@@ -221,16 +221,36 @@ export class Dangle extends EventTarget {
   }
 
   _pointerMove(cx, cy) {
+    const rect = this.stage.getBoundingClientRect();
+    const lx = cx - rect.left;
+    const ly = cy - rect.top;
+
+    if (this._pointer.x === -9999) {
+      this._pointer.px = lx;
+      this._pointer.py = ly;
+      this._pointer.vx = 0;
+      this._pointer.vy = 0;
+    } else {
+      this._pointer.px = this._pointer.x;
+      this._pointer.py = this._pointer.y;
+      const instVx = lx - this._pointer.px;
+      const instVy = ly - this._pointer.py;
+      // Exponential moving average filter prevents mouse velocity spikes
+      this._pointer.vx = (this._pointer.vx || 0) * 0.75 + instVx * 0.25;
+      this._pointer.vy = (this._pointer.vy || 0) * 0.75 + instVy * 0.25;
+    }
+    this._pointer.x = lx;
+    this._pointer.y = ly;
+    this._pointer.active = true;
+    this._pointer.speed = Math.hypot(this._pointer.vx || 0, this._pointer.vy || 0);
+
     if (this.grabbed) {
-      const rect = this.stage.getBoundingClientRect();
-      const tx = cx - rect.left + this._grabOffset.x;
-      const ty = cy - rect.top + this._grabOffset.y;
+      const tx = lx + this._grabOffset.x;
+      const ty = ly + this._grabOffset.y;
       const tip = this.rope.tip;
       this._moved = Math.max(this._moved, Math.hypot(tx - tip.x, ty - tip.y));
       if (this._moved > 6) this.dragging = true;
-      this.rope.dragTip(tx, ty, 0.55);
-    } else {
-      this._hoverMove(cx, cy);
+      this.rope.dragTip(tx, ty, 0.85);
     }
   }
 
@@ -246,15 +266,24 @@ export class Dangle extends EventTarget {
     this.rope.release();
 
     if (this.dragging) {
-      // Release velocity comes from the last two pointer samples, so a flick
-      // throws the charm instead of dropping it dead.
-      const vx = (this._pointer.x - this._pointer.px) * 1.6;
-      const vy = (this._pointer.y - this._pointer.py) * 1.6;
+      // Release velocity comes from the smoothed pointer velocity
+      const vx = (this._pointer.vx || (this._pointer.x - this._pointer.px)) * 1.5;
+      const vy = (this._pointer.vy || (this._pointer.y - this._pointer.py)) * 1.5;
       const speed = Math.hypot(vx, vy);
       if (speed > 2) {
         this.rope.flick(vx, vy, 0.5);
         play('flick');
         this.dispatchEvent(new CustomEvent('flick', { detail: { speed } }));
+      } else {
+        // Elastic rebound if pulled down and released gently, matching Book My Luck
+        const pull = Math.max(0, this._moved);
+        if (pull > 18) {
+          const jump = Math.min(6, 2.0 + pull * 0.025);
+          const n = this.rope.nodes.length;
+          for (let i = Math.max(1, n - 4); i < n; i++) {
+            this.rope.nodes[i].py = this.rope.nodes[i].y + jump * ((i - (n - 4) + 1) / 4);
+          }
+        }
       }
     } else if (held < 900) {
       this.ritual();
@@ -266,12 +295,26 @@ export class Dangle extends EventTarget {
   /** Track the pointer globally so the charm leans away even outside the stage. */
   _hoverMove(cx, cy) {
     const rect = this.stage.getBoundingClientRect();
-    this._pointer.px = this._pointer.x;
-    this._pointer.py = this._pointer.y;
-    this._pointer.x = cx - rect.left;
-    this._pointer.y = cy - rect.top;
+    const lx = cx - rect.left;
+    const ly = cy - rect.top;
+    if (this._pointer.x === -9999) {
+      this._pointer.px = lx;
+      this._pointer.py = ly;
+      this._pointer.vx = 0;
+      this._pointer.vy = 0;
+    } else {
+      this._pointer.px = this._pointer.x;
+      this._pointer.py = this._pointer.y;
+      const instVx = lx - this._pointer.px;
+      const instVy = ly - this._pointer.py;
+      // Exponential moving average filter prevents velocity spikes
+      this._pointer.vx = (this._pointer.vx || 0) * 0.75 + instVx * 0.25;
+      this._pointer.vy = (this._pointer.vy || 0) * 0.75 + instVy * 0.25;
+    }
+    this._pointer.x = lx;
+    this._pointer.y = ly;
     this._pointer.active = true;
-    this._pointer.speed = Math.hypot(this._pointer.x - this._pointer.px, this._pointer.y - this._pointer.py);
+    this._pointer.speed = Math.hypot(this._pointer.vx || 0, this._pointer.vy || 0);
   }
 
   /** Attach a document-level hover tracker (used on the hero stage and the app). */
@@ -281,6 +324,8 @@ export class Dangle extends EventTarget {
     this._leaveHandler = () => {
       this._pointer.active = false;
       this._pointer.speed = 0;
+      this._pointer.vx = 0;
+      this._pointer.vy = 0;
       this._pointer.x = -9999;
       this._pointer.y = -9999;
     };
@@ -317,14 +362,15 @@ export class Dangle extends EventTarget {
       this._last = now;
       if (dt > 0.1) dt = 0.1; // tab was backgrounded — do not explode
       this._acc += dt;
-      const step = 1 / 60;
+      // Fixed 120Hz physics timestep matching Apple ProMotion displays and Book My Luck
+      const step = 1 / 120;
       let n = 0;
-      while (this._acc >= step && n < 4) {
-        this._physics();
+      while (this._acc >= step && n < 8) {
+        this._physics(0.5); // 0.5 normalized frame units per 1/120s step
         this._acc -= step;
         n++;
       }
-      this._render();
+      this._render(dt);
     };
     this._raf = requestAnimationFrame(tick);
   }
@@ -334,47 +380,53 @@ export class Dangle extends EventTarget {
     this._raf = null;
   }
 
-  _physics() {
+  _physics(dt = 0.5) {
     if (!this.rope || !this.visible) return;
     const p = this._pointer;
 
     if (p.active && !this.grabbed) {
-      // 1. Air pushed along the upper cord nodes
-      const cordRepelRad = Math.min(this.w * 0.45, 120);
-      this.rope.repel(p.x, p.y, cordRepelRad, this.opts.reducedMotion ? 0.35 : 1.4);
+      // 1. Soft proximity draught along upper cord nodes
+      for (let i = 1; i < this.rope.nodes.length - 2; i++) {
+        const q = this.rope.nodes[i];
+        const kx = q.x - p.x;
+        const ky = q.y - p.y;
+        const dd = kx * kx + ky * ky;
+        if (dd < 2500 && dd > 1) {
+          const r = Math.sqrt(dd);
+          const fCord = ((50 - r) / 50) * (this.opts.reducedMotion ? 0.3 : 1.0) * dt;
+          q.x += (kx / r) * fCord;
+          q.y += (ky / r) * fCord;
+        }
+      }
 
-      // 2. Direct proximity repulsion against the charm body:
-      // Gentle air push so the charm visibly sways away as cursor approaches without pinning sideways.
+      // 2. Direct aerodynamic proximity against the charm body:
+      // Measured from the charm's physical center of mass (like a hand brushing past), matching Book My Luck
       const tip = this.rope.tip;
       const angle = this._angle ?? 0;
-      const armLen = this.charmH * 0.4;
+      const armLen = this.charmH * 0.45;
       const charmCx = tip.x + Math.sin(angle) * armLen;
       const charmCy = tip.y + Math.cos(angle) * armLen;
 
       const cdx = charmCx - p.x;
       const cdy = charmCy - p.y;
       const dist = Math.hypot(cdx, cdy);
-      const repelDist = Math.min(this.w * 0.4, Math.max(this.charmW * 0.55 + 16, 44));
+      const repelRad = armLen + 40;
 
-      if (dist < repelDist && dist > 1) {
-        const falloff = 1 - dist / repelDist;
-        const force = Math.pow(falloff, 1.8) * (this.opts.reducedMotion ? 0.35 : 1.2);
-        const nx = cdx / dist;
-        const ny = cdy / dist;
-        tip.addForce(nx * force, ny * force * 0.25);
-      }
+      if (dist < repelRad && dist > 1) {
+        const u = (repelRad - dist) / repelRad;
+        const f = u * u * (this.opts.reducedMotion ? 0.35 : 1.1) * dt;
+        const g = u * (this.opts.reducedMotion ? 0.05 : 0.16) * dt;
+        const mvx = Math.max(-16, Math.min(16, p.vx || 0));
+        const mvy = Math.max(-16, Math.min(16, p.vy || 0));
 
-      // 3. Air wake / velocity stir if pointer sweeps past swiftly
-      if (p.speed > 8) {
-        const vx = p.x - p.px;
-        const vy = p.y - p.py;
-        this.rope.stir(p.x, p.y, vx, vy, Math.min(this.w * 0.5, 130), 0.08);
+        tip.x += (cdx / dist) * f + mvx * g;
+        tip.y += ((cdy / dist) * f + mvy * g) * 0.35;
       }
     }
 
     // Always step: while grabbed the rope runs its own grab spring, then lets the
     // cord's length constraints have the final say.
-    this.rope.step(1);
+    this.rope.step(dt);
 
     // Sideways containment only. Nothing may hang past the edge of the stage.
     const tip = this.rope.tip;
@@ -392,7 +444,7 @@ export class Dangle extends EventTarget {
     if (tip.x > this.w - half) tip.x = this.w - half;
   }
 
-  _render() {
+  _render(dt = 1 / 60) {
     if (!this.rope) return;
     const path = this.rope.path();
     this.cordPath.setAttribute('d', path);
@@ -401,7 +453,6 @@ export class Dangle extends EventTarget {
     // The second strand is the braided highlight. Taper smoothly to 0 at the anchor
     // and tip so it enters the bead hole cleanly without any displaced strand artifact.
     const tip = this.rope.tip;
-    const prev = this.rope.nodes[this.rope.nodes.length - 2];
     const n = this.rope.nodes.length;
 
     const pts2 = this.rope.nodes.map((p, i) => {
@@ -425,9 +476,19 @@ export class Dangle extends EventTarget {
     const a = this.rope.angle;
     // Physical constraint: clamp rotation so the charm stays hanging downwards naturally
     const maxTilt = 1.05; // ~60 degrees
-    this._angle = Math.max(-maxTilt, Math.min(maxTilt, a));
+    const targetAngle = Math.max(-maxTilt, Math.min(maxTilt, a));
+
+    // Rotational moment of inertia (exponential critically-damped low-pass filter):
+    // Real solid jewelry does not twitch instantaneously with micro-vibrations in the cord.
+    if (this._angle === undefined || this._angle === null) {
+      this._angle = targetAngle;
+    } else {
+      const blend = 1 - Math.exp(-24 * Math.min(0.05, dt || (1 / 60)));
+      this._angle += (targetAngle - this._angle) * blend;
+    }
+
     this.el.style.transform =
-      `translate(${(tip.x - this.charmW / 2).toFixed(2)}px, ${tip.y.toFixed(2)}px) rotate(${this._angle.toFixed(4)}rad)`;
+      `translate3d(${(tip.x - this.charmW / 2).toFixed(2)}px, ${tip.y.toFixed(2)}px, 0) rotate(${this._angle.toFixed(4)}rad)`;
   }
 
   /* ---------------------------------------------------------------- *

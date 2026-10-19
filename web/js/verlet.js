@@ -162,8 +162,15 @@ export class Rope {
     const n = this.nodes.length;
     if (n < 2) return 0;
     const tip = this.nodes[n - 1];
-    // Natural tangent entering the tip node: aligns the cord spline and charm stub with C1 continuity.
     const prev = this.nodes[n - 2];
+    if (n >= 3) {
+      const prev2 = this.nodes[n - 3];
+      // Weighted baseline across the bottom two segments eliminates single-joint twitch
+      const dx = (tip.x - prev.x) * 0.7 + (prev.x - prev2.x) * 0.3;
+      const dy = (tip.y - prev.y) * 0.7 + (prev.y - prev2.y) * 0.3;
+      if (Math.abs(dx) < 1e-4 && Math.abs(dy) < 1e-4) return 0;
+      return Math.atan2(dy, dx) - Math.PI / 2;
+    }
     const dx = tip.x - prev.x;
     const dy = tip.y - prev.y;
     if (Math.abs(dx) < 1e-4 && Math.abs(dy) < 1e-4) return 0;
@@ -176,7 +183,7 @@ export class Rope {
 
   /**
    * Advance one fixed step.
-   * @param {number} dt  time scale, 1 = one 60 Hz frame
+   * @param {number} dt  time scale, 1 = one 60 Hz frame, 0.5 = one 120 Hz frame
    */
   step(dt = 1) {
     this.time += dt;
@@ -187,12 +194,15 @@ export class Rope {
     const windY = Math.sin(w * 1.61) * 0.06 * this.windAmp * this.windStrength * dt;
 
     const nodes = this.nodes;
+    // Scale damping precisely by time step so physics behaves identically regardless of dt
+    const d = Math.pow(this.damping, dt);
+
     for (let i = 1; i < nodes.length; i++) {
       const p = nodes[i];
       const t = i / (nodes.length - 1); // wind bites harder near the free end
 
-      const vx = (p.x - p.px) * this.damping;
-      const vy = (p.y - p.py) * this.damping;
+      const vx = (p.x - p.px) * d;
+      const vy = (p.y - p.py) * d;
 
       p.px = p.x;
       p.py = p.y;
@@ -354,6 +364,8 @@ export class Rope {
   stir(x, y, vx, vy, radius = 130, strength = 0.06) {
     const speed = Math.hypot(vx, vy);
     if (speed < 1) return;
+    const clampedVx = Math.max(-25, Math.min(25, vx));
+    const clampedVy = Math.max(-25, Math.min(25, vy));
     for (let i = 1; i < this.nodes.length; i++) {
       const p = this.nodes[i];
       const d = Math.hypot(p.x - x, p.y - y);
@@ -362,8 +374,8 @@ export class Rope {
       // Nodes nearer the free end catch more of the draught.
       const t = i / (this.nodes.length - 1);
       const k = falloff * strength * t;
-      p.x += vx * k;
-      p.y += vy * k;
+      p.x += clampedVx * k;
+      p.y += clampedVy * k;
     }
   }
 

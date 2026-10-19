@@ -36,6 +36,8 @@
   -webkit-user-select: none;
   -webkit-user-drag: none;
   will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
   z-index: 2;
   filter: drop-shadow(0 12px 20px rgba(27, 34, 64, 0.18));
   transition: filter 0.2s;

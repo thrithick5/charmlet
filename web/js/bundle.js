@@ -135,6 +135,13 @@
       if (n < 2) return 0;
       const tip = this.nodes[n - 1];
       const prev = this.nodes[n - 2];
+      if (n >= 3) {
+        const prev2 = this.nodes[n - 3];
+        const dx2 = (tip.x - prev.x) * 0.7 + (prev.x - prev2.x) * 0.3;
+        const dy2 = (tip.y - prev.y) * 0.7 + (prev.y - prev2.y) * 0.3;
+        if (Math.abs(dx2) < 1e-4 && Math.abs(dy2) < 1e-4) return 0;
+        return Math.atan2(dy2, dx2) - Math.PI / 2;
+      }
       const dx = tip.x - prev.x;
       const dy = tip.y - prev.y;
       if (Math.abs(dx) < 1e-4 && Math.abs(dy) < 1e-4) return 0;
@@ -145,7 +152,7 @@
     }
     /**
      * Advance one fixed step.
-     * @param {number} dt  time scale, 1 = one 60 Hz frame
+     * @param {number} dt  time scale, 1 = one 60 Hz frame, 0.5 = one 120 Hz frame
      */
     step(dt = 1) {
       this.time += dt;
@@ -153,11 +160,12 @@
       const windX = (Math.sin(w) * 0.62 + Math.sin(w * 2.37) * 0.24) * this.windAmp * this.windStrength * dt;
       const windY = Math.sin(w * 1.61) * 0.06 * this.windAmp * this.windStrength * dt;
       const nodes = this.nodes;
+      const d = Math.pow(this.damping, dt);
       for (let i = 1; i < nodes.length; i++) {
         const p = nodes[i];
         const t = i / (nodes.length - 1);
-        const vx = (p.x - p.px) * this.damping;
-        const vy = (p.y - p.py) * this.damping;
+        const vx = (p.x - p.px) * d;
+        const vy = (p.y - p.py) * d;
         p.px = p.x;
         p.py = p.y;
         p.x += vx + (p.ax + windX * t) * dt;
@@ -292,6 +300,8 @@
     stir(x, y, vx, vy, radius = 130, strength = 0.06) {
       const speed = Math.hypot(vx, vy);
       if (speed < 1) return;
+      const clampedVx = Math.max(-25, Math.min(25, vx));
+      const clampedVy = Math.max(-25, Math.min(25, vy));
       for (let i = 1; i < this.nodes.length; i++) {
         const p = this.nodes[i];
         const d = Math.hypot(p.x - x, p.y - y);
@@ -299,8 +309,8 @@
         const falloff = (1 - d / radius) ** 2;
         const t = i / (this.nodes.length - 1);
         const k = falloff * strength * t;
-        p.x += vx * k;
-        p.y += vy * k;
+        p.x += clampedVx * k;
+        p.y += clampedVy * k;
       }
     }
     /**
@@ -2948,16 +2958,33 @@
       this.el.addEventListener("dragstart", (e) => e.preventDefault());
     }
     _pointerMove(cx, cy) {
+      const rect = this.stage.getBoundingClientRect();
+      const lx = cx - rect.left;
+      const ly = cy - rect.top;
+      if (this._pointer.x === -9999) {
+        this._pointer.px = lx;
+        this._pointer.py = ly;
+        this._pointer.vx = 0;
+        this._pointer.vy = 0;
+      } else {
+        this._pointer.px = this._pointer.x;
+        this._pointer.py = this._pointer.y;
+        const instVx = lx - this._pointer.px;
+        const instVy = ly - this._pointer.py;
+        this._pointer.vx = (this._pointer.vx || 0) * 0.75 + instVx * 0.25;
+        this._pointer.vy = (this._pointer.vy || 0) * 0.75 + instVy * 0.25;
+      }
+      this._pointer.x = lx;
+      this._pointer.y = ly;
+      this._pointer.active = true;
+      this._pointer.speed = Math.hypot(this._pointer.vx || 0, this._pointer.vy || 0);
       if (this.grabbed) {
-        const rect = this.stage.getBoundingClientRect();
-        const tx = cx - rect.left + this._grabOffset.x;
-        const ty = cy - rect.top + this._grabOffset.y;
+        const tx = lx + this._grabOffset.x;
+        const ty = ly + this._grabOffset.y;
         const tip = this.rope.tip;
         this._moved = Math.max(this._moved, Math.hypot(tx - tip.x, ty - tip.y));
         if (this._moved > 6) this.dragging = true;
-        this.rope.dragTip(tx, ty, 0.55);
-      } else {
-        this._hoverMove(cx, cy);
+        this.rope.dragTip(tx, ty, 0.85);
       }
     }
     _pointerUp(cx, cy) {
@@ -2970,13 +2997,22 @@
       this.el.classList.remove("is-grabbed");
       this.rope.release();
       if (this.dragging) {
-        const vx = (this._pointer.x - this._pointer.px) * 1.6;
-        const vy = (this._pointer.y - this._pointer.py) * 1.6;
+        const vx = (this._pointer.vx || this._pointer.x - this._pointer.px) * 1.5;
+        const vy = (this._pointer.vy || this._pointer.y - this._pointer.py) * 1.5;
         const speed = Math.hypot(vx, vy);
         if (speed > 2) {
           this.rope.flick(vx, vy, 0.5);
           play("flick");
           this.dispatchEvent(new CustomEvent("flick", { detail: { speed } }));
+        } else {
+          const pull = Math.max(0, this._moved);
+          if (pull > 18) {
+            const jump = Math.min(6, 2 + pull * 0.025);
+            const n = this.rope.nodes.length;
+            for (let i = Math.max(1, n - 4); i < n; i++) {
+              this.rope.nodes[i].py = this.rope.nodes[i].y + jump * ((i - (n - 4) + 1) / 4);
+            }
+          }
         }
       } else if (held < 900) {
         this.ritual();
@@ -2987,12 +3023,25 @@
     /** Track the pointer globally so the charm leans away even outside the stage. */
     _hoverMove(cx, cy) {
       const rect = this.stage.getBoundingClientRect();
-      this._pointer.px = this._pointer.x;
-      this._pointer.py = this._pointer.y;
-      this._pointer.x = cx - rect.left;
-      this._pointer.y = cy - rect.top;
+      const lx = cx - rect.left;
+      const ly = cy - rect.top;
+      if (this._pointer.x === -9999) {
+        this._pointer.px = lx;
+        this._pointer.py = ly;
+        this._pointer.vx = 0;
+        this._pointer.vy = 0;
+      } else {
+        this._pointer.px = this._pointer.x;
+        this._pointer.py = this._pointer.y;
+        const instVx = lx - this._pointer.px;
+        const instVy = ly - this._pointer.py;
+        this._pointer.vx = (this._pointer.vx || 0) * 0.75 + instVx * 0.25;
+        this._pointer.vy = (this._pointer.vy || 0) * 0.75 + instVy * 0.25;
+      }
+      this._pointer.x = lx;
+      this._pointer.y = ly;
       this._pointer.active = true;
-      this._pointer.speed = Math.hypot(this._pointer.x - this._pointer.px, this._pointer.y - this._pointer.py);
+      this._pointer.speed = Math.hypot(this._pointer.vx || 0, this._pointer.vy || 0);
     }
     /** Attach a document-level hover tracker (used on the hero stage and the app). */
     trackCursor(target = window) {
@@ -3001,6 +3050,8 @@
       this._leaveHandler = () => {
         this._pointer.active = false;
         this._pointer.speed = 0;
+        this._pointer.vx = 0;
+        this._pointer.vy = 0;
         this._pointer.x = -9999;
         this._pointer.y = -9999;
       };
@@ -3034,14 +3085,14 @@
         this._last = now;
         if (dt > 0.1) dt = 0.1;
         this._acc += dt;
-        const step = 1 / 60;
+        const step = 1 / 120;
         let n = 0;
-        while (this._acc >= step && n < 4) {
-          this._physics();
+        while (this._acc >= step && n < 8) {
+          this._physics(0.5);
           this._acc -= step;
           n++;
         }
-        this._render();
+        this._render(dt);
       };
       this._raf = requestAnimationFrame(tick);
     }
@@ -3049,35 +3100,42 @@
       if (this._raf) cancelAnimationFrame(this._raf);
       this._raf = null;
     }
-    _physics() {
+    _physics(dt = 0.5) {
       if (!this.rope || !this.visible) return;
       const p = this._pointer;
       if (p.active && !this.grabbed) {
-        const cordRepelRad = Math.min(this.w * 0.45, 120);
-        this.rope.repel(p.x, p.y, cordRepelRad, this.opts.reducedMotion ? 0.35 : 1.4);
+        for (let i = 1; i < this.rope.nodes.length - 2; i++) {
+          const q = this.rope.nodes[i];
+          const kx = q.x - p.x;
+          const ky = q.y - p.y;
+          const dd = kx * kx + ky * ky;
+          if (dd < 2500 && dd > 1) {
+            const r = Math.sqrt(dd);
+            const fCord = (50 - r) / 50 * (this.opts.reducedMotion ? 0.3 : 1) * dt;
+            q.x += kx / r * fCord;
+            q.y += ky / r * fCord;
+          }
+        }
         const tip2 = this.rope.tip;
         const angle = this._angle ?? 0;
-        const armLen = this.charmH * 0.4;
+        const armLen = this.charmH * 0.45;
         const charmCx = tip2.x + Math.sin(angle) * armLen;
         const charmCy = tip2.y + Math.cos(angle) * armLen;
         const cdx = charmCx - p.x;
         const cdy = charmCy - p.y;
         const dist = Math.hypot(cdx, cdy);
-        const repelDist = Math.min(this.w * 0.4, Math.max(this.charmW * 0.55 + 16, 44));
-        if (dist < repelDist && dist > 1) {
-          const falloff = 1 - dist / repelDist;
-          const force = Math.pow(falloff, 1.8) * (this.opts.reducedMotion ? 0.35 : 1.2);
-          const nx = cdx / dist;
-          const ny = cdy / dist;
-          tip2.addForce(nx * force, ny * force * 0.25);
-        }
-        if (p.speed > 8) {
-          const vx = p.x - p.px;
-          const vy = p.y - p.py;
-          this.rope.stir(p.x, p.y, vx, vy, Math.min(this.w * 0.5, 130), 0.08);
+        const repelRad = armLen + 40;
+        if (dist < repelRad && dist > 1) {
+          const u = (repelRad - dist) / repelRad;
+          const f = u * u * (this.opts.reducedMotion ? 0.35 : 1.1) * dt;
+          const g = u * (this.opts.reducedMotion ? 0.05 : 0.16) * dt;
+          const mvx = Math.max(-16, Math.min(16, p.vx || 0));
+          const mvy = Math.max(-16, Math.min(16, p.vy || 0));
+          tip2.x += cdx / dist * f + mvx * g;
+          tip2.y += (cdy / dist * f + mvy * g) * 0.35;
         }
       }
-      this.rope.step(1);
+      this.rope.step(dt);
       const tip = this.rope.tip;
       const half = this.charmW * 0.5;
       for (let i = 1; i < this.rope.nodes.length; i++) {
@@ -3092,13 +3150,12 @@
       if (tip.x < half) tip.x = half;
       if (tip.x > this.w - half) tip.x = this.w - half;
     }
-    _render() {
+    _render(dt = 1 / 60) {
       if (!this.rope) return;
       const path = this.rope.path();
       this.cordPath.setAttribute("d", path);
       this.cordPath.setAttribute("stroke-width", 1.8);
       const tip = this.rope.tip;
-      const prev = this.rope.nodes[this.rope.nodes.length - 2];
       const n = this.rope.nodes.length;
       const pts2 = this.rope.nodes.map((p, i) => {
         if (i === 0 || i === n - 1) return { x: p.x, y: p.y };
@@ -3118,8 +3175,14 @@
       this.cordPath2.setAttribute("opacity", "0.45");
       const a = this.rope.angle;
       const maxTilt = 1.05;
-      this._angle = Math.max(-maxTilt, Math.min(maxTilt, a));
-      this.el.style.transform = `translate(${(tip.x - this.charmW / 2).toFixed(2)}px, ${tip.y.toFixed(2)}px) rotate(${this._angle.toFixed(4)}rad)`;
+      const targetAngle = Math.max(-maxTilt, Math.min(maxTilt, a));
+      if (this._angle === void 0 || this._angle === null) {
+        this._angle = targetAngle;
+      } else {
+        const blend = 1 - Math.exp(-24 * Math.min(0.05, dt || 1 / 60));
+        this._angle += (targetAngle - this._angle) * blend;
+      }
+      this.el.style.transform = `translate3d(${(tip.x - this.charmW / 2).toFixed(2)}px, ${tip.y.toFixed(2)}px, 0) rotate(${this._angle.toFixed(4)}rad)`;
     }
     /* ---------------------------------------------------------------- *
      * Public API
