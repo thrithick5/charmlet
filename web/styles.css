@@ -490,10 +490,11 @@ code, pre {
  * ===================================================================== */
 
 section {
-  padding: clamp(90px, 12vh, 150px) 0;
+  padding: clamp(48px, 6vh, 64px) 0 clamp(64px, 8vh, 88px);
   scroll-margin-top: 60px;
   position: relative;
   box-sizing: border-box;
+  background: var(--bg);
 }
 
 /* Dedicated Apple-style full-viewport sections on anchor navigation */
@@ -501,40 +502,28 @@ section {
 #yours,
 #install {
   min-height: calc(100vh - 60px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   box-sizing: border-box;
-  padding: clamp(100px, 14vh, 160px) 0;
+  padding-top: clamp(44px, 5.5vh, 60px);
+  padding-bottom: clamp(60px, 8vh, 84px);
   scroll-margin-top: 60px;
-}
-
-#home > .wrap,
-#yours > .wrap,
-#install > .wrap {
-  margin-top: auto;
-  margin-bottom: auto;
+  background: var(--bg);
 }
 
 #charms {
-  padding: clamp(100px, 14vh, 160px) 0;
+  padding-top: clamp(44px, 5.5vh, 60px);
+  padding-bottom: clamp(60px, 8vh, 84px);
   scroll-margin-top: 60px;
   box-sizing: border-box;
+  background: var(--bg);
 }
 
 #faq {
   min-height: calc(100vh - 60px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-sizing: border-box;
-  padding: clamp(100px, 14vh, 160px) 0;
+  padding-top: clamp(44px, 5.5vh, 60px);
+  padding-bottom: clamp(60px, 8vh, 84px);
   scroll-margin-top: 60px;
-}
-
-#faq > .wrap {
-  margin-top: auto;
-  margin-bottom: auto;
+  box-sizing: border-box;
+  background: var(--bg);
 }
 
 section h2 {
@@ -1449,8 +1438,11 @@ details.qa .a {
 
 footer {
   border-top: 1px solid var(--line);
-  padding: 40px 0 56px;
-  margin-top: 20px;
+  padding: clamp(60px, 8vh, 90px) 0 clamp(100px, 16vh, 160px);
+  margin-top: 40px;
+  min-height: 50vh;
+  box-sizing: border-box;
+  background: var(--bg);
 }
 
 .foot-grid {

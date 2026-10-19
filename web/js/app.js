@@ -561,6 +561,21 @@ function initNav() {
   const onScroll = () => nav?.classList.toggle('is-stuck', window.scrollY > 8);
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  // Precise Apple smooth scroll for nav links with 60px header offset
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const hash = a.getAttribute('href');
+      if (!hash || hash === '#') return;
+      const target = document.querySelector(hash);
+      if (target) {
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 60;
+        window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        history.pushState(null, '', hash);
+      }
+    });
+  });
 }
 
 /* ------------------------------------------------------------------ *
