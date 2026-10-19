@@ -56,6 +56,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 60px;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -489,7 +490,51 @@ code, pre {
  * ===================================================================== */
 
 section {
-  padding: 80px 0;
+  padding: clamp(90px, 12vh, 150px) 0;
+  scroll-margin-top: 60px;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* Dedicated Apple-style full-viewport sections on anchor navigation */
+#home,
+#yours,
+#install {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: clamp(100px, 14vh, 160px) 0;
+  scroll-margin-top: 60px;
+}
+
+#home > .wrap,
+#yours > .wrap,
+#install > .wrap {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#charms {
+  padding: clamp(100px, 14vh, 160px) 0;
+  scroll-margin-top: 60px;
+  box-sizing: border-box;
+}
+
+#faq {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: clamp(100px, 14vh, 160px) 0;
+  scroll-margin-top: 60px;
+}
+
+#faq > .wrap {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 section h2 {

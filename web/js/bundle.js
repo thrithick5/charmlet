@@ -378,25 +378,26 @@
     art: `
 <svg class="charm-art" viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <radialGradient id="nz-1-__ID__" cx="32%" cy="24%" r="80%">
-      <stop offset="0%" stop-color="#3b82f6"/>
-      <stop offset="18%" stop-color="#1d4ed8"/>
-      <stop offset="55%" stop-color="#0221ad"/>
-      <stop offset="85%" stop-color="#02146e"/>
-      <stop offset="100%" stop-color="#010a3d"/>
+    <radialGradient id="nz-cobalt-__ID__" cx="34%" cy="28%" r="76%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="14%" stop-color="#1d4ed8"/>
+      <stop offset="48%" stop-color="#09218c"/>
+      <stop offset="82%" stop-color="#041154"/>
+      <stop offset="100%" stop-color="#020826"/>
     </radialGradient>
-    <radialGradient id="nz-2-__ID__" cx="36%" cy="28%" r="76%">
+    <radialGradient id="nz-white-__ID__" cx="36%" cy="28%" r="74%">
       <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="78%" stop-color="#f8fafc"/>
+      <stop offset="72%" stop-color="#f8fafc"/>
+      <stop offset="92%" stop-color="#e2e8f0"/>
       <stop offset="100%" stop-color="#cbd5e1"/>
     </radialGradient>
-    <radialGradient id="nz-3-__ID__" cx="36%" cy="28%" r="76%">
-      <stop offset="0%" stop-color="#7dd3fc"/>
-      <stop offset="30%" stop-color="#38bdf8"/>
-      <stop offset="70%" stop-color="#0284c7"/>
+    <radialGradient id="nz-iris-__ID__" cx="36%" cy="28%" r="74%">
+      <stop offset="0%" stop-color="#bae6fd"/>
+      <stop offset="28%" stop-color="#38bdf8"/>
+      <stop offset="68%" stop-color="#0284c7"/>
       <stop offset="100%" stop-color="#0369a1"/>
     </radialGradient>
-    <radialGradient id="nz-4-__ID__" cx="38%" cy="30%" r="72%">
+    <radialGradient id="nz-pupil-__ID__" cx="38%" cy="30%" r="70%">
       <stop offset="0%" stop-color="#1e293b"/>
       <stop offset="65%" stop-color="#0f172a"/>
       <stop offset="100%" stop-color="#020617"/>
@@ -413,11 +414,15 @@
       <stop offset="100%" stop-color="#0f172a"/>
     </radialGradient>
     <linearGradient id="nz-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="30%" stop-color="#f59e0b"/>
-      <stop offset="70%" stop-color="#d97706"/>
-      <stop offset="100%" stop-color="#78350f"/>
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="22%" stop-color="#fde047"/>
+      <stop offset="52%" stop-color="#d97706"/>
+      <stop offset="82%" stop-color="#92400e"/>
+      <stop offset="100%" stop-color="#451a03"/>
     </linearGradient>
+    <filter id="nz-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="5.5" flood-color="#020826" flood-opacity="0.32"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M60 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -431,16 +436,26 @@
   <circle cx="60" cy="25.4" r="2.6" fill="url(#nz-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="60" cy="34" r="5.2" fill="none" stroke="url(#nz-gold-__ID__)" stroke-width="2.3"/>
-  <path d="M60 39.2 V48" stroke="#a16207" stroke-width="2.2" stroke-linecap="round"/>
-  <g data-part="bead">
-    <circle cx="60" cy="92" r="44" fill="url(#nz-1-__ID__)"/>
-    <circle cx="60" cy="92" r="33" fill="url(#nz-2-__ID__)"/>
-    <circle cx="60" cy="92" r="23" fill="url(#nz-3-__ID__)"/>
-    <circle cx="60" cy="92" r="12" fill="url(#nz-4-__ID__)"/>
-    <ellipse cx="43" cy="70" rx="14" ry="7" fill="#ffffff" opacity=".65" transform="rotate(-30 43 70)"/>
-    <circle cx="40" cy="68" r="3.2" fill="#ffffff" opacity=".85"/>
-    <ellipse cx="78" cy="112" rx="7" ry="4" fill="#ffffff" opacity=".25" transform="rotate(-30 78 112)"/>
-    <circle cx="60" cy="92" r="44" fill="none" stroke="#020d40" stroke-width="1.8" opacity=".7"/>
+  <!-- Polished jewelry bail mounting -->
+  <path d="M56 38.5 Q60 41 64 38.5 L63 47 Q60 48.5 57 47 Z" fill="url(#nz-gold-__ID__)" stroke="#92400e" stroke-width="0.6"/>
+  <circle cx="60" cy="44" r="1.2" fill="#fffbeb"/>
+  <!-- The Nazar Evil Eye Glass Pendant -->
+  <g data-part="bead" filter="url(#nz-shadow-__ID__)">
+    <!-- Outer cobalt artisan blown-glass disc -->
+    <circle cx="60" cy="98" r="45" fill="url(#nz-cobalt-__ID__)"/>
+    <circle cx="60" cy="98" r="44.2" fill="none" stroke="rgba(255,255,255,0.35)" stroke-width="0.9"/>
+    <!-- Opaque white enamel ring -->
+    <circle cx="60" cy="98" r="33.5" fill="url(#nz-white-__ID__)"/>
+    <!-- Aegean blue iris ring -->
+    <circle cx="60" cy="98" r="23" fill="url(#nz-iris-__ID__)"/>
+    <!-- Obsidian black pupil -->
+    <circle cx="60" cy="98" r="11.5" fill="url(#nz-pupil-__ID__)"/>
+    <!-- Specular light reflections (arched window glass glare) -->
+    <path d="M40 76 C43 68 55 63 68 64 C64 68 54 71 47 77 C44 79 41 78 40 76 Z" fill="#ffffff" opacity="0.8"/>
+    <circle cx="43" cy="74" r="2.4" fill="#ffffff" opacity="0.95"/>
+    <ellipse cx="76" cy="120" rx="9" ry="4" fill="#60a5fa" opacity="0.3" transform="rotate(-30 76 120)"/>
+    <!-- Outer glass rim bevel -->
+    <circle cx="60" cy="98" r="45" fill="none" stroke="#041154" stroke-width="1.4" opacity="0.6"/>
   </g>
 </svg>`,
     ritual(root, api) {
@@ -469,11 +484,32 @@
 <svg class="charm-art" viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
     <linearGradient id="mu-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#f7e2a4"/><stop offset=".45" stop-color="#d9a72c"/><stop offset="1" stop-color="#8a6510"/>
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="18%" stop-color="#fef08a"/>
+      <stop offset="42%" stop-color="#eab308"/>
+      <stop offset="70%" stop-color="#ca8a04"/>
+      <stop offset="88%" stop-color="#854d0e"/>
+      <stop offset="100%" stop-color="#451a03"/>
     </linearGradient>
+    <radialGradient id="mu-radial-gold-__ID__" cx="42%" cy="36%" r="72%">
+      <stop offset="0%" stop-color="#fef9c3"/>
+      <stop offset="40%" stop-color="#eab308"/>
+      <stop offset="78%" stop-color="#a16207"/>
+      <stop offset="100%" stop-color="#713f12"/>
+    </radialGradient>
     <linearGradient id="mu-steel-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#f2f6fb"/><stop offset=".5" stop-color="#aab6c6"/><stop offset="1" stop-color="#6b7687"/>
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="35%" stop-color="#f1f5f9"/>
+      <stop offset="60%" stop-color="#cbd5e1"/>
+      <stop offset="85%" stop-color="#64748b"/>
+      <stop offset="100%" stop-color="#334155"/>
     </linearGradient>
+    <radialGradient id="mu-ruby-__ID__" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#fca5a5"/>
+      <stop offset="30%" stop-color="#ef4444"/>
+      <stop offset="75%" stop-color="#b91c1c"/>
+      <stop offset="100%" stop-color="#450a0a"/>
+    </radialGradient>
     <radialGradient id="mu-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
       <stop offset="60%" stop-color="#f8fafc"/>
@@ -485,6 +521,9 @@
       <stop offset="68%" stop-color="#1d4ed8"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </radialGradient>
+    <filter id="mu-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#451a03" flood-opacity="0.32"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M60 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -498,26 +537,64 @@
   <circle cx="60" cy="25.4" r="2.6" fill="url(#mu-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="60" cy="34" r="5.2" fill="none" stroke="url(#mu-gold-__ID__)" stroke-width="2.3"/>
-  <path d="M60 39.2 V54" stroke="#a16207" stroke-width="2" stroke-linecap="round"/>
-  <circle cx="60" cy="56" r="4.2" fill="none" stroke="url(#mu-gold-__ID__)" stroke-width="2.4"/>
-  <g data-part="medallion">
-    <circle cx="60" cy="106" r="46" fill="url(#mu-gold-__ID__)" stroke="#7d5c14" stroke-width="2.6"/>
-    <circle cx="60" cy="106" r="38.5" fill="none" stroke="#7d5c14" stroke-width="1.4" opacity=".65"/>
-    <g data-part="peacock" style="transform-box:view-box;transform-origin:60px 138px">
-      <g stroke="#1e6f5c" stroke-width="3" stroke-linecap="round" fill="none">
-        <path d="M40 138 q-8 -22 2 -34"/><path d="M50 138 q-6 -24 2 -38"/><path d="M60 138 q0 -26 0 -40"/>
-        <path d="M70 138 q6 -24 -2 -38"/><path d="M80 138 q8 -22 -2 -34"/>
-      </g>
-      <circle cx="42" cy="102" r="3" fill="#2f6bff"/><circle cx="52" cy="98" r="3" fill="#2f6bff"/>
-      <circle cx="60" cy="96" r="3" fill="#e2603f"/><circle cx="68" cy="98" r="3" fill="#2f6bff"/>
-      <circle cx="78" cy="102" r="3" fill="#2f6bff"/>
+  <!-- Ornate golden link -->
+  <path d="M60 39.2 V49" stroke="url(#mu-gold-__ID__)" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="60" cy="51" r="3.6" fill="none" stroke="url(#mu-gold-__ID__)" stroke-width="2"/>
+  <!-- Temple Medallion -->
+  <g data-part="medallion" filter="url(#mu-shadow-__ID__)">
+    <!-- Heavy cast gold rim with beaded milgrain relief -->
+    <circle cx="60" cy="112" r="46" fill="url(#mu-gold-__ID__)" stroke="#78350f" stroke-width="1.5"/>
+    <circle cx="60" cy="112" r="42.5" fill="none" stroke="#fffbeb" stroke-width="0.8" opacity="0.75"/>
+    <circle cx="60" cy="112" r="39.5" fill="url(#mu-radial-gold-__ID__)"/>
+    <!-- Beaded border ring -->
+    <circle cx="60" cy="112" r="41" fill="none" stroke="#78350f" stroke-width="1.6" stroke-dasharray="1.8 2.8"/>
+    <!-- Sunburst radial engravings on medallion face -->
+    <path d="M60 76 V82 M60 142 V148 M24 112 H30 M90 112 H96 M34 86 L39 90 M81 134 L86 138 M34 138 L39 134 M81 90 L86 86" stroke="#92400e" stroke-width="0.9" opacity="0.4" stroke-linecap="round"/>
+    <!-- Peacock feathers behind Vel -->
+    <g data-part="peacock" style="transform-box:view-box;transform-origin:60px 145px">
+      <!-- Emerald & sapphire feather fans -->
+      <path d="M38 142 Q30 115 40 100" stroke="#059669" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+      <path d="M48 144 Q44 110 50 94" stroke="#059669" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+      <path d="M60 145 Q60 108 60 90" stroke="#059669" stroke-width="3" stroke-linecap="round" fill="none"/>
+      <path d="M72 144 Q76 110 70 94" stroke="#059669" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+      <path d="M82 142 Q90 115 80 100" stroke="#059669" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+      <!-- Iridescent peacock feather eye cabochons -->
+      <ellipse cx="40" cy="100" rx="3.5" ry="4.5" fill="#1d4ed8" stroke="#fde047" stroke-width="0.9"/>
+      <ellipse cx="50" cy="94" rx="3.5" ry="4.5" fill="#1d4ed8" stroke="#fde047" stroke-width="0.9"/>
+      <ellipse cx="60" cy="90" rx="4" ry="5.2" fill="#ef4444" stroke="#fde047" stroke-width="1"/>
+      <ellipse cx="70" cy="94" rx="3.5" ry="4.5" fill="#1d4ed8" stroke="#fde047" stroke-width="0.9"/>
+      <ellipse cx="80" cy="100" rx="3.5" ry="4.5" fill="#1d4ed8" stroke="#fde047" stroke-width="0.9"/>
     </g>
-    <text x="60" y="120" text-anchor="middle" font-size="52" font-family="'Noto Sans Tamil','Tamil Sangam MN',serif" fill="#6d4a10">\u0BD0</text>
+    <!-- Sacred Tamil Om Glyph (sculpted vector relief, immune to missing fonts) -->
+    <g transform="translate(60, 116) scale(0.72) translate(-60, -116)">
+      <!-- Deep shadow relief -->
+      <path d="M43 125 C39 122 37 117 37 111 C37 101 44 94 53 94 C61 94 67 98 70 104 C73 99 79 96 85 96 C93 96 98 101 98 108 C98 116 91 123 81 128 C74 132 64 135 55 135 C45 135 39 130 39 123 C39 119 42 116 46 116 C50 116 53 119 53 123 C53 125 51 127 49 128 C51 129 53 129 56 129 C65 129 74 125 79 120 C85 115 88 111 88 107 C88 103 85 101 81 101 C76 101 72 104 69 109 L64 116 L61 110 C58 104 54 100 49 100 C43 100 39 105 39 112 C39 117 41 121 44 123 Z" fill="#713f12"/>
+      <!-- Golden highlighted face of Tamil Om -->
+      <path d="M44 123 C40 120 38 116 38 110 C38 102 44 95 52 95 C59 95 65 99 68 105 C71 100 77 97 83 97 C90 97 95 101 95 107 C95 114 89 121 80 126 C73 130 64 133 55 133 C46 133 41 128 41 122 C41 118 44 115 48 115 C51 115 54 118 54 121 C54 123 53 125 51 126 C53 127 55 127 57 127 C65 127 73 123 78 119 C84 114 86 110 86 106 C86 103 84 101 80 101 C76 101 72 104 70 108 L64 115 L62 109 C59 104 55 101 50 101 C44 101 41 105 41 111 C41 115 43 119 45 121 Z" fill="url(#mu-gold-__ID__)"/>
+      <circle cx="78" cy="90" r="3.2" fill="url(#mu-gold-__ID__)" stroke="#713f12" stroke-width="0.8"/>
+    </g>
+    <!-- Sacred Vel (Spear of Courage) -->
     <g data-part="vel">
-      <path d="M30 176 L88 64" stroke="url(#mu-steel-__ID__)" stroke-width="5" stroke-linecap="round"/>
-      <ellipse cx="92" cy="66" rx="8" ry="19" fill="url(#mu-steel-__ID__)" stroke="#5a6472" stroke-width="1.6" transform="rotate(32 92 66)"/>
-      <ellipse cx="88" cy="60" rx="2.6" ry="7" fill="#ffffff" opacity=".6" transform="rotate(32 88 60)"/>
-      <circle cx="34" cy="172" r="5" fill="#d9a72c" stroke="#7d5c14" stroke-width="1.4"/>
+      <!-- Steel spear shaft with golden reflections -->
+      <path d="M28 178 L88 64" stroke="url(#mu-steel-__ID__)" stroke-width="4.2" stroke-linecap="round"/>
+      <path d="M28 178 L88 64" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.6"/>
+      <!-- Vel Leaf-shaped Spearhead -->
+      <g transform="translate(90, 60) rotate(32)">
+        <!-- Outer double-edged blade -->
+        <path d="M0 -24 C9 -14 13 -4 13 8 C13 14 10 18 0 20 C-10 18 -13 14 -13 8 C-13 -4 -9 -14 0 -24 Z" fill="url(#mu-steel-__ID__)" stroke="#334155" stroke-width="1.2"/>
+        <!-- Inner chamfered facet highlight -->
+        <path d="M0 -22 C6 -13 9 -4 9 7 C9 12 7 15 0 17 Z" fill="#ffffff" opacity="0.45"/>
+        <!-- Central spine ridge -->
+        <path d="M0 -22 V18" stroke="#475569" stroke-width="1.2"/>
+        <!-- 24K Gold filigree ferrule -->
+        <ellipse cx="0" cy="18" rx="7" ry="2.8" fill="url(#mu-gold-__ID__)" stroke="#78350f" stroke-width="0.8"/>
+        <!-- Faceted ruby gemstone cabochon -->
+        <circle cx="0" cy="6" r="3.4" fill="url(#mu-ruby-__ID__)" stroke="#78350f" stroke-width="0.8"/>
+        <circle cx="-1" cy="4.8" r="1.1" fill="#ffffff" opacity="0.9"/>
+      </g>
+      <!-- Vel Golden Lotus Pommel Base -->
+      <circle cx="28" cy="178" r="5.2" fill="url(#mu-gold-__ID__)" stroke="#78350f" stroke-width="1.2"/>
+      <circle cx="27" cy="176.5" r="1.6" fill="#fffbeb" opacity="0.8"/>
     </g>
   </g>
 </svg>`,
@@ -554,12 +631,31 @@
     art: `
 <svg class="charm-art" viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <radialGradient id="ka-skin-__ID__" cx="40%" cy="30%" r="80%">
-      <stop offset="0" stop-color="#4a4038"/><stop offset="1" stop-color="#171310"/>
+    <radialGradient id="ka-bronze-__ID__" cx="38%" cy="26%" r="80%">
+      <stop offset="0%" stop-color="#4a3f35"/>
+      <stop offset="38%" stop-color="#2a221b"/>
+      <stop offset="78%" stop-color="#17120e"/>
+      <stop offset="100%" stop-color="#080605"/>
     </radialGradient>
-    <linearGradient id="ka-steel-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#e8edf5"/><stop offset="1" stop-color="#7d8598"/>
+    <linearGradient id="ka-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="25%" stop-color="#fde047"/>
+      <stop offset="58%" stop-color="#d97706"/>
+      <stop offset="85%" stop-color="#92400e"/>
+      <stop offset="100%" stop-color="#451a03"/>
     </linearGradient>
+    <linearGradient id="ka-steel-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="28%" stop-color="#e2e8f0"/>
+      <stop offset="62%" stop-color="#94a3b8"/>
+      <stop offset="90%" stop-color="#475569"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <radialGradient id="ka-ruby-__ID__" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="50%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#7f1d1d"/>
+    </radialGradient>
     <radialGradient id="ka-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
       <stop offset="60%" stop-color="#f8fafc"/>
@@ -571,12 +667,9 @@
       <stop offset="68%" stop-color="#1d4ed8"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </radialGradient>
-    <linearGradient id="ka-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="30%" stop-color="#f59e0b"/>
-      <stop offset="70%" stop-color="#d97706"/>
-      <stop offset="100%" stop-color="#78350f"/>
-    </linearGradient>
+    <filter id="ka-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="5.5" flood-color="#080605" flood-opacity="0.38"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M60 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -590,21 +683,46 @@
   <circle cx="60" cy="25.4" r="2.6" fill="url(#ka-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="60" cy="34" r="5.2" fill="none" stroke="url(#ka-gold-__ID__)" stroke-width="2.3"/>
-  <g data-part="figure" style="transform-box:view-box;transform-origin:60px 30px">
-    <path d="M60 40 q-26 4 -30 34 q-2 18 6 30 q10 14 24 14 t24 -14 q8 -12 6 -30 q-4 -30 -30 -34 Z" fill="url(#ka-skin-__ID__)" stroke="#0d0a08" stroke-width="2.4"/>
-    <path d="M42 78 q18 8 36 0 l-4 34 q-14 7 -28 0 Z" fill="#211b15" stroke="#0d0a08" stroke-width="1.4"/>
-    <path d="M36 60 h-14 M84 60 h14" stroke="#171310" stroke-width="8" stroke-linecap="round"/>
-    <path d="M22 58 q10 9 22 4 M98 58 q-10 9 -22 4" stroke="#f2f0ea" stroke-width="3.6" fill="none" stroke-linecap="round"/>
-    <ellipse cx="45" cy="52" rx="5.5" ry="7.5" fill="#ffffff" stroke="#0d0a08" stroke-width="1.6"/>
-    <ellipse cx="75" cy="52" rx="5.5" ry="7.5" fill="#ffffff" stroke="#0d0a08" stroke-width="1.6"/>
-    <circle cx="45" cy="52" r="2.6" fill="#171310"/><circle cx="75" cy="52" r="2.6" fill="#171310"/>
-    <path d="M56 45 q8 -8 20 0 q-10 10 -20 0 Z" fill="#c0392b" opacity=".9"/>
-    <circle cx="60" cy="66" r="2.4" fill="none" stroke="#c9ced9" stroke-width="1.8"/>
-    <path d="M52 120 q8 4 16 0 M52 128 q8 4 16 0" stroke="#0d0a08" stroke-width="2" fill="none" opacity=".5"/>
+  <!-- Guardian Figure in Antique Panchaloha Bronze -->
+  <g data-part="figure" filter="url(#ka-shadow-__ID__)" style="transform-box:view-box;transform-origin:60px 42px">
+    <!-- Golden Kireetam (Warrior Crown) -->
+    <path d="M42 45 L50 34 L60 28 L70 34 L78 45 Z" fill="url(#ka-gold-__ID__)" stroke="#78350f" stroke-width="1.2"/>
+    <ellipse cx="60" cy="38" rx="3.2" ry="4" fill="url(#ka-ruby-__ID__)"/>
+    <rect x="40" y="44" width="40" height="3.5" rx="1.5" fill="url(#ka-gold-__ID__)" stroke="#78350f" stroke-width="0.8"/>
+    <!-- Head in antique panchaloha bronze -->
+    <path d="M60 46 C36 46 32 64 32 82 C32 104 46 122 60 122 C74 122 88 104 88 82 C88 64 84 46 60 46 Z" fill="url(#ka-bronze-__ID__)" stroke="#080605" stroke-width="1.6"/>
+    <!-- Kundalam (Heavy Gold Hoop Earrings) -->
+    <circle cx="31" cy="78" r="6" fill="none" stroke="url(#ka-gold-__ID__)" stroke-width="2"/>
+    <circle cx="89" cy="78" r="6" fill="none" stroke="url(#ka-gold-__ID__)" stroke-width="2"/>
+    <!-- Forehead Vibhuti & Kumkum Tilak -->
+    <path d="M48 54 H72 M49 57 H71" stroke="#f1f5f9" stroke-width="1.4" stroke-linecap="round" opacity="0.85"/>
+    <ellipse cx="60" cy="62" rx="2.5" ry="3.5" fill="#dc2626"/>
+    <circle cx="60" cy="62" r="1" fill="#fde047"/>
+    <!-- Piercing Silver-White Eyes -->
+    <ellipse cx="46" cy="69" rx="6.5" ry="5.5" fill="#ffffff" stroke="#080605" stroke-width="1.2"/>
+    <ellipse cx="74" cy="69" rx="6.5" ry="5.5" fill="#ffffff" stroke="#080605" stroke-width="1.2"/>
+    <circle cx="47" cy="69" r="2.8" fill="#080605"/>
+    <circle cx="73" cy="69" r="2.8" fill="#080605"/>
+    <circle cx="48" cy="68" r="0.9" fill="#ffffff"/>
+    <circle cx="74" cy="68" r="0.9" fill="#ffffff"/>
+    <!-- Majestic Curling Warrior Mustache -->
+    <path d="M60 84 C52 79 38 78 28 88 C36 93 48 88 60 86 C72 88 84 93 92 88 C82 78 68 79 60 84 Z" fill="#080605" stroke="#26201b" stroke-width="1"/>
+    <path d="M30 87 Q45 83 60 85 Q75 83 90 87" stroke="rgba(255,255,255,0.25)" stroke-width="0.8" fill="none"/>
+    <!-- Full Black Beard & Chin Contour -->
+    <path d="M42 94 C46 112 54 118 60 118 C66 118 74 112 78 94 Z" fill="#120e0c" stroke="#080605" stroke-width="1"/>
+    <!-- Golden Royal Neck Torque / Armor -->
+    <path d="M38 120 Q60 134 82 120 L84 134 Q60 152 36 134 Z" fill="url(#ka-gold-__ID__)" stroke="#78350f" stroke-width="1.2"/>
+    <circle cx="60" cy="134" r="2.8" fill="url(#ka-ruby-__ID__)"/>
   </g>
-  <g data-part="sickle" style="transform-box:view-box;transform-origin:100px 78px">
-    <path d="M92 72 q20 -6 20 14 q0 14 -14 16 q-14 2 -20 -10 q5 -2 9 2 q7 7 17 4 q9 -2 9 -13 q0 -11 -13 -11 Z" fill="url(#ka-steel-__ID__)" stroke="#5a6472" stroke-width="1.6"/>
-    <path d="M92 72 q-6 16 4 24" stroke="#8a5f36" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+  <!-- The Sacred Aruval (Damascus Curved Machete) -->
+  <g data-part="sickle" style="transform-box:view-box;transform-origin:94px 80px">
+    <!-- Forged Steel Curved Blade -->
+    <path d="M92 70 C114 62 118 84 112 96 C105 110 88 112 78 100 C86 98 94 94 98 84 C100 78 96 74 92 70 Z" fill="url(#ka-steel-__ID__)" stroke="#334155" stroke-width="1.2"/>
+    <path d="M94 72 C110 66 115 82 110 93" stroke="#ffffff" stroke-width="1" fill="none" opacity="0.7"/>
+    <!-- Turned Rosewood Hilt with Brass Ferrule -->
+    <path d="M92 70 Q84 84 92 94" stroke="#713f12" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+    <circle cx="92" cy="72" r="3.2" fill="url(#ka-gold-__ID__)"/>
+    <circle cx="92" cy="94" r="3.6" fill="url(#ka-gold-__ID__)"/>
   </g>
 </svg>`,
     ritual(root, api) {
@@ -642,16 +760,31 @@
 <svg class="charm-art" viewBox="0 0 120 215" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
     <linearGradient id="nm-chili-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#5ec65e"/><stop offset="1" stop-color="#1c5e1e"/>
+      <stop offset="0%" stop-color="#86efac"/>
+      <stop offset="20%" stop-color="#22c55e"/>
+      <stop offset="60%" stop-color="#15803d"/>
+      <stop offset="100%" stop-color="#052e16"/>
     </linearGradient>
     <linearGradient id="nm-wilt-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#9aa05a"/><stop offset="1" stop-color="#4a5520"/>
+      <stop offset="0%" stop-color="#a3a375"/>
+      <stop offset="50%" stop-color="#73733c"/>
+      <stop offset="100%" stop-color="#3d3d14"/>
     </linearGradient>
-    <radialGradient id="nm-lemon-__ID__" cx="35%" cy="28%" r="75%">
-      <stop offset="0" stop-color="#fff3b0"/><stop offset="1" stop-color="#e8a820"/>
+    <radialGradient id="nm-lemon-__ID__" cx="36%" cy="30%" r="76%">
+      <stop offset="0%" stop-color="#fef9c3"/>
+      <stop offset="28%" stop-color="#fde047"/>
+      <stop offset="70%" stop-color="#eab308"/>
+      <stop offset="100%" stop-color="#854d0e"/>
     </radialGradient>
-    <radialGradient id="nm-wiltlemon-__ID__" cx="35%" cy="28%" r="75%">
-      <stop offset="0" stop-color="#c9b46a"/><stop offset="1" stop-color="#8a7420"/>
+    <radialGradient id="nm-wiltlemon-__ID__" cx="36%" cy="30%" r="76%">
+      <stop offset="0%" stop-color="#d4c986"/>
+      <stop offset="60%" stop-color="#8c7d34"/>
+      <stop offset="100%" stop-color="#4d4416"/>
+    </radialGradient>
+    <radialGradient id="nm-coal-__ID__" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#4b5563"/>
+      <stop offset="50%" stop-color="#1f2937"/>
+      <stop offset="100%" stop-color="#030712"/>
     </radialGradient>
     <radialGradient id="nm-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
@@ -670,6 +803,9 @@
       <stop offset="70%" stop-color="#d97706"/>
       <stop offset="100%" stop-color="#78350f"/>
     </linearGradient>
+    <filter id="nm-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4.5" flood-color="#052e16" flood-opacity="0.25"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M60 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -683,34 +819,73 @@
   <circle cx="60" cy="25.4" r="2.6" fill="url(#nm-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="60" cy="34" r="5.2" fill="none" stroke="url(#nm-gold-__ID__)" stroke-width="2.3"/>
-  <path d="M60 39.2 V42" stroke="#a16207" stroke-width="2" stroke-linecap="round"/>
-  <g data-part="garland" style="transform-box:view-box;transform-origin:60px 24px">
-    <g transform="translate(60 34) rotate(-15)"><path d="M0 6 C8 4 12 -4 10 -13 C12 -4 4 2 0 4 Z" fill="url(#nm-chili-__ID__)" stroke="#145114" stroke-width="1"/><path d="M-1 6 L-3 14" stroke="#1c5e1e" stroke-width="2.4" stroke-linecap="round"/></g>
-    <g transform="translate(60 51) rotate(14)"><path d="M0 6 C8 4 12 -4 10 -13 C12 -4 4 2 0 4 Z" fill="url(#nm-chili-__ID__)" stroke="#145114" stroke-width="1"/><path d="M1 6 L3 14" stroke="#1c5e1e" stroke-width="2.4" stroke-linecap="round"/></g>
-    <g transform="translate(60 68) rotate(-12)"><path d="M0 6 C8 4 12 -4 10 -13 C12 -4 4 2 0 4 Z" fill="url(#nm-chili-__ID__)" stroke="#145114" stroke-width="1"/><path d="M-1 6 L-3 14" stroke="#1c5e1e" stroke-width="2.4" stroke-linecap="round"/></g>
-    <g transform="translate(60 85) rotate(13)"><path d="M0 6 C8 4 12 -4 10 -13 C12 -4 4 2 0 4 Z" fill="url(#nm-chili-__ID__)" stroke="#145114" stroke-width="1"/><path d="M1 6 L3 14" stroke="#1c5e1e" stroke-width="2.4" stroke-linecap="round"/></g>
-    <g transform="translate(60 102) rotate(-14)"><path d="M0 6 C8 4 12 -4 10 -13 C12 -4 4 2 0 4 Z" fill="url(#nm-chili-__ID__)" stroke="#145114" stroke-width="1"/><path d="M-1 6 L-3 14" stroke="#1c5e1e" stroke-width="2.4" stroke-linecap="round"/></g>
-    <g transform="translate(60 119) rotate(12)"><path d="M0 6 C8 4 12 -4 10 -13 C12 -4 4 2 0 4 Z" fill="url(#nm-chili-__ID__)" stroke="#145114" stroke-width="1"/><path d="M1 6 L3 14" stroke="#1c5e1e" stroke-width="2.4" stroke-linecap="round"/></g>
-    <g transform="translate(60 136) rotate(-11)"><path d="M0 6 C8 4 12 -4 10 -13 C12 -4 4 2 0 4 Z" fill="url(#nm-chili-__ID__)" stroke="#145114" stroke-width="1"/><path d="M-1 6 L-3 14" stroke="#1c5e1e" stroke-width="2.4" stroke-linecap="round"/></g>
-    <path d="M60 148 V160 M60 186 V194" stroke="#1c5e1e" stroke-width="2.2" stroke-linecap="round"/>
-    <ellipse cx="60" cy="172" rx="19" ry="15" fill="url(#nm-lemon-__ID__)" stroke="#a87810" stroke-width="1.8"/>
-    <path d="M46 172 q-8 -6 -6 -14 M74 172 q8 -6 6 -14" stroke="#a87810" stroke-width="2" fill="none" stroke-linecap="round"/>
-    <ellipse cx="52" cy="166" rx="7" ry="4" fill="#ffffff" opacity=".5" transform="rotate(-28 52 166)"/>
-    <ellipse cx="60" cy="201" rx="11" ry="9" fill="#2b2b2b"/>
-    <ellipse cx="56" cy="197" rx="4" ry="2.6" fill="#4d4d4d"/>
+  <!-- Central braided black cotton thread holding the garland -->
+  <path d="M60 39 V170" stroke="#18181b" stroke-width="1.6" stroke-linecap="round"/>
+  <!-- Fresh Garland (7 crisp chillies + plump lemon + charcoal) -->
+  <g data-part="garland" filter="url(#nm-shadow-__ID__)" style="transform-box:view-box;transform-origin:60px 34px">
+    <!-- Chili 1 (tilt left) -->
+    <g transform="translate(60, 42) rotate(-16)">
+      <path d="M0 0 C10 4 15 16 12 24 C10 18 4 12 0 4 Z" fill="url(#nm-chili-__ID__)" stroke="#052e16" stroke-width="0.8"/>
+      <path d="M1 2 C6 5 9 12 7 17" stroke="rgba(255,255,255,0.55)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="0" r="2" fill="#14532d"/>
+    </g>
+    <!-- Chili 2 (tilt right) -->
+    <g transform="translate(60, 58) rotate(15)">
+      <path d="M0 0 C10 4 15 16 12 24 C10 18 4 12 0 4 Z" fill="url(#nm-chili-__ID__)" stroke="#052e16" stroke-width="0.8"/>
+      <path d="M1 2 C6 5 9 12 7 17" stroke="rgba(255,255,255,0.55)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="0" r="2" fill="#14532d"/>
+    </g>
+    <!-- Chili 3 (tilt left) -->
+    <g transform="translate(60, 74) rotate(-14)">
+      <path d="M0 0 C10 4 15 16 12 24 C10 18 4 12 0 4 Z" fill="url(#nm-chili-__ID__)" stroke="#052e16" stroke-width="0.8"/>
+      <path d="M1 2 C6 5 9 12 7 17" stroke="rgba(255,255,255,0.55)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="0" r="2" fill="#14532d"/>
+    </g>
+    <!-- Chili 4 (tilt right) -->
+    <g transform="translate(60, 90) rotate(16)">
+      <path d="M0 0 C10 4 15 16 12 24 C10 18 4 12 0 4 Z" fill="url(#nm-chili-__ID__)" stroke="#052e16" stroke-width="0.8"/>
+      <path d="M1 2 C6 5 9 12 7 17" stroke="rgba(255,255,255,0.55)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="0" r="2" fill="#14532d"/>
+    </g>
+    <!-- Chili 5 (tilt left) -->
+    <g transform="translate(60, 106) rotate(-15)">
+      <path d="M0 0 C10 4 15 16 12 24 C10 18 4 12 0 4 Z" fill="url(#nm-chili-__ID__)" stroke="#052e16" stroke-width="0.8"/>
+      <path d="M1 2 C6 5 9 12 7 17" stroke="rgba(255,255,255,0.55)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="0" r="2" fill="#14532d"/>
+    </g>
+    <!-- Chili 6 (tilt right) -->
+    <g transform="translate(60, 122) rotate(14)">
+      <path d="M0 0 C10 4 15 16 12 24 C10 18 4 12 0 4 Z" fill="url(#nm-chili-__ID__)" stroke="#052e16" stroke-width="0.8"/>
+      <path d="M1 2 C6 5 9 12 7 17" stroke="rgba(255,255,255,0.55)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="0" r="2" fill="#14532d"/>
+    </g>
+    <!-- Chili 7 (tilt left) -->
+    <g transform="translate(60, 138) rotate(-13)">
+      <path d="M0 0 C10 4 15 16 12 24 C10 18 4 12 0 4 Z" fill="url(#nm-chili-__ID__)" stroke="#052e16" stroke-width="0.8"/>
+      <path d="M1 2 C6 5 9 12 7 17" stroke="rgba(255,255,255,0.55)" stroke-width="0.8" fill="none" stroke-linecap="round"/>
+      <circle cx="0" cy="0" r="2" fill="#14532d"/>
+    </g>
+    <!-- Fresh Ripe Lemon (Nimbu) -->
+    <ellipse cx="60" cy="172" rx="20" ry="16" fill="url(#nm-lemon-__ID__)" stroke="#854d0e" stroke-width="1.2"/>
+    <ellipse cx="54" cy="167" rx="8" ry="4.5" fill="#ffffff" opacity="0.45" transform="rotate(-25 54 167)"/>
+    <circle cx="41" cy="172" r="1.5" fill="#ca8a04"/>
+    <circle cx="79" cy="172" r="1.5" fill="#ca8a04"/>
+    <!-- Protective Charcoal Bead at Base -->
+    <path d="M60 188 V194" stroke="#18181b" stroke-width="1.8"/>
+    <ellipse cx="60" cy="201" rx="11" ry="9" fill="url(#nm-coal-__ID__)" stroke="#030712" stroke-width="0.9"/>
+    <ellipse cx="57" cy="198" rx="4" ry="2.5" fill="#6b7280" opacity="0.45"/>
   </g>
-  <g data-part="wilt" opacity="0">
-    <g transform="translate(60 34) rotate(-19)"><path d="M0 6 C8 4 12 -4 10 -13 C12 -4 4 2 0 4 Z" fill="url(#nm-wilt-__ID__)" stroke="#37401a" stroke-width="1"/><path d="M-1 6 L-3 14" stroke="#4a5520" stroke-width="2.4" stroke-linecap="round"/></g>
-    <g transform="translate(60 51) rotate(18)"><path d="M0 6 C8 4 12 -4 10 -13 C12 -4 4 2 0 4 Z" fill="url(#nm-wilt-__ID__)" stroke="#37401a" stroke-width="1"/><path d="M1 6 L3 14" stroke="#4a5520" stroke-width="2.4" stroke-linecap="round"/></g>
-    <g transform="translate(60 68) rotate(-16)"><path d="M0 6 C8 4 12 -4 10 -13 C12 -4 4 2 0 4 Z" fill="url(#nm-wilt-__ID__)" stroke="#37401a" stroke-width="1"/><path d="M-1 6 L-3 14" stroke="#4a5520" stroke-width="2.4" stroke-linecap="round"/></g>
-    <g transform="translate(60 85) rotate(17)"><path d="M0 6 C8 4 12 -4 10 -13 C12 -4 4 2 0 4 Z" fill="url(#nm-wilt-__ID__)" stroke="#37401a" stroke-width="1"/><path d="M1 6 L3 14" stroke="#4a5520" stroke-width="2.4" stroke-linecap="round"/></g>
-    <g transform="translate(60 102) rotate(-18)"><path d="M0 6 C8 4 12 -4 10 -13 C12 -4 4 2 0 4 Z" fill="url(#nm-wilt-__ID__)" stroke="#37401a" stroke-width="1"/><path d="M-1 6 L-3 14" stroke="#4a5520" stroke-width="2.4" stroke-linecap="round"/></g>
-    <g transform="translate(60 119) rotate(16)"><path d="M0 6 C8 4 12 -4 10 -13 C12 -4 4 2 0 4 Z" fill="url(#nm-wilt-__ID__)" stroke="#37401a" stroke-width="1"/><path d="M1 6 L3 14" stroke="#4a5520" stroke-width="2.4" stroke-linecap="round"/></g>
-    <g transform="translate(60 136) rotate(-15)"><path d="M0 6 C8 4 12 -4 10 -13 C12 -4 4 2 0 4 Z" fill="url(#nm-wilt-__ID__)" stroke="#37401a" stroke-width="1"/><path d="M-1 6 L-3 14" stroke="#4a5520" stroke-width="2.4" stroke-linecap="round"/></g>
-    <path d="M60 148 V160 M60 186 V194" stroke="#4a5520" stroke-width="2.2" stroke-linecap="round"/>
-    <ellipse cx="60" cy="172" rx="19" ry="15" fill="url(#nm-wiltlemon-__ID__)" stroke="#6d5a14" stroke-width="1.8"/>
-    <path d="M46 172 q-8 -6 -6 -14 M74 172 q8 -6 6 -14" stroke="#6d5a14" stroke-width="2" fill="none" stroke-linecap="round"/>
-    <ellipse cx="60" cy="201" rx="11" ry="9" fill="#2b2b2b"/>
+  <!-- Wilted Garland (for weekly aging ritual) -->
+  <g data-part="wilt" opacity="0" style="transform-box:view-box;transform-origin:60px 34px">
+    <g transform="translate(60, 42) rotate(-19)"><path d="M0 0 C10 4 15 16 12 24 C10 18 4 12 0 4 Z" fill="url(#nm-wilt-__ID__)" stroke="#3d3d14" stroke-width="0.8"/></g>
+    <g transform="translate(60, 58) rotate(18)"><path d="M0 0 C10 4 15 16 12 24 C10 18 4 12 0 4 Z" fill="url(#nm-wilt-__ID__)" stroke="#3d3d14" stroke-width="0.8"/></g>
+    <g transform="translate(60, 74) rotate(-16)"><path d="M0 0 C10 4 15 16 12 24 C10 18 4 12 0 4 Z" fill="url(#nm-wilt-__ID__)" stroke="#3d3d14" stroke-width="0.8"/></g>
+    <g transform="translate(60, 90) rotate(17)"><path d="M0 0 C10 4 15 16 12 24 C10 18 4 12 0 4 Z" fill="url(#nm-wilt-__ID__)" stroke="#3d3d14" stroke-width="0.8"/></g>
+    <g transform="translate(60, 106) rotate(-18)"><path d="M0 0 C10 4 15 16 12 24 C10 18 4 12 0 4 Z" fill="url(#nm-wilt-__ID__)" stroke="#3d3d14" stroke-width="0.8"/></g>
+    <g transform="translate(60, 122) rotate(16)"><path d="M0 0 C10 4 15 16 12 24 C10 18 4 12 0 4 Z" fill="url(#nm-wilt-__ID__)" stroke="#3d3d14" stroke-width="0.8"/></g>
+    <g transform="translate(60, 138) rotate(-15)"><path d="M0 0 C10 4 15 16 12 24 C10 18 4 12 0 4 Z" fill="url(#nm-wilt-__ID__)" stroke="#3d3d14" stroke-width="0.8"/></g>
+    <ellipse cx="60" cy="172" rx="20" ry="16" fill="url(#nm-wiltlemon-__ID__)" stroke="#4d4416" stroke-width="1.2"/>
+    <ellipse cx="60" cy="201" rx="11" ry="9" fill="url(#nm-coal-__ID__)"/>
   </g>
 </svg>`,
     ritual(root, api) {
@@ -738,9 +913,17 @@
     art: `
 <svg class="charm-art" viewBox="0 0 140 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <radialGradient id="dr-1-__ID__" cx="38%" cy="26%" r="80%">
-      <stop offset="0" stop-color="#ffd08a"/><stop offset="1" stop-color="#f0a04b"/>
+    <radialGradient id="dr-1-__ID__" cx="40%" cy="28%" r="80%">
+      <stop offset="0%" stop-color="#ffd08a"/>
+      <stop offset="60%" stop-color="#f0a04b"/>
+      <stop offset="100%" stop-color="#c2410c"/>
     </radialGradient>
+    <linearGradient id="dr-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="35%" stop-color="#f59e0b"/>
+      <stop offset="75%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
     <radialGradient id="dr-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
       <stop offset="60%" stop-color="#f8fafc"/>
@@ -752,12 +935,9 @@
       <stop offset="68%" stop-color="#1d4ed8"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </radialGradient>
-    <linearGradient id="dr-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="30%" stop-color="#f59e0b"/>
-      <stop offset="70%" stop-color="#d97706"/>
-      <stop offset="100%" stop-color="#78350f"/>
-    </linearGradient>
+    <filter id="dr-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#7c2d12" flood-opacity="0.32"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M70 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -771,25 +951,38 @@
   <circle cx="70" cy="25.4" r="2.6" fill="url(#dr-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="70" cy="34" r="5.2" fill="none" stroke="url(#dr-gold-__ID__)" stroke-width="2.3"/>
-  <g data-part="face">
-    <path d="M34 44 q36 -20 72 0 q6 30 -6 54 q-16 26 -30 30 q-14 -4 -30 -30 q-12 -24 -6 -54 Z" fill="url(#dr-1-__ID__)" stroke="#7a2f14" stroke-width="2.4"/>
-    <path d="M28 46 q10 -30 42 -30 t42 30 q-10 12 -42 12 t-42 -12 Z" fill="#fff3dd" stroke="#7a2f14" stroke-width="2.2"/>
+  <!-- Terracotta Fierce Face Mask -->
+  <g data-part="face" filter="url(#dr-shadow-__ID__)">
+    <!-- Sculpted mask base -->
+    <path d="M34 46 C50 36 90 36 106 46 C114 74 104 106 70 128 C36 106 26 74 34 46 Z" fill="url(#dr-1-__ID__)" stroke="#7c2d12" stroke-width="2"/>
+    <!-- Glaze specular highlight -->
+    <path d="M42 54 C55 46 85 46 98 54 C85 58 55 58 42 54 Z" fill="#ffffff" opacity="0.3"/>
+    <!-- 3-Tier Ornate Golden Crown -->
     <g data-part="crown">
-      <path d="M36 34 q34 -16 68 0 q-8 10 -34 10 t-34 -10 Z" fill="#c0392b" stroke="#7a2f14" stroke-width="1.8"/>
-      <circle cx="70" cy="28" r="5" fill="#f2c14e" stroke="#7a2f14" stroke-width="1.6"/>
-      <circle cx="50" cy="32" r="3.6" fill="#2e86c1" stroke="#7a2f14" stroke-width="1.4"/>
-      <circle cx="90" cy="32" r="3.6" fill="#27ae60" stroke="#7a2f14" stroke-width="1.4"/>
+      <path d="M36 42 L50 28 L70 20 L90 28 L104 42 Z" fill="url(#dr-gold-__ID__)" stroke="#78350f" stroke-width="1.2"/>
+      <circle cx="70" cy="28" r="4.2" fill="#ef4444" stroke="#78350f" stroke-width="0.8"/>
+      <circle cx="52" cy="34" r="3.2" fill="#0284c7" stroke="#78350f" stroke-width="0.8"/>
+      <circle cx="88" cy="34" r="3.2" fill="#16a34a" stroke="#78350f" stroke-width="0.8"/>
     </g>
-    <path d="M40 74 q14 -10 28 0 q-14 8 -28 0 Z" fill="#ffffff" stroke="#7a2f14" stroke-width="2"/>
-    <path d="M72 74 q14 -10 28 0 q-14 8 -28 0 Z" fill="#ffffff" stroke="#7a2f14" stroke-width="2"/>
-    <circle cx="54" cy="75" r="4.6" fill="#1b1b1b"/><circle cx="86" cy="75" r="4.6" fill="#1b1b1b"/>
-    <path d="M46 64 q10 -6 17 -1 M94 64 q-10 -6 -17 -1" stroke="#7a2f14" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-    <path d="M64 88 q6 -4 12 0 q-6 5 -12 0 Z" fill="#e2603f" stroke="#7a2f14" stroke-width="1.6"/>
-    <path d="M56 96 q14 6 28 0 q-4 12 -14 12 t-14 -12 Z" fill="#a8281c" stroke="#7a2f14" stroke-width="2"/>
-    <path d="M62 100 q4 12 8 12 M78 100 q-4 12 -8 12" stroke="#ffffff" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-    <path d="M42 118 q-9 10 -4 20 q4 7 12 4 q-8 -10 -8 -24 Z" fill="#fff3dd" stroke="#7a2f14" stroke-width="2"/>
-    <path d="M98 118 q9 10 4 20 q-4 7 -12 4 q8 -10 8 -24 Z" fill="#fff3dd" stroke="#7a2f14" stroke-width="2"/>
-    <path d="M46 122 q-6 8 -2 16 M94 122 q6 8 2 16" stroke="#7a2f14" stroke-width="1.6" fill="none"/>
+    <!-- Bulging Eyes with Concentric Rings -->
+    <ellipse cx="50" cy="74" rx="14" ry="10" fill="#ffffff" stroke="#7c2d12" stroke-width="1.6"/>
+    <ellipse cx="90" cy="74" rx="14" ry="10" fill="#ffffff" stroke="#7c2d12" stroke-width="1.6"/>
+    <circle cx="50" cy="74" r="6" fill="#18181b"/>
+    <circle cx="90" cy="74" r="6" fill="#18181b"/>
+    <circle cx="48" cy="72" r="1.8" fill="#ffffff"/>
+    <circle cx="88" cy="72" r="1.8" fill="#ffffff"/>
+    <!-- Fierce Curling Obsidian Mustache -->
+    <path d="M70 86 C62 82 48 80 34 92 C44 95 56 90 70 88 C84 90 96 95 106 92 C92 80 78 82 70 86 Z" fill="#18181b" stroke="#7c2d12" stroke-width="1"/>
+    <!-- Protruding White Ivory Fangs -->
+    <path d="M48 94 C46 104 48 112 52 114 C54 108 54 100 52 94 Z" fill="#ffffff" stroke="#7c2d12" stroke-width="1"/>
+    <path d="M92 94 C94 104 92 112 88 114 C86 108 86 100 88 94 Z" fill="#ffffff" stroke="#7c2d12" stroke-width="1"/>
+    <!-- Red Tongue with Gold Median Line -->
+    <path d="M62 94 C62 108 65 116 70 118 C75 116 78 108 78 94 Z" fill="#dc2626" stroke="#7c2d12" stroke-width="1.2"/>
+    <path d="M70 94 V116" stroke="#fde047" stroke-width="1.2"/>
+    <!-- Protective Black Drishti Pottu (Dots) -->
+    <circle cx="40" cy="104" r="2.4" fill="#18181b"/>
+    <circle cx="100" cy="104" r="2.4" fill="#18181b"/>
+    <circle cx="70" cy="122" r="2.2" fill="#18181b"/>
   </g>
 </svg>`,
     async ritual(root, api) {
@@ -823,10 +1016,22 @@
     art: `
 <svg class="charm-art" viewBox="0 0 120 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <radialGradient id="om-gold-__ID__" cx="36%" cy="24%" r="80%">
-      <stop offset="0" stop-color="#fce9ad"/><stop offset=".5" stop-color="#d9a72c"/><stop offset="1" stop-color="#8a6510"/>
+    <radialGradient id="om-gold-__ID__" cx="38%" cy="32%" r="75%">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="25%" stop-color="#fef08a"/>
+      <stop offset="55%" stop-color="#eab308"/>
+      <stop offset="85%" stop-color="#a16207"/>
+      <stop offset="100%" stop-color="#713f12"/>
     </radialGradient>
-    <filter id="om-blur-__ID__" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="11"/></filter>
+    <linearGradient id="om-bevel-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#fef08a"/>
+      <stop offset="80%" stop-color="#ca8a04"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </linearGradient>
+    <filter id="om-blur-__ID__" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="11"/>
+    </filter>
     <radialGradient id="om-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
       <stop offset="60%" stop-color="#f8fafc"/>
@@ -844,6 +1049,9 @@
       <stop offset="70%" stop-color="#d97706"/>
       <stop offset="100%" stop-color="#78350f"/>
     </linearGradient>
+    <filter id="om-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#713f12" flood-opacity="0.32"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M60 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -857,16 +1065,30 @@
   <circle cx="60" cy="25.4" r="2.6" fill="url(#om-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="60" cy="34" r="5.2" fill="none" stroke="url(#om-ringgold-__ID__)" stroke-width="2.3"/>
-  <path d="M60 39.2 V50" stroke="#a16207" stroke-width="2" stroke-linecap="round"/>
-  <circle cx="60" cy="52" r="4" fill="none" stroke="url(#om-gold-__ID__)" stroke-width="2.2"/>
+  <path d="M60 39.2 V48" stroke="#a16207" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="60" cy="50" r="3.6" fill="none" stroke="url(#om-gold-__ID__)" stroke-width="2"/>
+  <!-- Golden aura halo on ritual trigger -->
   <g data-part="glow" opacity="0">
-    <circle cx="60" cy="102" r="54" fill="#f2c14e" filter="url(#om-blur-__ID__)"/>
+    <circle cx="60" cy="108" r="52" fill="#fbbf24" filter="url(#om-blur-__ID__)"/>
   </g>
-  <g data-part="medallion">
-    <circle cx="60" cy="102" r="46" fill="url(#om-gold-__ID__)" stroke="#7d5c14" stroke-width="2.6"/>
-    <circle cx="60" cy="102" r="39" fill="none" stroke="#7d5c14" stroke-width="1.2" opacity=".6"/>
-    <text x="60" y="112" text-anchor="middle" font-size="58" font-family="serif" fill="#5f4309">\u0950</text>
-    <ellipse cx="44" cy="80" rx="13" ry="7" fill="#ffffff" opacity=".35" transform="rotate(-28 44 80)"/>
+  <!-- Cast Brass Lotus Medallion -->
+  <g data-part="medallion" filter="url(#om-shadow-__ID__)">
+    <circle cx="60" cy="108" r="46" fill="url(#om-gold-__ID__)" stroke="#713f12" stroke-width="1.4"/>
+    <circle cx="60" cy="108" r="42" fill="none" stroke="#fffbeb" stroke-width="0.8" opacity="0.7"/>
+    <circle cx="60" cy="108" r="39.5" fill="none" stroke="#713f12" stroke-width="1.4" stroke-dasharray="2 3"/>
+    <circle cx="60" cy="108" r="38" fill="url(#om-gold-__ID__)"/>
+    <!-- Sculpted Sacred \u0950 Vector Glyph with 3D chiseled facets -->
+    <g transform="translate(60, 110) scale(0.85) translate(-60, -110)">
+      <!-- Deep 3D drop facet -->
+      <path d="M48 93 C42 93 38 98 38 104 C38 109 42 113 47 114 C40 116 36 122 36 128 C36 136 43 141 53 141 C64 141 73 134 76 126 C79 133 86 137 94 137 C97 137 99 136 101 134 L98 128 C97 129 95 129 94 129 C88 129 84 124 84 117 C84 107 92 101 100 101 L100 95 C90 95 82 101 78 109 C75 102 68 97 59 97 C57 97 54 97 52 98 C53 96 54 94 54 93 C54 87 49 84 45 84 L44 90 C46 90 48 91 48 93 Z" fill="#713f12"/>
+      <!-- Gleaming golden face of \u0950 -->
+      <path d="M49 92 C43 92 39 97 39 103 C39 108 43 112 48 113 C41 115 37 121 37 127 C37 135 44 140 54 140 C65 140 74 133 77 125 C80 132 87 136 95 136 C98 136 100 135 102 133 L99 127 C98 128 96 128 95 128 C89 128 85 123 85 116 C85 106 93 100 101 100 L101 94 C91 94 83 100 79 108 C76 101 69 96 60 96 C58 96 55 96 53 97 C54 95 55 93 55 92 C55 86 50 83 46 83 L45 89 C47 89 49 90 49 92 Z" fill="url(#om-bevel-__ID__)"/>
+      <!-- Chandrabindu (crescent and pearl bindu) -->
+      <path d="M72 84 C77 89 87 89 92 84 C88 86 76 86 72 84 Z" fill="url(#om-bevel-__ID__)" stroke="#713f12" stroke-width="0.8"/>
+      <circle cx="82" cy="79" r="2.8" fill="#fffbeb" stroke="#713f12" stroke-width="0.8"/>
+    </g>
+    <!-- Glass/mirror shine arc -->
+    <path d="M40 84 C48 76 72 76 80 84" stroke="#ffffff" stroke-width="1.8" fill="none" opacity="0.4" stroke-linecap="round"/>
   </g>
 </svg>`,
     ritual(root, api) {
@@ -896,12 +1118,18 @@
     art: `
 <svg class="charm-art" viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <linearGradient id="gh-1-__ID__" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#8a6218"/><stop offset=".22" stop-color="#f3d27a"/>
-      <stop offset=".5" stop-color="#c9992f"/><stop offset=".78" stop-color="#f7e2a4"/><stop offset="1" stop-color="#7d5713"/>
+    <linearGradient id="gh-brass-1-__ID__" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#713f12"/>
+      <stop offset="18%" stop-color="#fde047"/>
+      <stop offset="48%" stop-color="#ca8a04"/>
+      <stop offset="78%" stop-color="#fffbeb"/>
+      <stop offset="100%" stop-color="#713f12"/>
     </linearGradient>
-    <linearGradient id="gh-2-__ID__" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#6d4b10"/><stop offset=".3" stop-color="#e6c165"/><stop offset=".7" stop-color="#b98c26"/><stop offset="1" stop-color="#5e400d"/>
+    <linearGradient id="gh-brass-2-__ID__" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#451a03"/>
+      <stop offset="25%" stop-color="#eab308"/>
+      <stop offset="70%" stop-color="#a16207"/>
+      <stop offset="100%" stop-color="#451a03"/>
     </linearGradient>
     <radialGradient id="gh-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
@@ -920,6 +1148,9 @@
       <stop offset="70%" stop-color="#d97706"/>
       <stop offset="100%" stop-color="#78350f"/>
     </linearGradient>
+    <filter id="gh-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4.5" flood-color="#451a03" flood-opacity="0.3"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M60 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -933,20 +1164,26 @@
   <circle cx="60" cy="25.4" r="2.6" fill="url(#gh-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="60" cy="34" r="5.2" fill="none" stroke="url(#gh-gold-__ID__)" stroke-width="2.3"/>
-  <g data-part="bell" style="transform-box:view-box;transform-origin:60px 38px">
-    <circle cx="60" cy="40" r="3.5" fill="url(#gh-2-__ID__)"/>
-    <circle cx="60" cy="28" r="2.4" fill="#f7e2a4"/>
-    <path d="M60 40 q6 0 7 7 l0 6" stroke="url(#gh-2-__ID__)" stroke-width="4.5" fill="none" stroke-linecap="round"/>
-    <path d="M60 46 q-19 3 -26 30 q-4 16 -8 22 q28 9 68 0 q-4 -6 -8 -22 q-7 -27 -26 -30 Z" fill="url(#gh-1-__ID__)"/>
-    <path d="M60 50 q-12 4 -17 26" stroke="#fff4cf" stroke-width="3" fill="none" opacity=".55" stroke-linecap="round"/>
-    <ellipse cx="60" cy="99" rx="34" ry="6.5" fill="#6b4a12" opacity=".55"/>
-    <ellipse cx="60" cy="97" rx="34" ry="6" fill="url(#gh-2-__ID__)"/>
-    <path d="M26 96 q34 8 68 0" stroke="#6b4a12" stroke-width="1.4" fill="none" opacity=".6"/>
-    <circle cx="60" cy="58" r="7" fill="none" stroke="#f7e2a4" stroke-width="1.6" opacity=".7"/>
+  <!-- Temple Bell Body -->
+  <g data-part="bell" filter="url(#gh-shadow-__ID__)" style="transform-box:view-box;transform-origin:60px 38px">
+    <!-- Sacred Lotus/Chakra Finial Handle -->
+    <path d="M60 38 V48" stroke="url(#gh-brass-1-__ID__)" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="60" cy="42" r="3.8" fill="url(#gh-brass-2-__ID__)"/>
+    <!-- Bell Waist & Dome -->
+    <path d="M60 48 C44 50 36 72 32 86 C28 98 22 104 22 108 C42 114 78 114 98 108 C98 104 92 98 88 86 C84 72 76 50 60 48 Z" fill="url(#gh-brass-1-__ID__)" stroke="#713f12" stroke-width="1.2"/>
+    <!-- Molding Rings & Decorative Grooves -->
+    <ellipse cx="60" cy="62" rx="14" ry="2.2" fill="none" stroke="#451a03" stroke-width="1.2"/>
+    <ellipse cx="60" cy="74" rx="20" ry="2.8" fill="none" stroke="#451a03" stroke-width="1.2"/>
+    <!-- Heavy Cast Bell Mouth Rim -->
+    <ellipse cx="60" cy="108" rx="38" ry="7" fill="url(#gh-brass-2-__ID__)" stroke="#451a03" stroke-width="1.2"/>
+    <ellipse cx="60" cy="107" rx="36.5" ry="5.5" fill="none" stroke="#fffbeb" stroke-width="1" opacity="0.75"/>
+    <ellipse cx="60" cy="109" rx="32" ry="4.5" fill="#451a03" opacity="0.65"/>
   </g>
-  <g data-part="clapper" style="transform-box:view-box;transform-origin:60px 100px">
-    <path d="M60 100 v10" stroke="#8a6218" stroke-width="3.4" stroke-linecap="round"/>
-    <circle cx="60" cy="115" r="7.5" fill="url(#gh-2-__ID__)"/>
+  <!-- Solid Cast Brass Clapper -->
+  <g data-part="clapper" style="transform-box:view-box;transform-origin:60px 108px">
+    <path d="M60 108 V120" stroke="url(#gh-brass-2-__ID__)" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="60" cy="124" r="7.5" fill="url(#gh-brass-1-__ID__)" stroke="#451a03" stroke-width="1"/>
+    <circle cx="58" cy="122" r="2" fill="#fffbeb" opacity="0.8"/>
   </g>
 </svg>`,
     ritual(root, api) {
@@ -987,11 +1224,22 @@
     art: `
 <svg class="charm-art" viewBox="0 0 140 210" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <radialGradient id="pk-body-__ID__" cx="38%" cy="30%" r="80%">
-      <stop offset="0" stop-color="#4a86ff"/><stop offset="1" stop-color="#12309b"/>
+    <radialGradient id="pk-sapphire-__ID__" cx="36%" cy="28%" r="76%">
+      <stop offset="0%" stop-color="#60a5fa"/>
+      <stop offset="25%" stop-color="#2563eb"/>
+      <stop offset="68%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#0f172a"/>
     </radialGradient>
     <linearGradient id="pk-teal-__ID__" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#2fa8a0"/><stop offset="1" stop-color="#14706f"/>
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="40%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#064e3b"/>
+    </linearGradient>
+    <linearGradient id="pk-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="35%" stop-color="#eab308"/>
+      <stop offset="75%" stop-color="#ca8a04"/>
+      <stop offset="100%" stop-color="#854d0e"/>
     </linearGradient>
     <radialGradient id="pk-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
@@ -1004,12 +1252,9 @@
       <stop offset="70%" stop-color="#1d4ed8"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </radialGradient>
-    <linearGradient id="pk-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="35%" stop-color="#eab308"/>
-      <stop offset="75%" stop-color="#ca8a04"/>
-      <stop offset="100%" stop-color="#854d0e"/>
-    </linearGradient>
+    <filter id="pk-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#064e3b" flood-opacity="0.32"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M70 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -1023,45 +1268,57 @@
   <circle cx="70" cy="25.4" r="2.6" fill="url(#pk-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="70" cy="34" r="5.2" fill="none" stroke="url(#pk-gold-__ID__)" stroke-width="2.3"/>
-  <path d="M70 39.2 V44" stroke="#a16207" stroke-width="2" stroke-linecap="round"/>
-  <circle cx="70" cy="46" r="3.8" fill="none" stroke="url(#pk-gold-__ID__)" stroke-width="2.2"/>
-  <g transform="translate(0, -28)">
-    <g data-part="fan" style="transform-box:view-box;transform-origin:70px 122px;transform:scale(1,.16)">
-      <g stroke="url(#pk-teal-__ID__)" stroke-width="4" stroke-linecap="round" fill="none">
-        <path d="M70 150 q-58 -26 -60 -96"/><path d="M70 150 q-48 -34 -44 -104"/>
-        <path d="M70 150 q-30 -42 -24 -110"/><path d="M70 150 q0 -46 0 -114"/>
-        <path d="M70 150 q30 -42 24 -110"/><path d="M70 150 q48 -34 44 -104"/>
-        <path d="M70 150 q58 -26 60 -96"/>
+  <!-- Cloisonn\xE9 Enamel Peacock -->
+  <g transform="translate(0, -22)" filter="url(#pk-shadow-__ID__)">
+    <!-- Fanned Out Iridescent Plumage -->
+    <g data-part="fan" style="transform-box:view-box;transform-origin:70px 126px;transform:scale(1,0.18)">
+      <!-- Radiating golden feather shafts -->
+      <g stroke="url(#pk-gold-__ID__)" stroke-width="2.6" stroke-linecap="round" fill="none">
+        <path d="M70 152 Q20 120 16 54"/>
+        <path d="M70 152 Q32 108 32 46"/>
+        <path d="M70 152 Q48 102 50 40"/>
+        <path d="M70 152 V36"/>
+        <path d="M70 152 Q92 102 90 40"/>
+        <path d="M70 152 Q108 108 108 46"/>
+        <path d="M70 152 Q120 120 124 54"/>
       </g>
-      <g fill="#2f6bff" stroke="#f2c14e" stroke-width="1.4">
-        <ellipse cx="14" cy="46" rx="7" ry="10" transform="rotate(12 14 46)"/>
-        <ellipse cx="28" cy="40" rx="7" ry="10" transform="rotate(8 28 40)"/>
-        <ellipse cx="44" cy="36" rx="7" ry="10"/>
-        <ellipse cx="70" cy="34" rx="7" ry="10"/>
-        <ellipse cx="96" cy="36" rx="7" ry="10"/>
-        <ellipse cx="112" cy="40" rx="7" ry="10" transform="rotate(-8 112 40)"/>
-        <ellipse cx="126" cy="46" rx="7" ry="10" transform="rotate(-12 126 46)"/>
+      <!-- Cloisonn\xE9 Ocelli (Eyes of the Peacock) -->
+      <g stroke="url(#pk-gold-__ID__)" stroke-width="1.2">
+        <ellipse cx="16" cy="54" rx="8" ry="11" fill="url(#pk-teal-__ID__)" transform="rotate(18 16 54)"/>
+        <ellipse cx="32" cy="46" rx="8" ry="11" fill="url(#pk-teal-__ID__)" transform="rotate(10 32 46)"/>
+        <ellipse cx="50" cy="40" rx="8" ry="11" fill="url(#pk-teal-__ID__)" transform="rotate(5 50 40)"/>
+        <ellipse cx="70" cy="36" rx="8.5" ry="11.5" fill="url(#pk-teal-__ID__)"/>
+        <ellipse cx="90" cy="40" rx="8" ry="11" fill="url(#pk-teal-__ID__)" transform="rotate(-5 90 40)"/>
+        <ellipse cx="108" cy="46" rx="8" ry="11" fill="url(#pk-teal-__ID__)" transform="rotate(-10 108 46)"/>
+        <ellipse cx="124" cy="54" rx="8" ry="11" fill="url(#pk-teal-__ID__)" transform="rotate(-18 124 54)"/>
       </g>
-      <g fill="#14706f">
-        <ellipse cx="14" cy="46" rx="3" ry="5" transform="rotate(12 14 46)"/>
-        <ellipse cx="28" cy="40" rx="3" ry="5" transform="rotate(8 28 40)"/>
-        <ellipse cx="44" cy="36" rx="3" ry="5"/>
-        <ellipse cx="70" cy="34" rx="3" ry="5"/>
-        <ellipse cx="96" cy="36" rx="3" ry="5"/>
-        <ellipse cx="112" cy="40" rx="3" ry="5" transform="rotate(-8 112 40)"/>
-        <ellipse cx="126" cy="46" rx="3" ry="5" transform="rotate(-12 126 46)"/>
+      <!-- Inner Sapphire & Violet centers -->
+      <g fill="url(#pk-sapphire-__ID__)">
+        <ellipse cx="16" cy="55" rx="4" ry="5.5" transform="rotate(18 16 55)"/>
+        <ellipse cx="32" cy="47" rx="4" ry="5.5" transform="rotate(10 32 47)"/>
+        <ellipse cx="50" cy="41" rx="4" ry="5.5" transform="rotate(5 50 41)"/>
+        <ellipse cx="70" cy="37" rx="4.5" ry="6"/>
+        <ellipse cx="90" cy="41" rx="4" ry="5.5" transform="rotate(-5 90 41)"/>
+        <ellipse cx="108" cy="47" rx="4" ry="5.5" transform="rotate(-10 108 47)"/>
+        <ellipse cx="124" cy="55" rx="4" ry="5.5" transform="rotate(-18 124 55)"/>
       </g>
     </g>
+    <!-- Peacock Sculpted Body & Graceful S-Neck -->
     <g data-part="body">
-      <ellipse cx="70" cy="156" rx="20" ry="27" fill="url(#pk-body-__ID__)" stroke="#0a1747" stroke-width="2"/>
-      <path d="M70 134 q-6 -22 0 -40" stroke="url(#pk-body-__ID__)" stroke-width="11" fill="none" stroke-linecap="round"/>
-      <circle cx="70" cy="90" r="8.5" fill="url(#pk-body-__ID__)" stroke="#0a1747" stroke-width="2"/>
-      <path d="M74 86 l7 -4 M72 85 l4 -7 M70 85 l0 -8" stroke="#12309b" stroke-width="1.6" stroke-linecap="round" fill="none"/>
-      <path d="M66 88 l-5 3" stroke="#f2c14e" stroke-width="2.4" stroke-linecap="round"/>
-      <circle cx="67" cy="89" r="1.6" fill="#ffffff"/>
-      <ellipse cx="52" cy="150" rx="6" ry="16" fill="#12309b" opacity=".85"/>
-      <ellipse cx="88" cy="150" rx="6" ry="16" fill="#12309b" opacity=".85"/>
-      <ellipse cx="70" cy="177" rx="12" ry="4" fill="#0a1747" opacity=".3"/>
+      <!-- Breast & Tail -->
+      <ellipse cx="70" cy="154" rx="19" ry="25" fill="url(#pk-sapphire-__ID__)" stroke="#0f172a" stroke-width="1.4"/>
+      <!-- S-Neck -->
+      <path d="M70 134 C64 116 66 102 70 92" stroke="url(#pk-sapphire-__ID__)" stroke-width="10" stroke-linecap="round" fill="none"/>
+      <!-- Noble Head & Crown Crest -->
+      <circle cx="70" cy="88" r="8" fill="url(#pk-sapphire-__ID__)" stroke="#0f172a" stroke-width="1.2"/>
+      <path d="M68 82 L65 74 M70 81 L70 73 M72 82 L75 74" stroke="url(#pk-gold-__ID__)" stroke-width="1.4" stroke-linecap="round"/>
+      <circle cx="65" cy="74" r="1.4" fill="url(#pk-teal-__ID__)"/>
+      <circle cx="70" cy="73" r="1.4" fill="url(#pk-teal-__ID__)"/>
+      <circle cx="75" cy="74" r="1.4" fill="url(#pk-teal-__ID__)"/>
+      <!-- Golden Beak & Sparkle Eye -->
+      <path d="M64 88 L58 90 L64 92 Z" fill="url(#pk-gold-__ID__)"/>
+      <circle cx="67" cy="87" r="1.4" fill="#ffffff"/>
+      <circle cx="67.5" cy="87" r="0.7" fill="#0f172a"/>
     </g>
   </g>
 </svg>`,
@@ -1071,7 +1328,7 @@
       root.dataset.fanned = open ? "1" : "0";
       api.play("sparkle");
       anim(fan, [
-        { transform: "scale(1,.16)" },
+        { transform: "scale(1,0.18)" },
         { transform: "scale(1,1)" }
       ], {
         duration: open ? 900 : 620,
@@ -1096,8 +1353,22 @@
     art: `
 <svg class="charm-art" viewBox="0 0 140 205" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <radialGradient id="el-skin-__ID__" cx="36%" cy="28%" r="82%">
-      <stop offset="0" stop-color="#c6ccd6"/><stop offset="1" stop-color="#7d848f"/>
+    <radialGradient id="el-silver-__ID__" cx="36%" cy="28%" r="80%">
+      <stop offset="0%" stop-color="#f1f5f9"/>
+      <stop offset="35%" stop-color="#cbd5e1"/>
+      <stop offset="70%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </radialGradient>
+    <linearGradient id="el-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="35%" stop-color="#fde047"/>
+      <stop offset="70%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
+    <radialGradient id="el-ruby-__ID__" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#fca5a5"/>
+      <stop offset="50%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#7f1d1d"/>
     </radialGradient>
     <radialGradient id="el-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
@@ -1110,12 +1381,9 @@
       <stop offset="68%" stop-color="#1d4ed8"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </radialGradient>
-    <linearGradient id="el-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="30%" stop-color="#f59e0b"/>
-      <stop offset="70%" stop-color="#d97706"/>
-      <stop offset="100%" stop-color="#78350f"/>
-    </linearGradient>
+    <filter id="el-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#334155" flood-opacity="0.3"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M70 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -1129,28 +1397,36 @@
   <circle cx="70" cy="25.4" r="2.6" fill="url(#el-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="70" cy="34" r="5.2" fill="none" stroke="url(#el-gold-__ID__)" stroke-width="2.3"/>
-  <path d="M70 39.2 V46" stroke="#a16207" stroke-width="2" stroke-linecap="round"/>
-  <g data-part="elephant">
-    <ellipse cx="70" cy="132" rx="37" ry="42" fill="url(#el-skin-__ID__)" stroke="#5a616d" stroke-width="2.2"/>
-    <path d="M44 96 q-16 4 -18 22 q-1 12 6 16 q14 -18 20 -34 Z" fill="url(#el-skin-__ID__)" stroke="#5a616d" stroke-width="2"/>
-    <path d="M96 96 q16 4 18 22 q1 12 -6 16 q-14 -18 -20 -34 Z" fill="url(#el-skin-__ID__)" stroke="#5a616d" stroke-width="2"/>
-    <path d="M52 96 q6 -6 14 -2 M88 96 q-6 -6 -14 -2" stroke="#5a616d" stroke-width="1.6" fill="none" opacity=".7"/>
-    <circle cx="70" cy="98" r="27" fill="url(#el-skin-__ID__)" stroke="#5a616d" stroke-width="2.2"/>
-    <path d="M60 96 q-12 -10 -8 -22 q6 -4 9 2 q-4 10 2 16 Z" fill="#ffffff" stroke="#d8dde4" stroke-width="1.2"/>
-    <path d="M80 96 q12 -10 8 -22 q-6 -4 -9 2 q4 10 -2 16 Z" fill="#ffffff" stroke="#d8dde4" stroke-width="1.2"/>
-    <g data-part="trunk" style="transform-box:view-box;transform-origin:70px 96px">
-      <path d="M70 100 Q70 80 76 66 Q82 52 70 48" stroke="url(#el-skin-__ID__)" stroke-width="12" fill="none" stroke-linecap="round"/>
-      <path d="M70 100 Q70 80 76 66 Q82 52 70 48" stroke="#5a616d" stroke-width="1.4" fill="none" opacity=".5"/>
+  <!-- Royal Elephant Sculpture in Antique Silver -->
+  <g data-part="elephant" filter="url(#el-shadow-__ID__)">
+    <!-- Flared Ears with Interior Shading -->
+    <path d="M48 94 C30 96 24 114 26 128 C28 136 34 140 46 130 C48 116 52 104 48 94 Z" fill="url(#el-silver-__ID__)" stroke="#475569" stroke-width="1.4"/>
+    <path d="M92 94 C110 96 116 114 114 128 C112 136 106 140 94 130 C92 116 88 104 92 94 Z" fill="url(#el-silver-__ID__)" stroke="#475569" stroke-width="1.4"/>
+    <!-- Noble Elephant Head & Body -->
+    <ellipse cx="70" cy="134" rx="36" ry="40" fill="url(#el-silver-__ID__)" stroke="#475569" stroke-width="1.6"/>
+    <circle cx="70" cy="98" r="26" fill="url(#el-silver-__ID__)" stroke="#475569" stroke-width="1.6"/>
+    <!-- Royal Velvet Howdah Jhool Cloth -->
+    <path d="M48 116 H92 V138 Q70 144 48 138 Z" fill="url(#el-ruby-__ID__)" stroke="#78350f" stroke-width="1.2"/>
+    <circle cx="70" cy="128" r="3.6" fill="url(#el-gold-__ID__)"/>
+    <path d="M48 138 Q70 146 92 138" stroke="url(#el-gold-__ID__)" stroke-width="2" fill="none"/>
+    <!-- Golden Nettipattam Temple Forehead Crown -->
+    <path d="M60 84 Q70 78 80 84 L76 100 Q70 104 64 100 Z" fill="url(#el-gold-__ID__)" stroke="#78350f" stroke-width="1"/>
+    <circle cx="70" cy="92" r="2.2" fill="url(#el-ruby-__ID__)"/>
+    <!-- Polished Ivory Tusks with Gold Tips -->
+    <path d="M56 104 C46 102 44 88 48 80 C50 86 54 94 58 100 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <path d="M84 104 C94 102 96 88 92 80 C90 86 86 94 82 100 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <path d="M47 84 L49 80" stroke="url(#el-gold-__ID__)" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M93 84 L91 80" stroke="url(#el-gold-__ID__)" stroke-width="2.2" stroke-linecap="round"/>
+    <!-- Raised Trunk of Blessing -->
+    <g data-part="trunk" style="transform-box:view-box;transform-origin:70px 102px">
+      <path d="M70 102 Q70 76 78 60 Q86 42 72 38 Q64 42 70 54 Q72 74 70 102" fill="url(#el-silver-__ID__)" stroke="#475569" stroke-width="1.4"/>
+      <path d="M72 44 Q80 44 76 56" stroke="rgba(255,255,255,0.6)" stroke-width="1" fill="none"/>
     </g>
-    <circle cx="62" cy="94" r="2.6" fill="#2b2f36"/>
-    <circle cx="78" cy="94" r="2.6" fill="#2b2f36"/>
-    <rect x="52" y="112" width="36" height="16" rx="6" fill="#c0392b" stroke="#7d0f0f" stroke-width="1.6"/>
-    <circle cx="70" cy="123" r="3.4" fill="#f2c14e" stroke="#8a6d12" stroke-width="1.2"/>
-    <rect x="46" y="160" width="17" height="26" rx="8" fill="url(#el-skin-__ID__)" stroke="#5a616d" stroke-width="2"/>
-    <rect x="77" y="160" width="17" height="26" rx="8" fill="url(#el-skin-__ID__)" stroke="#5a616d" stroke-width="2"/>
-    <ellipse cx="52" cy="172" rx="4" ry="2.6" fill="#5a616d"/>
-    <ellipse cx="88" cy="172" rx="4" ry="2.6" fill="#5a616d"/>
-    <ellipse cx="56" cy="110" rx="6" ry="3" fill="#ffffff" opacity=".35" transform="rotate(-24 56 110)"/>
+    <!-- Eyes -->
+    <circle cx="60" cy="94" r="2.2" fill="#0f172a"/>
+    <circle cx="80" cy="94" r="2.2" fill="#0f172a"/>
+    <circle cx="59.5" cy="93.5" r="0.8" fill="#ffffff"/>
+    <circle cx="79.5" cy="93.5" r="0.8" fill="#ffffff"/>
   </g>
 </svg>`,
     ritual(root, api) {
@@ -1180,11 +1456,27 @@
     art: `
 <svg class="charm-art" viewBox="0 0 130 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <linearGradient id="hm-1-__ID__" x1="0" y1="0" x2=".6" y2="1">
-      <stop offset="0" stop-color="#3f8dff"/><stop offset=".5" stop-color="#1548b4"/><stop offset="1" stop-color="#0a2a72"/>
+    <linearGradient id="hm-cobalt-__ID__" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="45%" stop-color="#1d4ed8"/>
+      <stop offset="85%" stop-color="#0f172a"/>
     </linearGradient>
-    <radialGradient id="hm-eye-__ID__" cx="40%" cy="35%" r="70%">
-      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d6e4fb"/>
+    <linearGradient id="hm-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="28%" stop-color="#fde047"/>
+      <stop offset="60%" stop-color="#d97706"/>
+      <stop offset="85%" stop-color="#92400e"/>
+      <stop offset="100%" stop-color="#451a03"/>
+    </linearGradient>
+    <radialGradient id="hm-eye-__ID__" cx="40%" cy="35%" r="72%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="70%" stop-color="#f1f5f9"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </radialGradient>
+    <radialGradient id="hm-iris-__ID__" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="60%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0f172a"/>
     </radialGradient>
     <radialGradient id="hm-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
@@ -1197,12 +1489,9 @@
       <stop offset="68%" stop-color="#1d4ed8"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </radialGradient>
-    <linearGradient id="hm-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="30%" stop-color="#f59e0b"/>
-      <stop offset="70%" stop-color="#d97706"/>
-      <stop offset="100%" stop-color="#78350f"/>
-    </linearGradient>
+    <filter id="hm-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#0f172a" flood-opacity="0.3"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M65 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -1216,22 +1505,21 @@
   <circle cx="65" cy="25.4" r="2.6" fill="url(#hm-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="65" cy="34" r="5.2" fill="none" stroke="url(#hm-gold-__ID__)" stroke-width="2.3"/>
-  <rect x="43" y="38" width="44" height="2.8" rx="1.4" fill="url(#hm-gold-__ID__)"/>
-  <rect x="44.8" y="39.2" width="2.4" height="16" rx="1.2" fill="url(#hm-gold-__ID__)"/>
-  <rect x="65.8" y="39.2" width="2.4" height="8" rx="1.2" fill="url(#hm-gold-__ID__)"/>
-  <rect x="86.8" y="39.2" width="2.4" height="20" rx="1.2" fill="url(#hm-gold-__ID__)"/>
-  <g data-part="hand" stroke="#c9a227" stroke-width="2.6" stroke-linejoin="round">
-    <path d="M38 62 q0 -9 8 -9 t8 9 l0 26 l5 0 l0 -34 q0 -9 8 -9 t8 9 l0 34 l5 0 l0 -22 q0 -9 8 -9 t8 9 l0 24 q0 34 -18 45 q-10 5 -22 0 q-18 -11 -18 -45 Z" fill="url(#hm-1-__ID__)"/>
-    <path d="M38 88 q-13 -5 -19 4 q-5 9 4 17 q7 6 15 2" fill="url(#hm-1-__ID__)"/>
-    <path d="M92 88 q13 -5 19 4 q5 9 -4 17 q-7 6 -15 2" fill="url(#hm-1-__ID__)"/>
-  </g>
-  <path d="M38 88 q-13 -5 -19 4 q-5 9 4 17 q7 6 15 2" fill="none" stroke="#c9a227" stroke-width="2.6"/>
-  <path d="M92 88 q13 -5 19 4 q5 9 -4 17 q-7 6 -15 2" fill="none" stroke="#c9a227" stroke-width="2.6"/>
-  <g>
-    <ellipse cx="65" cy="104" rx="15" ry="10.5" fill="url(#hm-eye-__ID__)" stroke="#c9a227" stroke-width="2.2"/>
-    <circle cx="65" cy="104" r="5.4" fill="#0e3a8f"/>
-    <circle cx="63.4" cy="102.4" r="1.8" fill="#ffffff" opacity=".9"/>
-    <path d="M65 90 q8 8 0 14 q-8 -6 0 -14" fill="#e2603f" opacity=".85"/>
+  <!-- Ornate Golden Suspension Bar -->
+  <rect x="42" y="38" width="46" height="3" rx="1.5" fill="url(#hm-gold-__ID__)"/>
+  <path d="M45 40 V54 M65 40 V50 M85 40 V54" stroke="url(#hm-gold-__ID__)" stroke-width="2"/>
+  <!-- Symmetrical Filigree Hamsa Hand -->
+  <g data-part="hand" filter="url(#hm-shadow-__ID__)">
+    <!-- Outer Heavy Gold Rim with Beveled Edge -->
+    <path d="M38 60 C38 52 46 52 46 60 V84 H52 V54 C52 46 60 46 60 54 V84 H70 V54 C70 46 78 46 78 54 V84 H84 V60 C84 52 92 52 92 60 V84 C98 80 108 84 104 96 C100 106 90 110 84 114 C82 134 65 146 65 146 C65 146 48 134 46 114 C40 110 30 106 26 96 C22 84 32 80 38 84 Z" fill="url(#hm-cobalt-__ID__)" stroke="url(#hm-gold-__ID__)" stroke-width="2.6" stroke-linejoin="round"/>
+    <!-- Golden Filigree Inlay & Arabesque Vines -->
+    <path d="M65 58 V78 M56 60 V78 M74 60 V78" stroke="url(#hm-gold-__ID__)" stroke-width="1.2" opacity="0.8"/>
+    <!-- Bezel-Set Central Evil Eye -->
+    <ellipse cx="65" cy="108" rx="17" ry="11.5" fill="url(#hm-eye-__ID__)" stroke="url(#hm-gold-__ID__)" stroke-width="2.2"/>
+    <circle cx="65" cy="108" r="6" fill="url(#hm-iris-__ID__)"/>
+    <circle cx="65" cy="108" r="2.8" fill="#020617"/>
+    <circle cx="63.2" cy="106.2" r="1.4" fill="#ffffff"/>
+    <path d="M65 92 Q72 98 65 102 Q58 98 65 92" fill="#ef4444" opacity="0.85"/>
   </g>
 </svg>`,
     ritual(root, api) {
@@ -1259,8 +1547,17 @@
     art: `
 <svg class="charm-art" viewBox="0 0 120 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <linearGradient id="pc-1-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ef4444"/><stop offset=".4" stop-color="#dc2626"/><stop offset="1" stop-color="#7f1d1d"/>
+    <linearGradient id="pc-silk-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="28%" stop-color="#ef4444"/>
+      <stop offset="68%" stop-color="#b91c1c"/>
+      <stop offset="100%" stop-color="#450a0a"/>
+    </linearGradient>
+    <linearGradient id="pc-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="30%" stop-color="#fde047"/>
+      <stop offset="70%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#78350f"/>
     </linearGradient>
     <radialGradient id="pc-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
@@ -1273,12 +1570,9 @@
       <stop offset="68%" stop-color="#1d4ed8"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </radialGradient>
-    <linearGradient id="pc-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="30%" stop-color="#f59e0b"/>
-      <stop offset="70%" stop-color="#d97706"/>
-      <stop offset="100%" stop-color="#78350f"/>
-    </linearGradient>
+    <filter id="pc-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4.5" flood-color="#450a0a" flood-opacity="0.32"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M60 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -1292,21 +1586,33 @@
   <circle cx="60" cy="25.4" r="2.6" fill="url(#pc-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="60" cy="34" r="5.2" fill="none" stroke="url(#pc-gold-__ID__)" stroke-width="2.3"/>
-  <path d="M60 39.2 V42" stroke="#a16207" stroke-width="2" stroke-linecap="round"/>
-  <g data-part="knot" style="transform-box:view-box;transform-origin:60px 52px">
-    <path d="M44 30 q16 12 0 24 q-14 -12 0 -24 Z" fill="url(#pc-1-__ID__)" stroke="#7d0f0f" stroke-width="1.8"/>
-    <path d="M76 30 q-16 12 0 24 q14 -12 0 -24 Z" fill="url(#pc-1-__ID__)" stroke="#7d0f0f" stroke-width="1.8"/>
-    <path d="M46 42 q14 -6 28 0 q-14 8 -28 0 Z" fill="url(#pc-1-__ID__)" stroke="#7d0f0f" stroke-width="1.8"/>
-    <rect x="52" y="42" width="16" height="20" rx="5" fill="url(#pc-1-__ID__)" stroke="#7d0f0f" stroke-width="1.8"/>
-    <path d="M60 46 v14" stroke="#ffb3b3" stroke-width="1.6" opacity=".7"/>
-    <path d="M30 34 q14 8 16 20 M90 34 q-14 8 -16 20" stroke="#c41f1f" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  <!-- Chinese Mystic Knot in Cylindrical Silk Cord -->
+  <g data-part="knot" filter="url(#pc-shadow-__ID__)" style="transform-box:view-box;transform-origin:60px 58px">
+    <path d="M60 38 V44" stroke="#b91c1c" stroke-width="3" stroke-linecap="round"/>
+    <!-- Outer loop ears -->
+    <path d="M42 42 C26 42 26 62 42 62" fill="none" stroke="url(#pc-silk-__ID__)" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M78 42 C94 42 94 62 78 62" fill="none" stroke="url(#pc-silk-__ID__)" stroke-width="4.5" stroke-linecap="round"/>
+    <!-- Woven grid body -->
+    <rect x="42" y="44" width="36" height="36" rx="6" fill="url(#pc-silk-__ID__)" stroke="#7f1d1d" stroke-width="1.4"/>
+    <path d="M48 44 V80 M54 44 V80 M66 44 V80 M72 44 V80" stroke="#7f1d1d" stroke-width="1.2"/>
+    <path d="M42 50 H78 M42 56 H78 M42 68 H78 M42 74 H78" stroke="#7f1d1d" stroke-width="1.2"/>
+    <!-- Highlights along the weave -->
+    <path d="M48 46 V78 M66 46 V78" stroke="#fca5a5" stroke-width="0.9" opacity="0.7"/>
+    <!-- Bottom loops -->
+    <path d="M46 80 C46 94 56 94 56 80" fill="none" stroke="url(#pc-silk-__ID__)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M64 80 C64 94 74 94 74 80" fill="none" stroke="url(#pc-silk-__ID__)" stroke-width="4" stroke-linecap="round"/>
   </g>
-  <g data-part="tassel" style="transform-box:view-box;transform-origin:60px 64px">
-    <path d="M52 64 h16 l2 14 h-20 Z" fill="#c9a227" stroke="#8a6d12" stroke-width="1.4"/>
-    <path d="M50 78 q10 6 20 0" stroke="#8a6d12" stroke-width="1.4" fill="none"/>
-    <g stroke="url(#pc-1-__ID__)" stroke-width="2.4" stroke-linecap="round">
-      <path d="M52 80 q-4 22 -2 34"/><path d="M56 80 q-2 24 0 38"/><path d="M60 80 q0 24 0 40"/>
-      <path d="M64 80 q2 24 0 38"/><path d="M68 80 q4 22 2 34"/>
+  <!-- Gold Spacer Bead & Lush Silk Tassel -->
+  <g data-part="tassel" style="transform-box:view-box;transform-origin:60px 88px">
+    <!-- Heavy 24K Gold Cylinder Cap -->
+    <rect x="52" y="86" width="16" height="8" rx="3.5" fill="url(#pc-gold-__ID__)" stroke="#78350f" stroke-width="1"/>
+    <!-- Silky Crimson Strands with Natural Hang -->
+    <g stroke="url(#pc-silk-__ID__)" stroke-width="2.6" stroke-linecap="round">
+      <path d="M54 94 Q50 120 52 144"/>
+      <path d="M57 94 Q56 122 56 148"/>
+      <path d="M60 94 V152"/>
+      <path d="M63 94 Q64 122 64 148"/>
+      <path d="M66 94 Q70 120 68 144"/>
     </g>
   </g>
 </svg>`,
@@ -1344,9 +1650,12 @@
     art: `
 <svg class="charm-art" viewBox="0 0 130 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <linearGradient id="hs-1-__ID__" x1="0" y1="0" x2="1" y2=".3">
-      <stop offset="0" stop-color="#4b505c"/><stop offset=".28" stop-color="#b9c0cc"/>
-      <stop offset=".55" stop-color="#6e7481"/><stop offset=".8" stop-color="#d5dae2"/><stop offset="1" stop-color="#41454f"/>
+    <linearGradient id="hs-steel-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#cbd5e1"/>
+      <stop offset="60%" stop-color="#64748b"/>
+      <stop offset="90%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1e293b"/>
     </linearGradient>
     <radialGradient id="hs-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
@@ -1365,6 +1674,9 @@
       <stop offset="70%" stop-color="#d97706"/>
       <stop offset="100%" stop-color="#78350f"/>
     </linearGradient>
+    <filter id="hs-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#1e293b" flood-opacity="0.3"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M65 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -1378,20 +1690,27 @@
   <circle cx="65" cy="25.4" r="2.6" fill="url(#hs-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="65" cy="34" r="5.2" fill="none" stroke="url(#hs-gold-__ID__)" stroke-width="2.3"/>
-  <g data-part="shoe">
-    <path d="M30 66 q0 -34 35 -34 t35 34 q0 20 -8 38 q-6 14 -8 22 q-9 4 -19 4 t-19 -4 q-2 -8 -8 -22 q-8 -18 -8 -38 Z"
-          fill="none" stroke="url(#hs-1-__ID__)" stroke-width="15" stroke-linejoin="round" stroke-linecap="round"/>
-    <path d="M30 66 q0 -34 35 -34 t35 34 q0 20 -8 38 q-6 14 -8 22 q-9 4 -19 4 t-19 -4 q-2 -8 -8 -22 q-8 -18 -8 -38 Z"
-          fill="none" stroke="#2f333c" stroke-width="1.4" stroke-linejoin="round" opacity=".45"/>
-    <g fill="#20242c">
-      <circle cx="34" cy="62" r="2.4"/><circle cx="41" cy="44" r="2.4"/><circle cx="57" cy="34" r="2.4"/>
-      <circle cx="73" cy="34" r="2.4"/><circle cx="89" cy="44" r="2.4"/><circle cx="96" cy="62" r="2.4"/>
-      <circle cx="65" cy="120" r="2.4"/>
+  <!-- Gold suspension bracket -->
+  <path d="M58 39 Q65 44 72 39" stroke="url(#hs-gold-__ID__)" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <!-- Hand-Forged Burnished Steel Horseshoe (Open End Up) -->
+  <g data-part="shoe" filter="url(#hs-shadow-__ID__)">
+    <!-- Solid horseshoe forged arc -->
+    <path d="M28 54 C28 98 44 130 65 130 C86 130 102 98 102 54" fill="none" stroke="url(#hs-steel-__ID__)" stroke-width="17" stroke-linecap="round"/>
+    <!-- Deep fullered inner center groove -->
+    <path d="M28 56 C28 96 44 124 65 124 C86 124 102 96 102 56" fill="none" stroke="#1e293b" stroke-width="3.5" stroke-linecap="round"/>
+    <!-- 7 Square Countersunk Nail Holes with Steel Rivets -->
+    <g fill="#0f172a" stroke="#cbd5e1" stroke-width="0.6">
+      <rect x="25" y="66" width="3.5" height="3.5" rx="0.8"/>
+      <rect x="30" y="86" width="3.5" height="3.5" rx="0.8"/>
+      <rect x="42" y="104" width="3.5" height="3.5" rx="0.8"/>
+      <circle cx="65" cy="124" r="2"/>
+      <rect x="85" y="104" width="3.5" height="3.5" rx="0.8"/>
+      <rect x="97" y="86" width="3.5" height="3.5" rx="0.8"/>
+      <rect x="102" y="66" width="3.5" height="3.5" rx="0.8"/>
     </g>
-    <circle cx="46" cy="50" r="4" fill="#ffffff" opacity=".25"/>
-    <path d="M52 36 q16 -5 26 2" stroke="#ffffff" stroke-width="3" fill="none" opacity=".3" stroke-linecap="round"/>
+    <!-- Light-catching metallic chamfer highlights -->
+    <path d="M20 54 C20 102 42 138 65 138" stroke="#ffffff" stroke-width="1.2" fill="none" opacity="0.65" stroke-linecap="round"/>
   </g>
-  <path d="M56 39.2 q9 7 18 0" stroke="url(#hs-gold-__ID__)" stroke-width="3" fill="none" stroke-linecap="round"/>
 </svg>`,
     ritual(root, api) {
       const shoe = parts(root, "shoe")[0];
@@ -1420,6 +1739,19 @@
     art: `
 <svg class="charm-art" viewBox="0 0 120 175" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
+    <radialGradient id="cv-leaf-__ID__" cx="35%" cy="26%" r="78%">
+      <stop offset="0%" stop-color="#86efac"/>
+      <stop offset="20%" stop-color="#22c55e"/>
+      <stop offset="55%" stop-color="#16a34a"/>
+      <stop offset="85%" stop-color="#15803d"/>
+      <stop offset="100%" stop-color="#052e16"/>
+    </radialGradient>
+    <linearGradient id="cv-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="30%" stop-color="#fde047"/>
+      <stop offset="70%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
     <radialGradient id="cv-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
       <stop offset="60%" stop-color="#f8fafc"/>
@@ -1431,21 +1763,8 @@
       <stop offset="68%" stop-color="#1d4ed8"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </radialGradient>
-    <linearGradient id="cv-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="30%" stop-color="#f59e0b"/>
-      <stop offset="70%" stop-color="#d97706"/>
-      <stop offset="100%" stop-color="#78350f"/>
-    </linearGradient>
-    <radialGradient id="cv-leaf-__ID__" cx="35%" cy="26%" r="78%">
-      <stop offset="0%" stop-color="#4ade80"/>
-      <stop offset="20%" stop-color="#22c55e"/>
-      <stop offset="55%" stop-color="#16a34a"/>
-      <stop offset="82%" stop-color="#15803d"/>
-      <stop offset="100%" stop-color="#0f3d1e"/>
-    </radialGradient>
     <filter id="cv-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="5" stdDeviation="4.5" flood-color="#052e16" flood-opacity="0.25"/>
+      <feDropShadow dx="0" dy="5" stdDeviation="4.5" flood-color="#052e16" flood-opacity="0.28"/>
     </filter>
   </defs>
   <!-- Warm silk cord stub -->
@@ -1458,46 +1777,45 @@
   <circle cx="62.2" cy="19.2" r="0.8" fill="#93c5fd" opacity="0.4"/>
   <!-- Bottom white pearl bead -->
   <circle cx="60" cy="25.4" r="2.6" fill="url(#cv-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
-  <!-- Signature metallic gold jump-ring (clear open interior hole) -->
+  <!-- Signature metallic gold jump-ring -->
   <circle cx="60" cy="34" r="5.2" fill="none" stroke="url(#cv-gold-__ID__)" stroke-width="2.3"/>
-  <!-- Four-leaf clover connected at the bottom rim of the gold ring -->
-  <g data-part="clover" filter="url(#cv-shadow-__ID__)" style="transform-box:view-box;transform-origin:60px 71px">
-    <!-- Natural curving stem tapering to bottom right -->
-    <path d="M60 71 C60 92 64 108 67.5 118 C68 119.5 66 120.5 64.5 119 C60.5 107 56.5 91 57 71 Z" fill="#15803d" stroke="#14532d" stroke-width="1"/>
-    <!-- Top leaf (meeting bottom of gold ring at y=39) -->
-    <g transform="rotate(0 60 71)">
-      <path d="M60 41 C51 25 35 28 35 43 C35 57 49 64 60 71 C71 64 85 57 85 43 C85 28 69 25 60 41 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
-      <path d="M60 42 C52 28 38 30 38 43 C38 55 50 62 60 69 C70 62 82 55 82 43 C82 30 68 28 60 42 Z" fill="url(#cv-leaf-__ID__)" stroke="#14532d" stroke-width="1.2"/>
-      <path d="M60 67 C59.5 58 59.5 50 60 46" stroke="#bbf7d0" stroke-width="1.2" opacity=".8" stroke-linecap="round"/>
+  <!-- Four-Leaf Clover in Luxury Cloisonn\xE9 Gold Setting -->
+  <g data-part="clover" filter="url(#cv-shadow-__ID__)" style="transform-box:view-box;transform-origin:60px 72px">
+    <!-- Natural curving stem -->
+    <path d="M60 72 C60 96 66 114 70 124 C69 125 66 126 65 124 C60 112 56 94 57 72 Z" fill="#15803d" stroke="#052e16" stroke-width="0.8"/>
+    <!-- Top Leaf -->
+    <g transform="rotate(0 60 72)">
+      <path d="M60 41 C51 25 35 28 35 43 C35 57 49 64 60 71 C71 64 85 57 85 43 C85 28 69 25 60 41 Z" fill="url(#cv-gold-__ID__)" stroke="#78350f" stroke-width="0.6"/>
+      <path d="M60 43 C52 29 38 31 38 43 C38 55 50 62 60 69 C70 62 82 55 82 43 C82 31 68 29 60 43 Z" fill="url(#cv-leaf-__ID__)"/>
+      <path d="M60 67 V48" stroke="#fde047" stroke-width="0.9" opacity="0.8"/>
     </g>
-    <!-- Right leaf -->
-    <g transform="rotate(90 60 71)">
-      <path d="M60 41 C51 25 35 28 35 43 C35 57 49 64 60 71 C71 64 85 57 85 43 C85 28 69 25 60 41 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
-      <path d="M60 42 C52 28 38 30 38 43 C38 55 50 62 60 69 C70 62 82 55 82 43 C82 30 68 28 60 42 Z" fill="url(#cv-leaf-__ID__)" stroke="#14532d" stroke-width="1.2"/>
-      <path d="M60 67 C59.5 58 59.5 50 60 46" stroke="#bbf7d0" stroke-width="1.2" opacity=".8" stroke-linecap="round"/>
+    <!-- Right Leaf -->
+    <g transform="rotate(90 60 72)">
+      <path d="M60 41 C51 25 35 28 35 43 C35 57 49 64 60 71 C71 64 85 57 85 43 C85 28 69 25 60 41 Z" fill="url(#cv-gold-__ID__)" stroke="#78350f" stroke-width="0.6"/>
+      <path d="M60 43 C52 29 38 31 38 43 C38 55 50 62 60 69 C70 62 82 55 82 43 C82 31 68 29 60 43 Z" fill="url(#cv-leaf-__ID__)"/>
+      <path d="M60 67 V48" stroke="#fde047" stroke-width="0.9" opacity="0.8"/>
     </g>
-    <!-- Bottom leaf -->
-    <g transform="rotate(180 60 71)">
-      <path d="M60 41 C51 25 35 28 35 43 C35 57 49 64 60 71 C71 64 85 57 85 43 C85 28 69 25 60 41 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
-      <path d="M60 42 C52 28 38 30 38 43 C38 55 50 62 60 69 C70 62 82 55 82 43 C82 30 68 28 60 42 Z" fill="url(#cv-leaf-__ID__)" stroke="#14532d" stroke-width="1.2"/>
-      <path d="M60 67 C59.5 58 59.5 50 60 46" stroke="#bbf7d0" stroke-width="1.2" opacity=".8" stroke-linecap="round"/>
+    <!-- Bottom Leaf -->
+    <g transform="rotate(180 60 72)">
+      <path d="M60 41 C51 25 35 28 35 43 C35 57 49 64 60 71 C71 64 85 57 85 43 C85 28 69 25 60 41 Z" fill="url(#cv-gold-__ID__)" stroke="#78350f" stroke-width="0.6"/>
+      <path d="M60 43 C52 29 38 31 38 43 C38 55 50 62 60 69 C70 62 82 55 82 43 C82 31 68 29 60 43 Z" fill="url(#cv-leaf-__ID__)"/>
+      <path d="M60 67 V48" stroke="#fde047" stroke-width="0.9" opacity="0.8"/>
     </g>
-    <!-- Left leaf -->
-    <g transform="rotate(270 60 71)">
-      <path d="M60 41 C51 25 35 28 35 43 C35 57 49 64 60 71 C71 64 85 57 85 43 C85 28 69 25 60 41 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.6"/>
-      <path d="M60 42 C52 28 38 30 38 43 C38 55 50 62 60 69 C70 62 82 55 82 43 C82 30 68 28 60 42 Z" fill="url(#cv-leaf-__ID__)" stroke="#14532d" stroke-width="1.2"/>
-      <path d="M60 67 C59.5 58 59.5 50 60 46" stroke="#bbf7d0" stroke-width="1.2" opacity=".8" stroke-linecap="round"/>
+    <!-- Left Leaf -->
+    <g transform="rotate(270 60 72)">
+      <path d="M60 41 C51 25 35 28 35 43 C35 57 49 64 60 71 C71 64 85 57 85 43 C85 28 69 25 60 41 Z" fill="url(#cv-gold-__ID__)" stroke="#78350f" stroke-width="0.6"/>
+      <path d="M60 43 C52 29 38 31 38 43 C38 55 50 62 60 69 C70 62 82 55 82 43 C82 31 68 29 60 43 Z" fill="url(#cv-leaf-__ID__)"/>
+      <path d="M60 67 V48" stroke="#fde047" stroke-width="0.9" opacity="0.8"/>
     </g>
-    <!-- Center pip -->
-    <circle cx="60" cy="71" r="3.8" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8"/>
-    <circle cx="60" cy="71" r="2.4" fill="url(#cv-gold-__ID__)"/>
-    <circle cx="60" cy="71" r="1.2" fill="#15803d"/>
+    <!-- Center Bezel with Micro-Diamond Sparkle -->
+    <circle cx="60" cy="72" r="3.2" fill="url(#cv-gold-__ID__)" stroke="#78350f" stroke-width="0.8"/>
+    <circle cx="60" cy="72" r="1.4" fill="#ffffff"/>
   </g>
 </svg>`,
     ritual(root, api) {
-      const clover2 = parts(root, "clover")[0];
+      const clv = parts(root, "clover")[0];
       api.play("sparkle");
-      anim(clover2, [
+      anim(clv, [
         { transform: "rotate(0deg) scale(1)" },
         { transform: "rotate(-11deg) scale(1.1)" },
         { transform: "rotate(8deg) scale(1.03)" },
@@ -1520,11 +1838,16 @@
     art: `
 <svg class="charm-art" viewBox="0 0 130 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <radialGradient id="mk-1-__ID__" cx="36%" cy="26%" r="80%">
-      <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dcd6cc"/>
+    <radialGradient id="mk-porcelain-__ID__" cx="36%" cy="26%" r="80%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="65%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
     </radialGradient>
-    <linearGradient id="mk-2-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffe08a"/><stop offset="1" stop-color="#c9932f"/>
+    <linearGradient id="mk-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="30%" stop-color="#fde047"/>
+      <stop offset="70%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#78350f"/>
     </linearGradient>
     <radialGradient id="mk-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
@@ -1537,12 +1860,9 @@
       <stop offset="68%" stop-color="#1d4ed8"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </radialGradient>
-    <linearGradient id="mk-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="30%" stop-color="#f59e0b"/>
-      <stop offset="70%" stop-color="#d97706"/>
-      <stop offset="100%" stop-color="#78350f"/>
-    </linearGradient>
+    <filter id="mk-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#475569" flood-opacity="0.25"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M65 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -1556,35 +1876,36 @@
   <circle cx="65" cy="25.4" r="2.6" fill="url(#mk-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="65" cy="34" r="5.2" fill="none" stroke="url(#mk-gold-__ID__)" stroke-width="2.3"/>
-  <path d="M65 39.2 V48" stroke="#a16207" stroke-width="2" stroke-linecap="round"/>
-  <ellipse cx="65" cy="146" rx="40" ry="8" fill="#000" opacity=".08"/>
-  <path d="M40 96 q-6 40 4 52 q21 8 42 0 q10 -12 4 -52 Z" fill="url(#mk-1-__ID__)" stroke="#b9b1a4" stroke-width="2"/>
-  <path d="M40 96 q-6 40 4 52 q10 4 21 4 v-56 Z" fill="#f0a04b" opacity=".55"/>
-  <path d="M52 100 q-2 30 0 44 M78 100 q2 30 0 44" stroke="#c9c1b4" stroke-width="1.4" fill="none" opacity=".7"/>
-  <ellipse cx="65" cy="128" rx="17" ry="14" fill="url(#mk-2-__ID__)" stroke="#9a7420" stroke-width="1.8"/>
-  <text x="65" y="133" text-anchor="middle" font-family="Georgia,serif" font-size="13" font-weight="700" fill="#7d5c14">\u958B\u904B</text>
-  <g data-part="paw" style="transform-box:view-box;transform-origin:44px 96px">
-    <path d="M44 96 q-12 -18 -6 -34 q9 -8 17 2 q3 18 -2 32 Z" fill="url(#mk-1-__ID__)" stroke="#b9b1a4" stroke-width="2"/>
-    <circle cx="46" cy="60" r="10" fill="url(#mk-1-__ID__)" stroke="#b9b1a4" stroke-width="2"/>
-    <path d="M41 53 v6 M46 52 v7 M51 54 v5" stroke="#c9c1b4" stroke-width="1.6" stroke-linecap="round"/>
-    <ellipse cx="49" cy="66" rx="5" ry="3.6" fill="#f0a04b" opacity=".7"/>
+  <!-- High-Gloss Porcelain Lucky Cat -->
+  <g filter="url(#mk-shadow-__ID__)">
+    <!-- Porcelain Body -->
+    <path d="M42 98 C36 138 46 150 65 150 C84 150 94 138 88 98 Z" fill="url(#mk-porcelain-__ID__)" stroke="#94a3b8" stroke-width="1.2"/>
+    <!-- Calico russet & sumi patches -->
+    <path d="M42 98 C36 124 40 138 52 146 V98 Z" fill="#ea580c" opacity="0.75"/>
+    <!-- Solid Gold Koban Coin (\u5343\u4E07\u4E21) -->
+    <ellipse cx="65" cy="128" rx="17" ry="14" fill="url(#mk-gold-__ID__)" stroke="#78350f" stroke-width="1.2"/>
+    <text x="65" y="133" text-anchor="middle" font-family="serif" font-size="12" font-weight="700" fill="#78350f">\u5343\u4E07\u4E21</text>
+    <!-- Porcelain Head & Pointed Ears -->
+    <circle cx="65" cy="88" r="28" fill="url(#mk-porcelain-__ID__)" stroke="#94a3b8" stroke-width="1.2"/>
+    <path d="M42 68 L50 56 Q56 64 54 72 Z" fill="url(#mk-porcelain-__ID__)" stroke="#94a3b8" stroke-width="1"/>
+    <path d="M88 68 L80 56 Q74 64 76 72 Z" fill="url(#mk-porcelain-__ID__)" stroke="#94a3b8" stroke-width="1"/>
+    <path d="M45 66 L50 59 L52 68 Z" fill="#f87171"/>
+    <path d="M85 66 L80 59 L78 68 Z" fill="#f87171"/>
+    <!-- Smiling Eyes, Nose & Whiskers -->
+    <path d="M52 82 Q56 78 60 82 M70 82 Q74 78 78 82" stroke="#1e293b" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <circle cx="65" cy="86" r="1.8" fill="#f87171"/>
+    <path d="M65 88 Q62 92 58 90 M65 88 Q68 92 72 90" stroke="#1e293b" stroke-width="1.2" fill="none"/>
+    <path d="M44 86 H34 M44 90 H32 M86 86 H96 M86 90 H98" stroke="#94a3b8" stroke-width="1.2" stroke-linecap="round"/>
+    <!-- Vermilion Collar with Jingling Golden Bell -->
+    <path d="M42 100 Q65 110 88 100" stroke="#dc2626" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <circle cx="65" cy="106" r="5" fill="url(#mk-gold-__ID__)" stroke="#78350f" stroke-width="0.8"/>
+    <!-- Beckoning Paw with Pink Pads -->
+    <g data-part="paw" style="transform-box:view-box;transform-origin:46px 94px">
+      <path d="M46 94 Q36 78 42 62 Q50 56 56 66 Q52 82 46 94 Z" fill="url(#mk-porcelain-__ID__)" stroke="#94a3b8" stroke-width="1.2"/>
+      <circle cx="45" cy="62" r="9" fill="url(#mk-porcelain-__ID__)" stroke="#94a3b8" stroke-width="1.2"/>
+      <ellipse cx="45" cy="63" rx="4" ry="3" fill="#f87171" opacity="0.8"/>
+    </g>
   </g>
-  <path d="M38 138 q27 10 54 0 q-4 12 -27 12 t-27 -12 Z" fill="url(#mk-1-__ID__)" stroke="#b9b1a4" stroke-width="2"/>
-  <circle cx="65" cy="92" r="30" fill="url(#mk-1-__ID__)" stroke="#b9b1a4" stroke-width="2"/>
-  <path d="M65 62 l-13 -12 q-3 14 3 18 Z" fill="url(#mk-1-__ID__)" stroke="#b9b1a4" stroke-width="2"/>
-  <path d="M65 62 l13 -12 q3 14 -3 18 Z" fill="url(#mk-1-__ID__)" stroke="#b9b1a4" stroke-width="2"/>
-  <path d="M56 66 l-8 -10 q-2 9 2 12 Z" fill="#e8a0a0"/>
-  <path d="M74 66 l8 -10 q2 9 -2 12 Z" fill="#e8a0a0"/>
-  <path d="M40 78 q14 -12 25 -4 q-6 14 -25 4 Z" fill="#f0a04b" opacity=".75"/>
-  <path d="M90 78 q-14 -12 -25 -4 q6 14 25 4 Z" fill="#4a4a4a" opacity=".55"/>
-  <path d="M51 84 q5 -4 9 0" stroke="#2b2b2b" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M70 84 q5 -4 9 0" stroke="#2b2b2b" stroke-width="2" fill="none" stroke-linecap="round"/>
-  <path d="M65 90 q-4 3 0 5 q4 -2 0 -5" fill="#d97b7b"/>
-  <path d="M65 95 q-6 6 -11 2 M65 95 q6 6 11 2" stroke="#2b2b2b" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <path d="M40 92 h-12 M40 97 h-13 M90 92 h12 M90 97 h13" stroke="#c9c1b4" stroke-width="1.5" stroke-linecap="round"/>
-  <path d="M37 104 q28 8 56 0" stroke="#c0392b" stroke-width="6" fill="none" stroke-linecap="round"/>
-  <circle cx="65" cy="110" r="6" fill="url(#mk-2-__ID__)" stroke="#9a7420" stroke-width="1.4"/>
-  <path d="M62 110 h6" stroke="#9a7420" stroke-width="1.2"/>
 </svg>`,
     ritual(root, api) {
       const paw = parts(root, "paw")[0];
@@ -1612,10 +1933,18 @@
     art: `
 <svg class="charm-art" viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <radialGradient id="dm-1-__ID__" cx="35%" cy="24%" r="85%">
-      <stop offset="0" stop-color="#ef4444"/><stop offset=".45" stop-color="#dc2626"/><stop offset="1" stop-color="#7f1d1d"/>
+    <radialGradient id="dm-lacquer-__ID__" cx="36%" cy="26%" r="85%">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="35%" stop-color="#dc2626"/>
+      <stop offset="75%" stop-color="#991b1b"/>
+      <stop offset="100%" stop-color="#450a0a"/>
     </radialGradient>
-    <clipPath id="dm-c-__ID__"><path d="M60 26 q38 4 42 62 q4 52 -42 56 q-46 -4 -42 -56 q4 -58 42 -62 Z"/></clipPath>
+    <linearGradient id="dm-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="35%" stop-color="#fde047"/>
+      <stop offset="75%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
     <radialGradient id="dm-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
       <stop offset="60%" stop-color="#f8fafc"/>
@@ -1627,12 +1956,9 @@
       <stop offset="68%" stop-color="#1d4ed8"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </radialGradient>
-    <linearGradient id="dm-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="30%" stop-color="#f59e0b"/>
-      <stop offset="70%" stop-color="#d97706"/>
-      <stop offset="100%" stop-color="#78350f"/>
-    </linearGradient>
+    <filter id="dm-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#450a0a" flood-opacity="0.32"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M60 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -1646,25 +1972,26 @@
   <circle cx="60" cy="25.4" r="2.6" fill="url(#dm-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="60" cy="34" r="5.2" fill="none" stroke="url(#dm-gold-__ID__)" stroke-width="2.3"/>
-  <path d="M60 39.2 V42" stroke="#a16207" stroke-width="2" stroke-linecap="round"/>
-  <g data-part="doll">
-    <path d="M60 26 q38 4 42 62 q4 52 -42 56 q-46 -4 -42 -56 q4 -58 42 -62 Z" fill="url(#dm-1-__ID__)" stroke="#6d0f0f" stroke-width="2.4"/>
-    <g clip-path="url(#dm-c-__ID__)">
-      <ellipse cx="60" cy="46" rx="18" ry="10" fill="#f7d9a0" opacity=".5"/>
-      <path d="M18 118 q42 14 84 0 v32 q-42 12 -84 0 Z" fill="#a81f1f" opacity=".5"/>
-      <path d="M20 132 q40 12 80 0" stroke="#f2c14e" stroke-width="3" fill="none"/>
-      <ellipse cx="44" cy="62" rx="16" ry="11" fill="#ffffff" opacity=".16" transform="rotate(-22 44 62)"/>
-    </g>
-    <ellipse cx="60" cy="96" rx="30" ry="30" fill="#f7e3c2" opacity=".92"/>
-    <ellipse cx="60" cy="96" rx="30" ry="30" fill="none" stroke="#c9a227" stroke-width="1.6" opacity=".7"/>
-    <ellipse cx="46" cy="88" rx="9.5" ry="11.5" fill="#ffffff" stroke="#b8b8b8" stroke-width="1.2"/>
-    <ellipse cx="74" cy="88" rx="9.5" ry="11.5" fill="#ffffff" stroke="#b8b8b8" stroke-width="1.2"/>
-    <ellipse data-part="pupilL" cx="46" cy="88" rx="0" ry="0" fill="#141414"/>
-    <ellipse data-part="pupilR" cx="74" cy="88" rx="0" ry="0" fill="#141414"/>
-    <path d="M36 74 q10 -6 19 -2 M84 74 q-10 -6 -19 -2" stroke="#2b2b2b" stroke-width="3.4" fill="none" stroke-linecap="round"/>
-    <path d="M60 96 q-7 6 0 10 q7 -4 0 -10" fill="#2b2b2b" opacity=".55"/>
-    <path d="M52 110 q8 5 16 0" stroke="#2b2b2b" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".6"/>
-    <path d="M60 26 q-4 -8 2 -12 q6 4 2 12" fill="#c9a227"/>
+  <!-- Traditional Takasaki Daruma Doll -->
+  <g data-part="doll" filter="url(#dm-shadow-__ID__)">
+    <!-- Plump roly-poly lacquer body -->
+    <path d="M60 40 C34 40 20 62 20 102 C20 138 36 154 60 154 C84 154 100 138 100 102 C100 62 86 40 60 40 Z" fill="url(#dm-lacquer-__ID__)" stroke="#450a0a" stroke-width="1.4"/>
+    <!-- Gold leaf cloud swirls on sides -->
+    <path d="M24 108 Q32 100 36 112" stroke="url(#dm-gold-__ID__)" stroke-width="2" fill="none" opacity="0.8"/>
+    <path d="M96 108 Q88 100 84 112" stroke="url(#dm-gold-__ID__)" stroke-width="2" fill="none" opacity="0.8"/>
+    <!-- White Parchment Face Medallion -->
+    <ellipse cx="60" cy="96" rx="30" ry="28" fill="#f8fafc" stroke="url(#dm-gold-__ID__)" stroke-width="1.6"/>
+    <!-- Crane-Wing Eyebrows & Tortoise-Shell Whiskers -->
+    <path d="M38 78 Q48 70 56 76 M82 78 Q72 70 64 76" stroke="#1e293b" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M42 108 Q50 114 60 110 Q70 114 78 108" stroke="#1e293b" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+    <!-- Left & Right Eye Medallions -->
+    <ellipse cx="46" cy="88" rx="8.5" ry="10" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+    <ellipse cx="74" cy="88" rx="8.5" ry="10" fill="#ffffff" stroke="#94a3b8" stroke-width="1"/>
+    <!-- Left & Right Dynamic Pupils for Ritual -->
+    <ellipse data-part="pupilL" cx="46" cy="88" rx="0" ry="0" fill="#020617"/>
+    <ellipse data-part="pupilR" cx="74" cy="88" rx="0" ry="0" fill="#020617"/>
+    <!-- Gold Kanji '\u798F' (Fortune) on Chest -->
+    <text x="60" y="142" text-anchor="middle" font-family="serif" font-size="14" font-weight="700" fill="url(#dm-gold-__ID__)">\u798F</text>
   </g>
 </svg>`,
     ritual(root, api) {
@@ -1703,11 +2030,17 @@
     art: `
 <svg class="charm-art" viewBox="0 0 160 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <linearGradient id="sc-1-__ID__" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#7fe3d4"/><stop offset=".5" stop-color="#2fa8a0"/><stop offset="1" stop-color="#14706f"/>
-    </linearGradient>
-    <linearGradient id="sc-2-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#ffe9a3"/><stop offset=".5" stop-color="#d9a72c"/><stop offset="1" stop-color="#8a6510"/>
+    <radialGradient id="sc-lapis-__ID__" cx="36%" cy="28%" r="76%">
+      <stop offset="0%" stop-color="#5eead4"/>
+      <stop offset="35%" stop-color="#0d9488"/>
+      <stop offset="75%" stop-color="#115e59"/>
+      <stop offset="100%" stop-color="#042f2e"/>
+    </radialGradient>
+    <linearGradient id="sc-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="30%" stop-color="#fde047"/>
+      <stop offset="70%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#78350f"/>
     </linearGradient>
     <radialGradient id="sc-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
@@ -1720,12 +2053,9 @@
       <stop offset="68%" stop-color="#1d4ed8"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </radialGradient>
-    <linearGradient id="sc-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="30%" stop-color="#f59e0b"/>
-      <stop offset="70%" stop-color="#d97706"/>
-      <stop offset="100%" stop-color="#78350f"/>
-    </linearGradient>
+    <filter id="sc-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#042f2e" flood-opacity="0.32"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M80 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -1739,28 +2069,29 @@
   <circle cx="80" cy="25.4" r="2.6" fill="url(#sc-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="80" cy="34" r="5.2" fill="none" stroke="url(#sc-gold-__ID__)" stroke-width="2.3"/>
-  <path d="M80 39.2 V48" stroke="#a16207" stroke-width="2" stroke-linecap="round"/>
-  <g data-part="wingL" style="transform-box:view-box;transform-origin:80px 80px">
-    <path d="M80 76 q-34 -22 -62 -6 q-8 20 4 34 q30 12 58 -8 Z" fill="url(#sc-2-__ID__)" stroke="#7d5c14" stroke-width="2"/>
-    <path d="M74 80 q-26 -12 -48 -2 M72 92 q-24 4 -44 -4 M76 104 q-20 10 -38 6" stroke="#7d5c14" stroke-width="1.5" fill="none" opacity=".7"/>
-    <circle cx="34" cy="78" r="4" fill="#2fa8a0" stroke="#7d5c14" stroke-width="1.2"/>
-    <circle cx="46" cy="94" r="4" fill="#c0392b" stroke="#7d5c14" stroke-width="1.2"/>
+  <!-- Golden Solar Disc of Ra held at apex -->
+  <circle cx="80" cy="46" r="7" fill="url(#sc-gold-__ID__)" stroke="#78350f" stroke-width="1"/>
+  <circle cx="78" cy="44" r="2" fill="#fffbeb"/>
+  <!-- Left Chiseled Falcon Wing -->
+  <g data-part="wingL" style="transform-box:view-box;transform-origin:80px 86px">
+    <path d="M80 78 C52 56 24 64 16 80 C26 94 56 94 80 88 Z" fill="url(#sc-gold-__ID__)" stroke="#78350f" stroke-width="1.2"/>
+    <path d="M74 80 C54 68 32 74 24 82 M70 86 C50 78 36 84 30 88" stroke="#0d9488" stroke-width="1.4" fill="none"/>
   </g>
-  <g data-part="wingR" style="transform-box:view-box;transform-origin:80px 80px">
-    <path d="M80 76 q34 -22 62 -6 q8 20 -4 34 q-30 12 -58 -8 Z" fill="url(#sc-2-__ID__)" stroke="#7d5c14" stroke-width="2"/>
-    <path d="M86 80 q26 -12 48 -2 M88 92 q24 4 44 -4 M84 104 q20 10 38 6" stroke="#7d5c14" stroke-width="1.5" fill="none" opacity=".7"/>
-    <circle cx="126" cy="78" r="4" fill="#2fa8a0" stroke="#7d5c14" stroke-width="1.2"/>
-    <circle cx="114" cy="94" r="4" fill="#c0392b" stroke="#7d5c14" stroke-width="1.2"/>
+  <!-- Right Chiseled Falcon Wing -->
+  <g data-part="wingR" style="transform-box:view-box;transform-origin:80px 86px">
+    <path d="M80 78 C108 56 136 64 144 80 C134 94 104 94 80 88 Z" fill="url(#sc-gold-__ID__)" stroke="#78350f" stroke-width="1.2"/>
+    <path d="M86 80 C106 68 128 74 136 82 M90 86 C110 78 124 84 130 88" stroke="#0d9488" stroke-width="1.4" fill="none"/>
   </g>
-  <g data-part="body">
-    <ellipse cx="80" cy="92" rx="26" ry="34" fill="url(#sc-1-__ID__)" stroke="#0d4f4f" stroke-width="2.2"/>
-    <path d="M80 60 v66" stroke="#0d4f4f" stroke-width="1.6" opacity=".55"/>
-    <path d="M58 78 q22 6 44 0 M56 96 q24 6 48 0" stroke="#0d4f4f" stroke-width="1.3" fill="none" opacity=".45"/>
-    <ellipse cx="80" cy="62" rx="16" ry="12" fill="url(#sc-1-__ID__)" stroke="#0d4f4f" stroke-width="2"/>
-    <path d="M68 54 q-10 -8 -14 -4 M92 54 q10 -8 14 -4" stroke="#0d4f4f" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-    <ellipse cx="70" cy="80" rx="7" ry="9" fill="#ffffff" opacity=".2"/>
-    <path d="M64 118 l-6 12 M80 122 v12 M96 118 l6 12" stroke="url(#sc-1-__ID__)" stroke-width="4" stroke-linecap="round"/>
-    <circle cx="80" cy="74" r="5" fill="#d9a72c" stroke="#7d5c14" stroke-width="1.2"/>
+  <!-- Lapis & Gold Beetle Body -->
+  <g data-part="body" filter="url(#sc-shadow-__ID__)">
+    <!-- Sculpted Elytra (Wingshield) -->
+    <ellipse cx="80" cy="98" rx="24" ry="32" fill="url(#sc-lapis-__ID__)" stroke="#78350f" stroke-width="1.4"/>
+    <path d="M80 66 V130" stroke="url(#sc-gold-__ID__)" stroke-width="1.8"/>
+    <!-- Thorax & Clypeus Head in Chiseled Gold -->
+    <ellipse cx="80" cy="68" rx="15" ry="9" fill="url(#sc-gold-__ID__)" stroke="#78350f" stroke-width="1.2"/>
+    <path d="M72 60 L66 54 M88 60 L94 54" stroke="url(#sc-gold-__ID__)" stroke-width="2.4" stroke-linecap="round"/>
+    <!-- Specular gemstone gleam -->
+    <ellipse cx="72" cy="86" rx="6" ry="10" fill="#ffffff" opacity="0.35" transform="rotate(-20 72 86)"/>
   </g>
 </svg>`,
     ritual(root, api) {
@@ -1805,8 +2136,17 @@
 <svg class="charm-art" viewBox="0 0 120 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
     <radialGradient id="lb-red-__ID__" cx="36%" cy="24%" r="85%">
-      <stop offset="0" stop-color="#ef4444"/><stop offset=".4" stop-color="#dc2626"/><stop offset="1" stop-color="#7f1d1d"/>
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="35%" stop-color="#dc2626"/>
+      <stop offset="75%" stop-color="#991b1b"/>
+      <stop offset="100%" stop-color="#450a0a"/>
     </radialGradient>
+    <linearGradient id="lb-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="30%" stop-color="#fde047"/>
+      <stop offset="70%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#78350f"/>
+    </linearGradient>
     <radialGradient id="lb-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
       <stop offset="60%" stop-color="#f8fafc"/>
@@ -1818,12 +2158,9 @@
       <stop offset="68%" stop-color="#1d4ed8"/>
       <stop offset="100%" stop-color="#0f172a"/>
     </radialGradient>
-    <linearGradient id="lb-gold-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="30%" stop-color="#f59e0b"/>
-      <stop offset="70%" stop-color="#d97706"/>
-      <stop offset="100%" stop-color="#78350f"/>
-    </linearGradient>
+    <filter id="lb-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#450a0a" flood-opacity="0.32"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M60 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -1837,20 +2174,30 @@
   <circle cx="60" cy="25.4" r="2.6" fill="url(#lb-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="60" cy="34" r="5.2" fill="none" stroke="url(#lb-gold-__ID__)" stroke-width="2.3"/>
-  <g data-part="bug" style="transform-box:view-box;transform-origin:60px 40px">
-    <path d="M60 40 q-5 -14 0 -22 M60 18 q7 9 5 16" stroke="#1b1b1b" stroke-width="2.4" fill="none" stroke-linecap="round"/>
-    <circle cx="60" cy="52" r="9" fill="#1b1b1b"/>
-    <circle cx="55.6" cy="50" r="1.8" fill="#ffffff"/><circle cx="64.4" cy="50" r="1.8" fill="#ffffff"/>
-    <path d="M30 96 q0 -36 30 -36 t30 36 q0 6 -2 10 l-28 18 -28 -18 q-2 -4 -2 -10 Z" fill="url(#lb-red-__ID__)" stroke="#7d0f0f" stroke-width="2.4"/>
-    <path d="M60 60 v46" stroke="#7d0f0f" stroke-width="2.4"/>
-    <ellipse cx="60" cy="122" rx="30" ry="8" fill="#1b1b1b"/>
-    <g fill="#1b1b1b">
-      <circle cx="60" cy="68" r="3.4"/>
-      <circle cx="47" cy="78" r="4"/><circle cx="73" cy="78" r="4"/>
-      <circle cx="41" cy="94" r="4.6"/><circle cx="79" cy="94" r="4.6"/>
-      <circle cx="51" cy="110" r="4.6"/><circle cx="69" cy="110" r="4.6"/>
-    </g>
-    <ellipse cx="42" cy="82" rx="7" ry="4" fill="#ffffff" opacity=".4" transform="rotate(-30 42 82)"/>
+  <!-- High-Jewelry Ladybug Brooch -->
+  <g data-part="bug" filter="url(#lb-shadow-__ID__)" style="transform-box:view-box;transform-origin:60px 42px">
+    <!-- Delicate Gold Antennae -->
+    <path d="M56 46 Q52 32 46 30 M64 46 Q68 32 74 30" stroke="url(#lb-gold-__ID__)" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+    <circle cx="46" cy="30" r="1.6" fill="url(#lb-gold-__ID__)"/>
+    <circle cx="74" cy="30" r="1.6" fill="url(#lb-gold-__ID__)"/>
+    <!-- Jet-Black Head with Diamond Eyes -->
+    <ellipse cx="60" cy="52" rx="10" ry="8" fill="#020617"/>
+    <circle cx="55.5" cy="50" r="1.8" fill="#ffffff"/>
+    <circle cx="64.5" cy="50" r="1.8" fill="#ffffff"/>
+    <!-- Domed Carmine Red Vitreous Enamel Shell -->
+    <path d="M30 96 C30 62 60 62 60 62 C60 62 90 62 90 96 C90 126 76 136 60 136 C44 136 30 126 30 96 Z" fill="url(#lb-red-__ID__)" stroke="#450a0a" stroke-width="1.4"/>
+    <!-- Polished Gold Wing Separation Line -->
+    <path d="M60 62 V136" stroke="url(#lb-gold-__ID__)" stroke-width="2"/>
+    <!-- 7 Onyx Spots in Gold Bezels -->
+    <circle cx="60" cy="72" r="3.6" fill="#020617" stroke="url(#lb-gold-__ID__)" stroke-width="0.6"/>
+    <circle cx="46" cy="80" r="4.2" fill="#020617" stroke="url(#lb-gold-__ID__)" stroke-width="0.6"/>
+    <circle cx="74" cy="80" r="4.2" fill="#020617" stroke="url(#lb-gold-__ID__)" stroke-width="0.6"/>
+    <circle cx="40" cy="98" r="4.6" fill="#020617" stroke="url(#lb-gold-__ID__)" stroke-width="0.6"/>
+    <circle cx="80" cy="98" r="4.6" fill="#020617" stroke="url(#lb-gold-__ID__)" stroke-width="0.6"/>
+    <circle cx="50" cy="116" r="4.4" fill="#020617" stroke="url(#lb-gold-__ID__)" stroke-width="0.6"/>
+    <circle cx="70" cy="116" r="4.4" fill="#020617" stroke="url(#lb-gold-__ID__)" stroke-width="0.6"/>
+    <!-- Curved Specular Dome Light Glare -->
+    <ellipse cx="44" cy="82" rx="8" ry="4.5" fill="#ffffff" opacity="0.45" transform="rotate(-30 44 82)"/>
   </g>
 </svg>`,
     ritual(root, api) {
@@ -1880,9 +2227,16 @@
     art: `
 <svg class="charm-art" viewBox="0 0 120 215" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <linearGradient id="dc-hoop-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#d3ab72"/><stop offset="1" stop-color="#8a5f36"/>
+    <linearGradient id="dc-leather-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d4b483"/>
+      <stop offset="50%" stop-color="#9a7342"/>
+      <stop offset="100%" stop-color="#5c3f1d"/>
     </linearGradient>
+    <radialGradient id="dc-turquoise-__ID__" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#5eead4"/>
+      <stop offset="45%" stop-color="#0d9488"/>
+      <stop offset="100%" stop-color="#115e59"/>
+    </radialGradient>
     <radialGradient id="dc-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
       <stop offset="60%" stop-color="#f8fafc"/>
@@ -1900,6 +2254,9 @@
       <stop offset="70%" stop-color="#d97706"/>
       <stop offset="100%" stop-color="#78350f"/>
     </linearGradient>
+    <filter id="dc-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4.5" flood-color="#5c3f1d" flood-opacity="0.25"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M60 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -1913,28 +2270,38 @@
   <circle cx="60" cy="25.4" r="2.6" fill="url(#dc-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="60" cy="34" r="5.2" fill="none" stroke="url(#dc-gold-__ID__)" stroke-width="2.3"/>
-  <g data-part="web" style="transform-box:view-box;transform-origin:60px 80px">
-    <circle cx="60" cy="80" r="40" fill="none" stroke="url(#dc-hoop-__ID__)" stroke-width="6"/>
-    <circle cx="60" cy="80" r="40" fill="none" stroke="#6d4a29" stroke-width="1.4" opacity=".5"/>
-    <g stroke="#e6d3b0" stroke-width="1.2" fill="none" opacity=".9">
-      <circle cx="60" cy="80" r="30"/><circle cx="60" cy="80" r="21"/>
-      <circle cx="60" cy="80" r="12"/><circle cx="60" cy="80" r="4"/>
-      <path d="M60 80 L60 40 M60 80 L95 60 M60 80 L95 100 M60 80 L60 120 M60 80 L25 100 M60 80 L25 60 M60 80 L43 46 M60 80 L77 46 M60 80 L77 114 M60 80 L43 114"/>
-      <path d="M47 48 q13 6 26 0 M35 65 q25 8 50 0 M35 95 q25 8 50 0 M47 112 q13 6 26 0"/>
+  <!-- Willow Hoop & Sacred Spiderweb -->
+  <g data-part="web" filter="url(#dc-shadow-__ID__)" style="transform-box:view-box;transform-origin:60px 80px">
+    <!-- Buckskin-wrapped hoop -->
+    <circle cx="60" cy="80" r="40" fill="none" stroke="url(#dc-leather-__ID__)" stroke-width="6"/>
+    <circle cx="60" cy="80" r="40" fill="none" stroke="#5c3f1d" stroke-width="1.2" opacity="0.6"/>
+    <!-- Sacred Geometric Web with Silver Sinew -->
+    <g stroke="#fef3c7" stroke-width="1.2" fill="none" opacity="0.85">
+      <circle cx="60" cy="80" r="30"/>
+      <circle cx="60" cy="80" r="20"/>
+      <circle cx="60" cy="80" r="10"/>
+      <path d="M60 40 L60 120 M20 80 L100 80 M32 52 L88 108 M32 108 L88 52"/>
     </g>
-    <circle cx="28" cy="52" r="3.2" fill="#2fa8a0"/><circle cx="92" cy="52" r="3.2" fill="#2fa8a0"/>
-    <circle cx="60" cy="120" r="3.2" fill="#2fa8a0"/>
+    <!-- Central Genuine Turquoise Gemstone -->
+    <circle cx="60" cy="80" r="4.2" fill="url(#dc-turquoise-__ID__)" stroke="#115e59" stroke-width="0.8"/>
+    <circle cx="59" cy="79" r="1.2" fill="#ffffff" opacity="0.8"/>
   </g>
+  <!-- Sacred Shaded Plumage Feathers -->
   <g data-part="feathers" style="transform-box:view-box;transform-origin:60px 122px">
-    <path d="M42 122 v36 M60 122 v42 M78 122 v36" stroke="#8a5f36" stroke-width="2.2"/>
-    <path d="M42 158 q-12 8 -10 24 q12 -8 14 -22 Z" fill="#f4efe6" stroke="#b9ab90" stroke-width="1.4"/>
-    <path d="M42 158 q-11 8 -9 22" stroke="#b9ab90" stroke-width="1" fill="none"/>
-    <path d="M60 164 q-12 10 -10 28 q13 -9 15 -26 Z" fill="#f4efe6" stroke="#b9ab90" stroke-width="1.4"/>
-    <path d="M60 164 q-11 9 -9 26" stroke="#b9ab90" stroke-width="1" fill="none"/>
-    <path d="M78 158 q-14 6 -12 22 q11 -8 15 -20 Z" fill="#f4efe6" stroke="#b9ab90" stroke-width="1.4"/>
-    <circle cx="42" cy="150" r="2.6" fill="#e2603f"/>
-    <circle cx="60" cy="156" r="2.6" fill="#2fa8a0"/>
-    <circle cx="78" cy="150" r="2.6" fill="#e2603f"/>
+    <path d="M42 120 V156 M60 120 V162 M78 120 V156" stroke="#9a7342" stroke-width="2" stroke-linecap="round"/>
+    <!-- Turquoise & Carnelian bead wraps -->
+    <circle cx="42" cy="148" r="2.8" fill="url(#dc-turquoise-__ID__)"/>
+    <circle cx="60" cy="154" r="3" fill="#dc2626"/>
+    <circle cx="78" cy="148" r="2.8" fill="url(#dc-turquoise-__ID__)"/>
+    <!-- Left Feather -->
+    <path d="M42 156 C32 166 34 184 42 192 C46 182 46 166 42 156 Z" fill="#f8fafc" stroke="#94a3b8" stroke-width="1"/>
+    <path d="M42 156 V190" stroke="#94a3b8" stroke-width="0.8"/>
+    <!-- Center Long Feather -->
+    <path d="M60 162 C48 174 50 196 60 206 C66 194 66 174 60 162 Z" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.2"/>
+    <path d="M60 162 V204" stroke="#94a3b8" stroke-width="0.9"/>
+    <!-- Right Feather -->
+    <path d="M78 156 C74 166 74 182 78 192 C86 184 88 166 78 156 Z" fill="#f8fafc" stroke="#94a3b8" stroke-width="1"/>
+    <path d="M78 156 V190" stroke="#94a3b8" stroke-width="0.8"/>
   </g>
 </svg>`,
     ritual(root, api) {
@@ -1972,7 +2339,15 @@
 <svg class="charm-art" viewBox="0 0 120 215" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
     <linearGradient id="bm-stalk-__ID__" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#5faf47"/><stop offset=".55" stop-color="#8ccf5e"/><stop offset="1" stop-color="#3d7a2a"/>
+      <stop offset="0%" stop-color="#4ade80"/>
+      <stop offset="30%" stop-color="#86efac"/>
+      <stop offset="70%" stop-color="#22c55e"/>
+      <stop offset="100%" stop-color="#14532d"/>
+    </linearGradient>
+    <linearGradient id="bm-silk-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="40%" stop-color="#dc2626"/>
+      <stop offset="100%" stop-color="#7f1d1d"/>
     </linearGradient>
     <radialGradient id="bm-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
@@ -1991,6 +2366,9 @@
       <stop offset="70%" stop-color="#d97706"/>
       <stop offset="100%" stop-color="#78350f"/>
     </linearGradient>
+    <filter id="bm-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="4.5" flood-color="#14532d" flood-opacity="0.28"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M60 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -2004,33 +2382,32 @@
   <circle cx="60" cy="25.4" r="2.6" fill="url(#bm-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="60" cy="34" r="5.2" fill="none" stroke="url(#bm-gold-__ID__)" stroke-width="2.3"/>
-  <g data-part="stalks" style="transform-box:view-box;transform-origin:60px 26px">
-    <g>
-      <rect x="42" y="34" width="10" height="150" rx="5" fill="url(#bm-stalk-__ID__)" stroke="#2f5e20" stroke-width="1.4"/>
-      <path d="M42 66 h10 M42 98 h10 M42 130 h10 M42 162 h10" stroke="#2f5e20" stroke-width="1.6"/>
-      <path d="M42 67 q5 3 10 0 M42 99 q5 3 10 0 M42 131 q5 3 10 0" stroke="#c9e8a8" stroke-width="1.2" fill="none"/>
-    </g>
-    <g>
-      <rect x="57" y="26" width="12" height="158" rx="6" fill="url(#bm-stalk-__ID__)" stroke="#2f5e20" stroke-width="1.4"/>
-      <path d="M57 60 h12 M57 94 h12 M57 128 h12 M57 162 h12" stroke="#2f5e20" stroke-width="1.6"/>
-      <path d="M57 61 q6 3 12 0 M57 95 q6 3 12 0 M57 129 q6 3 12 0" stroke="#c9e8a8" stroke-width="1.2" fill="none"/>
-    </g>
-    <g>
-      <rect x="74" y="42" width="9" height="142" rx="4.5" fill="url(#bm-stalk-__ID__)" stroke="#2f5e20" stroke-width="1.4"/>
-      <path d="M74 72 h9 M74 102 h9 M74 132 h9 M74 162 h9" stroke="#2f5e20" stroke-width="1.6"/>
-    </g>
-    <g fill="#3d7a2a" stroke="#2f5e20" stroke-width="1">
-      <path d="M52 58 q14 -12 22 0 q-12 8 -22 0 Z"/>
-      <path d="M69 48 q-16 -10 -22 2 q14 6 22 -2 Z"/>
-      <path d="M83 68 q12 -10 18 0 q-10 7 -18 0 Z"/>
-      <path d="M63 96 q-14 -8 -18 2 q10 6 18 -2 Z"/>
-      <path d="M78 118 q14 -8 20 2 q-12 6 -20 -2 Z"/>
-    </g>
+  <!-- Sculpted Jade-Green Bamboo Stalks -->
+  <g data-part="stalks" filter="url(#bm-shadow-__ID__)" style="transform-box:view-box;transform-origin:60px 36px">
+    <!-- Left Stalk -->
+    <rect x="42" y="44" width="10" height="136" rx="5" fill="url(#bm-stalk-__ID__)" stroke="#14532d" stroke-width="1"/>
+    <ellipse cx="47" cy="74" rx="5" ry="1.6" fill="none" stroke="#14532d" stroke-width="1.4"/>
+    <ellipse cx="47" cy="108" rx="5" ry="1.6" fill="none" stroke="#14532d" stroke-width="1.4"/>
+    <ellipse cx="47" cy="142" rx="5" ry="1.6" fill="none" stroke="#14532d" stroke-width="1.4"/>
+    <!-- Center Long Stalk -->
+    <rect x="55" y="36" width="12" height="150" rx="6" fill="url(#bm-stalk-__ID__)" stroke="#14532d" stroke-width="1"/>
+    <ellipse cx="61" cy="68" rx="6" ry="1.8" fill="none" stroke="#14532d" stroke-width="1.4"/>
+    <ellipse cx="61" cy="104" rx="6" ry="1.8" fill="none" stroke="#14532d" stroke-width="1.4"/>
+    <ellipse cx="61" cy="140" rx="6" ry="1.8" fill="none" stroke="#14532d" stroke-width="1.4"/>
+    <!-- Right Stalk -->
+    <rect x="70" y="48" width="10" height="132" rx="5" fill="url(#bm-stalk-__ID__)" stroke="#14532d" stroke-width="1"/>
+    <ellipse cx="75" cy="78" rx="5" ry="1.6" fill="none" stroke="#14532d" stroke-width="1.4"/>
+    <ellipse cx="75" cy="112" rx="5" ry="1.6" fill="none" stroke="#14532d" stroke-width="1.4"/>
+    <ellipse cx="75" cy="146" rx="5" ry="1.6" fill="none" stroke="#14532d" stroke-width="1.4"/>
+    <!-- Delicate Arching Leaf Shoots -->
+    <path d="M52 68 C40 60 36 50 48 54 C54 58 52 66 52 68 Z" fill="#22c55e" stroke="#14532d" stroke-width="0.8"/>
+    <path d="M70 60 C82 52 88 44 76 48 C70 52 70 58 70 60 Z" fill="#22c55e" stroke="#14532d" stroke-width="0.8"/>
+    <path d="M78 100 C90 92 94 82 84 86 C78 90 78 98 78 100 Z" fill="#22c55e" stroke="#14532d" stroke-width="0.8"/>
   </g>
-  <g data-part="ribbon" style="transform-box:view-box;transform-origin:62px 88px">
-    <path d="M40 84 h44 l-5 12 h-34 Z" fill="#c81e1e" stroke="#7d0f0f" stroke-width="1.6"/>
-    <path d="M58 96 q4 10 12 8 q-6 -2 -6 -8 Z" fill="#c81e1e" stroke="#7d0f0f" stroke-width="1.4"/>
-    <path d="M66 96 q-4 10 -12 8 q6 -2 6 -8 Z" fill="#a81218" stroke="#7d0f0f" stroke-width="1.4"/>
+  <!-- Scarlet Silk Ribbon with Gold Borders -->
+  <g data-part="ribbon" style="transform-box:view-box;transform-origin:61px 96px">
+    <rect x="38" y="92" width="46" height="11" rx="3" fill="url(#bm-silk-__ID__)" stroke="url(#bm-gold-__ID__)" stroke-width="1.2"/>
+    <path d="M56 103 Q52 118 48 126 M66 103 Q70 118 74 126" stroke="url(#bm-silk-__ID__)" stroke-width="3.5" stroke-linecap="round"/>
   </g>
 </svg>`,
     ritual(root, api) {
@@ -2060,8 +2437,11 @@
     art: `
 <svg class="charm-art" viewBox="0 0 140 190" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <linearGradient id="hi-1-__ID__" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#f6e3a8"/><stop offset=".5" stop-color="#d9b45a"/><stop offset="1" stop-color="#96742a"/>
+    <linearGradient id="hi-brass-__ID__" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="30%" stop-color="#fde047"/>
+      <stop offset="70%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#78350f"/>
     </linearGradient>
     <radialGradient id="hi-pearl-__ID__" cx="35%" cy="30%" r="75%">
       <stop offset="0%" stop-color="#ffffff"/>
@@ -2080,6 +2460,9 @@
       <stop offset="70%" stop-color="#d97706"/>
       <stop offset="100%" stop-color="#78350f"/>
     </linearGradient>
+    <filter id="hi-shadow-__ID__" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#78350f" flood-opacity="0.25"/>
+    </filter>
   </defs>
   <!-- Warm silk cord stub -->
   <path d="M70 0 V6" stroke="#d49b42" stroke-width="1.8" stroke-linecap="round"/>
@@ -2093,21 +2476,23 @@
   <circle cx="70" cy="25.4" r="2.6" fill="url(#hi-pearl-__ID__)" stroke="#94a3b8" stroke-width="0.3"/>
   <!-- Signature metallic gold jump-ring -->
   <circle cx="70" cy="34" r="5.2" fill="none" stroke="url(#hi-gold-__ID__)" stroke-width="2.3"/>
-  <g data-part="rig" style="transform-box:view-box;transform-origin:70px 100px" stroke="url(#hi-1-__ID__)" stroke-width="3.4" stroke-linejoin="round" fill="none" stroke-linecap="round">
-    <path d="M70 40 L34 76 L70 100 L106 76 Z" fill="#f6e3a8" fill-opacity=".13"/>
-    <path d="M70 40 L34 76 L70 156 L106 76 Z" fill="#f6e3a8" fill-opacity=".1"/>
-    <path d="M34 76 L70 100 L106 76 L70 156 Z" fill="#d9b45a" fill-opacity=".1"/>
-    <path d="M70 100 L34 76 M70 100 L106 76 M70 100 L70 40 M70 100 L70 156"/>
-    <path d="M70 40 L70 100 M34 76 L70 100 M106 76 L70 100 M70 156 L70 100"/>
-    <path d="M34 76 L70 156 M106 76 L70 156 M34 76 L106 76"/>
-    <path d="M70 40 L34 76 L70 156 L106 76 Z" stroke-width="2.6"/>
-    <path d="M70 40 L106 76 L70 156 L34 76 Z" stroke-width="2.6"/>
-    <path d="M70 76 L58 92 L70 108 L82 92 Z" fill="#f6e3a8" fill-opacity=".22" stroke-width="2.2"/>
-    <circle cx="70" cy="40" r="4.5" fill="#f6e3a8" stroke="none"/>
-    <circle cx="34" cy="76" r="3.6" fill="#f6e3a8" stroke="none"/>
-    <circle cx="106" cy="76" r="3.6" fill="#f6e3a8" stroke="none"/>
-    <circle cx="70" cy="156" r="3.6" fill="#f6e3a8" stroke="none"/>
-    <circle cx="70" cy="100" r="3" fill="#fff6d8" stroke="none"/>
+  <!-- Modern Geometric Polished Brass Mobile Rig -->
+  <g data-part="rig" filter="url(#hi-shadow-__ID__)" style="transform-box:view-box;transform-origin:70px 100px">
+    <!-- Outer Octahedron Struts -->
+    <g stroke="url(#hi-brass-__ID__)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none">
+      <path d="M70 42 L32 82 L70 110 L108 82 Z" fill="#fde047" fill-opacity="0.08"/>
+      <path d="M70 42 L32 82 L70 162 L108 82 Z" fill="#fde047" fill-opacity="0.05"/>
+      <path d="M70 42 V162 M32 82 H108 M70 110 V42 M70 110 V162 M32 82 L70 110 L108 82"/>
+      <path d="M32 82 L70 42 L108 82 L70 162 Z"/>
+    </g>
+    <!-- Inner Floating Diamond Octahedron -->
+    <path d="M70 78 L58 94 L70 110 L82 94 Z" fill="#fef08a" fill-opacity="0.22" stroke="url(#hi-brass-__ID__)" stroke-width="2"/>
+    <!-- Polished Gold Sphere Vertices -->
+    <circle cx="70" cy="42" r="3.6" fill="url(#hi-brass-__ID__)"/>
+    <circle cx="32" cy="82" r="3.6" fill="url(#hi-brass-__ID__)"/>
+    <circle cx="108" cy="82" r="3.6" fill="url(#hi-brass-__ID__)"/>
+    <circle cx="70" cy="162" r="3.6" fill="url(#hi-brass-__ID__)"/>
+    <circle cx="70" cy="110" r="3.2" fill="url(#hi-brass-__ID__)"/>
   </g>
 </svg>`,
     ritual(root, api) {
@@ -2157,7 +2542,7 @@
     return charm;
   }
   function getCharm(id) {
-    return BY_ID.get(id) || slinger;
+    return BY_ID.get(id) || nazar;
   }
   function renderArt(charm, uid) {
     return charm.art.replaceAll("__ID__", uid);
